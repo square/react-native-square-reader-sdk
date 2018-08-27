@@ -1,0 +1,27 @@
+{
+  "name": "reader-sdk-react-native-quickstart",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+  "dependencies": {
+    "react": "16.3.1",
+    "react-native": "0.55.4",
+    "react-native-camera-kit": "^6.2.4",
+    "react-native-device-info": "^0.21.5",
+    "react-native-globalize": "^2.0.1",
+    "react-native-permissions": "^1.1.1",
+    "react-navigation": "^2.6.2"
+  },
+  "devDependencies": {
+    "babel-jest": "23.4.0",
+    "babel-preset-react-native": "4.0.0",
+    "jest": "23.4.2",
+    "react-test-renderer": "16.3.1"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
