@@ -1,0 +1,12 @@
+language: node_js
+
+node_js:
+  - '6'
+
+deploy:
+  provider: npm
+  email: devplat-external-sdk-accounts+npm@squareup.com
+  api_key:
+    secure: W51Z6ieHECpZUVxgMZb6DtJ6eSBetsCD5/hm5whfFBeJFnjvH7CSiEhv0lUUzD5R/CsoGVd0acoXv7Nlao+LbQMrxrbCZgFnGNwYjZBlD4FWaMg2vQebMIkQNgsW0B0nR7Jh56TfUMIawKj5JfPsa7vdYeB0lKX0oZ+hcjWX/xvDLSGPQ0bTDW344UhwXXyq9kF35NCv861apoV+rG6z8n7iMR2wZuMRzZiCr2FHS6OMq3E9HgkPn//m34z/eqcDacoohAtyQvP6VCVY6rw6W2Cu3pW9UqVnRR3bA5LxT5fBm+StllOh7rfXTFO8IASBGZMTDQhX3nejNRV5dd0eJguGCefE+SBjsC8aJMKRjwrtTNmsy3c2GhFU+FFccDRanxnWhXIwp+DWvs5DRZDfHU4JEthsNbObwusko8qkjwPMQEA1NGtQW7TXR1nJmTOAbhUt7rqa4cl5laDYjSX4LbEu10XWBNXxFzEiiqB4kvaJ35nHr/79CIaLWCpoefuisQWROkJcSjP6gfgqZzhlinsgs0rPxhmSvfIMSjv8jiLFQCioS2LhXgGmQoPjWThF0l/wZMzeH3enfb0v/ruIdiwraHp4NQ/lscxDTL8MU68guewXrq3djNrRfHLgM5wg2Lxi2d8b3sz3osuWLK7a7GHoJsTGWhd84Fzc92hqQnI=
+  on:
+    branch: master
