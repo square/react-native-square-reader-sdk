@@ -21,7 +21,7 @@ import { defaultStyles } from '../styles/common';
 const ProgressView = () => (
   <View style={defaultStyles.pageContainer}>
     <View style={styles.indicatorContainer}>
-      <ActivityIndicator style={styles.activityIndicator} size='large' color="#ffffff"/>
+      <ActivityIndicator style={styles.activityIndicator} size="large" color="#ffffff" />
     </View>
   </View>
 );

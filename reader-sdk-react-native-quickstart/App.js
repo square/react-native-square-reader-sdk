@@ -22,11 +22,11 @@ import {
 } from 'react-navigation';
 import ChooseAuthorizeScreen from './app/screens/ChooseAuthorizeScreen';
 import ManualAuthorizeScreen from './app/screens/ManualAuthorizeScreen';
-import * as PayScreen from './app/screens/PayScreen';
-import * as SettingScreen from './app/screens/SettingScreen';
-import * as SplashScreen from './app/screens/SplashScreen';
-import * as PermissionScreenIOS from './app/screens/PermissionScreenIOS';
-import * as QRAuthorizationScreen from './app/screens/QRAuthorizationScreen';
+import PayScreen from './app/screens/PayScreen';
+import SettingScreen from './app/screens/SettingScreen';
+import SplashScreen from './app/screens/SplashScreen';
+import PermissionScreenIOS from './app/screens/PermissionScreenIOS';
+import QRAuthorizationScreen from './app/screens/QRAuthorizationScreen';
 import AuthorizingScreen from './app/screens/AuthorizingScreen';
 import DeauthorizingScreen from './app/screens/DeauthorizingScreen';
 

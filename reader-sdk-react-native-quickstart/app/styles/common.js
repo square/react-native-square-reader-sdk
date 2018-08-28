@@ -20,7 +20,7 @@ export const backgroundColor = '#4087E1';
 
 export const defaultStyles = StyleSheet.create({
   pageContainer: {
-    backgroundColor: backgroundColor,
+    backgroundColor,
     padding: 32,
     flex: 1,
     justifyContent: 'flex-end',

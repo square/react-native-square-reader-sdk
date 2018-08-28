@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { CameraKitCameraScreen } from 'react-native-camera-kit';
 import { backgroundColor } from '../styles/common';
 
@@ -25,21 +26,22 @@ export default class QRAuthorizationScreen extends Component {
 
   async onSuccess(e) {
     if (this.state.receivedCode) return;
-    this.setState({receivedCode: true});
-    this.props.navigation.navigate('Authorizing', {authCode: e.nativeEvent.codeStringValue});
+    this.setState({ receivedCode: true });
+    this.props.navigation.navigate('Authorizing', { authCode: e.nativeEvent.codeStringValue });
   }
+
   render() {
     const { goBack } = this.props.navigation;
     return (
       <CameraKitCameraScreen
         actions={{ leftButtonText: 'Cancel' }}
         onBottomButtonPressed={() => goBack()}
-        showFrame={true}
+        showFrame
         colorForScannerFrame={backgroundColor}
-        scanBarcode={true}
-        onReadCode={(e) => this.onSuccess(e)}
+        scanBarcode
+        onReadCode={e => this.onSuccess(e)}
         hideControls={false}
-        heightForScannerFrame = {300}
+        heightForScannerFrame={300}
         cameraOptions={{
           flashMode: 'auto',
           focusMode: 'on',
@@ -49,3 +51,7 @@ export default class QRAuthorizationScreen extends Component {
     );
   }
 }
+
+QRAuthorizationScreen.propTypes = {
+  navigation: PropTypes.object.isRequired,
+};

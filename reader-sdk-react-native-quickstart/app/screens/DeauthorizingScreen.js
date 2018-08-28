@@ -15,23 +15,23 @@ limitations under the License.
 */
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Alert } from 'react-native';
 import { deauthorizeAsync, canDeauthorizeAsync } from 'react-native-square-reader-sdk';
 import ProgressView from '../components/ProgressView';
 
 export default class DeauthorizingScreen extends Component {
-
   componentDidMount() {
-    window.setTimeout(async ()=> {
+    window.setTimeout(async () => {
       if (await canDeauthorizeAsync()) {
         try {
           await deauthorizeAsync();
           this.props.navigation.navigate('Splash');
-        } catch(ex) {
+        } catch (ex) {
           let errorMessage = ex.message;
           if (__DEV__) {
             errorMessage += `\n\nDebug Message: ${ex.debugMessage}`;
-            console.log(`${ex.code}:${ex.debugCode}:${ex.debugMessage}`)
+            console.log(`${ex.code}:${ex.debugCode}:${ex.debugMessage}`);
           }
           Alert.alert('Error', errorMessage);
         }
@@ -48,3 +48,7 @@ export default class DeauthorizingScreen extends Component {
     );
   }
 }
+
+DeauthorizingScreen.propTypes = {
+  navigation: PropTypes.object.isRequired,
+};

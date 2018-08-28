@@ -18,25 +18,35 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, TouchableOpacity, Text } from 'react-native';
 
-const CustomButton = (props) => (
-    <TouchableOpacity
-        style={props.disabled ?
-          [styles.button, props.primary ? styles.primaryButton : styles.secondaryButton, styles.disabledButton] :
-          [styles.button, props.primary ? styles.primaryButton : styles.secondaryButton]}
-        onPress={props.onPress}
-        disabled={props.disabled}
+const CustomButton = props => (
+  <TouchableOpacity
+    style={props.disabled
+      ? [styles.button, props.primary
+        ? styles.primaryButton : styles.secondaryButton, styles.disabledButton]
+      : [styles.button, props.primary
+        ? styles.primaryButton : styles.secondaryButton]}
+    onPress={props.onPress}
+    disabled={props.disabled}
+  >
+    <Text style={props.disabled
+      ? [styles.buttonText, styles.disabledButtonText]
+      : styles.buttonText}
     >
-        <Text style={props.disabled ?
-          [styles.buttonText, styles.disabledButtonText] :
-          styles.buttonText}>{props.title}</Text>
-    </TouchableOpacity>
+      {props.title}
+    </Text>
+  </TouchableOpacity>
 );
 
+CustomButton.defaultProps = {
+  disabled: false,
+  primary: false,
+};
+
 CustomButton.propTypes = {
-    title: PropTypes.string.isRequired,
-    onPress: PropTypes.func,
-    disabled: PropTypes.bool,
-    primary: PropTypes.bool,
+  title: PropTypes.string.isRequired,
+  onPress: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
+  primary: PropTypes.bool,
 };
 
 const styles = StyleSheet.create({
@@ -65,7 +75,7 @@ const styles = StyleSheet.create({
   },
   disabledButtonText: {
     color: 'rgba(255, 255, 255, 0.6)',
-  }
-})
+  },
+});
 
 export default CustomButton;

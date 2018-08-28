@@ -15,7 +15,8 @@ limitations under the License.
 */
 
 import React, { Component } from 'react';
-import {View, Text, Alert } from 'react-native';
+import PropTypes from 'prop-types';
+import { View, Text, Alert } from 'react-native';
 import Permissions from 'react-native-permissions';
 import DeviceInfo from 'react-native-device-info';
 import CustomButton from '../components/CustomButton';
@@ -36,6 +37,30 @@ export default class PermissionScreenIOS extends Component {
     this.checkPermissionsAndNavigateAsync();
   }
 
+  async onOpenSettings() {
+    if (!await this.checkPermissionsAndNavigateAsync()) {
+      Permissions.openSettings();
+    }
+  }
+
+  async onEnableMicAccess() {
+    try {
+      await Permissions.request('microphone');
+      this.checkPermissionsAndNavigateAsync();
+    } catch (ex) {
+      Alert.alert('Permission Request', ex.message);
+    }
+  }
+
+  async onEnableLocationAccess() {
+    try {
+      await Permissions.request('location');
+      this.checkPermissionsAndNavigateAsync();
+    } catch (ex) {
+      Alert.alert('Permission Request', ex.message);
+    }
+  }
+
   async checkPermissionsAndNavigateAsync() {
     try {
       const permissions = await Permissions.checkMultiple(['microphone', 'location']);
@@ -43,21 +68,22 @@ export default class PermissionScreenIOS extends Component {
         // Overide microphone prermission on emulator
         permissions.microphone = 'authorized';
       }
-      if (permissions.microphone == 'authorized' && permissions.location == 'authorized') {
+      if (permissions.microphone === 'authorized' && permissions.location === 'authorized') {
         this.props.navigation.navigate('Auth');
         return true;
-      } else {
-        this.updateMicrophoneState(permissions.microphone);
-        this.updateLocationState(permissions.location);
-        return false;
       }
+      this.updateMicrophoneState(permissions.microphone);
+      this.updateLocationState(permissions.location);
+      return false;
     } catch (ex) {
       Alert.alert('Permission Error', ex.message);
+      return true;
     }
   }
 
+
   updateMicrophoneState(state) {
-    switch(state) {
+    switch (state) {
       case 'authorized':
         this.setState({
           micPermissionButtonLabel: 'Microphone Enabled',
@@ -92,7 +118,7 @@ export default class PermissionScreenIOS extends Component {
   }
 
   updateLocationState(state) {
-    switch(state) {
+    switch (state) {
       case 'authorized':
         this.setState({
           locationPermissionButtonLabel: 'Location Enabled',
@@ -115,38 +141,14 @@ export default class PermissionScreenIOS extends Component {
         });
         break;
       case 'undetermined':
-      this.setState({
-        locationPermissionButtonLabel: 'Enable Location Access',
-        locationButtonEnabled: true,
-        locationbuttonHandler: this.onEnableLocationAccess.bind(this),
-      });
+        this.setState({
+          locationPermissionButtonLabel: 'Enable Location Access',
+          locationButtonEnabled: true,
+          locationbuttonHandler: this.onEnableLocationAccess.bind(this),
+        });
         break;
       default:
         Alert.alert('Unknown location permision');
-    }
-  }
-
-  async onOpenSettings() {
-    if (!await this.checkPermissionsAndNavigateAsync()) {
-      Permissions.openSettings();
-    }
-  }
-
-  async onEnableMicAccess() {
-    try {
-      await Permissions.request('microphone');
-      this.checkPermissionsAndNavigateAsync();
-    } catch(ex) {
-      Alert.alert('Permission Request', ex.message);
-    }
-  }
-
-  async onEnableLocationAccess() {
-    try {
-      await Permissions.request('location');
-      this.checkPermissionsAndNavigateAsync();
-    } catch(ex) {
-      Alert.alert('Permission Request', ex.message);
     }
   }
 
@@ -175,3 +177,7 @@ export default class PermissionScreenIOS extends Component {
     );
   }
 }
+
+PermissionScreenIOS.propTypes = {
+  navigation: PropTypes.object.isRequired,
+};

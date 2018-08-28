@@ -15,7 +15,10 @@ limitations under the License.
 */
 
 import React, { Component } from 'react';
-import { StyleSheet, View, TextInput, Text } from 'react-native';
+import PropTypes from 'prop-types';
+import {
+  StyleSheet, View, TextInput, Text,
+} from 'react-native';
 import CustomButton from '../components/CustomButton';
 import { defaultStyles } from '../styles/common';
 
@@ -24,11 +27,11 @@ export default class ManualAuthorizeScreen extends Component {
     super(props);
     this.state = {
       authCode: '',
-    }
+    };
   }
 
   async onLogin() {
-    this.props.navigation.navigate('Authorizing', {authCode: this.state.authCode});
+    this.props.navigation.navigate('Authorizing', { authCode: this.state.authCode });
   }
 
   render() {
@@ -41,26 +44,24 @@ export default class ManualAuthorizeScreen extends Component {
         <View style={styles.buttonContainer}>
           <TextInput
             style={styles.textInput}
-            onChangeText={(authCode) => this.setState({authCode})}
+            onChangeText={authCode => this.setState({ authCode })}
             value={this.state.authCode}
             autoFocus
             placeholder="Authorization code"
             placeholderTextColor="rgba(255, 255, 255, 0.85)"
             selectionColor="white"
-            underlineColorAndroid='transparent'
+            underlineColorAndroid="transparent"
           />
           <CustomButton
             title="Authorize"
-            onPress={() =>
-              this.onLogin()
+            onPress={() => this.onLogin()
             }
-            primary={true}
+            primary
             disabled={!this.state.authCode}
           />
           <CustomButton
             title="Cancel"
-            onPress={() =>
-              goBack()
+            onPress={() => goBack()
             }
           />
         </View>
@@ -85,9 +86,13 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 15,
     color: 'white',
-    backgroundColor: '#53A6FF'
+    backgroundColor: '#53A6FF',
   },
   buttonContainer: {
     flex: 1,
-  }
+  },
 });
+
+ManualAuthorizeScreen.propTypes = {
+  navigation: PropTypes.object.isRequired,
+};

@@ -16,15 +16,15 @@ limitations under the License.
 
 import React, { Component } from 'react';
 import { Alert } from 'react-native';
+import PropTypes from 'prop-types';
 import { authorizeAsync, AuthorizeErrorNoNetwork, UsageError } from 'react-native-square-reader-sdk';
 import ProgressView from '../components/ProgressView';
 
 export default class AuthorizingScreen extends Component {
-
   componentDidMount() {
     const { navigation } = this.props;
     const authCode = navigation.getParam('authCode', '');
-    window.setTimeout(async ()=>{
+    window.setTimeout(async () => {
       if (!authCode) {
         Alert.alert('Error: empty auth code');
         navigation.goBack();
@@ -33,19 +33,21 @@ export default class AuthorizingScreen extends Component {
       try {
         await authorizeAsync(authCode);
         this.props.navigation.navigate('Pay');
-      } catch(ex) {
-        switch(ex.code) {
+      } catch (ex) {
+        let errorMessage = ex.message;
+        switch (ex.code) {
           case AuthorizeErrorNoNetwork:
             Alert.alert(ex.code, ex.message);
             // Remind connecting to network
             break;
           case UsageError:
-            let errorMessage = ex.message;
             if (__DEV__) {
               errorMessage += `\n\nDebug Message: ${ex.debugMessage}`;
-              console.log(`${ex.code}:${ex.debugCode}:${ex.debugMessage}`)
+              console.log(`${ex.code}:${ex.debugCode}:${ex.debugMessage}`);
             }
             Alert.alert('Error', errorMessage);
+            break;
+          default:
             break;
         }
         navigation.navigate('Authorize');
@@ -59,3 +61,7 @@ export default class AuthorizingScreen extends Component {
     );
   }
 }
+
+AuthorizingScreen.propTypes = {
+  navigation: PropTypes.object.isRequired,
+};

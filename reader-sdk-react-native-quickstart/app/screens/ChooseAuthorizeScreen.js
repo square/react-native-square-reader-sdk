@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { View, Text, Alert } from 'react-native';
 import Permissions from 'react-native-permissions';
 import CustomButton from '../components/CustomButton';
@@ -22,20 +23,19 @@ import SquareLogo from '../components/SquareLogo';
 import { defaultStyles } from '../styles/common';
 
 export default class ChooseAuthorizeScreen extends Component {
-
   async goToQRAuthorize() {
     const { navigate } = this.props.navigation;
     try {
       const cameraPermission = await Permissions.check('camera');
-      if (cameraPermission == 'authorized') {
+      if (cameraPermission === 'authorized') {
         navigate('QRAuthorize');
-      } else if (cameraPermission == 'undetermined') {
+      } else if (cameraPermission === 'undetermined') {
         const userResponse = await Permissions.request('camera');
-        if (userResponse == 'authorized') {
+        if (userResponse === 'authorized') {
           navigate('QRAuthorize');
         }
       } else {
-        Alert.alert('Please enable camera permission in settings.')
+        Alert.alert('Please enable camera permission in settings.');
       }
     } catch (ex) {
       Alert.alert('Permission Error', ex.message);
@@ -51,13 +51,19 @@ export default class ChooseAuthorizeScreen extends Component {
         </View>
         <View style={defaultStyles.descriptionContainer}>
           <Text style={defaultStyles.title}>Authorize Reader SDK.</Text>
-          <Text style={defaultStyles.subtitle}>Generate an authorization code{"\n"}in the Reader SDK tab{"\n"}of the Developer Portal.</Text>
+          <Text style={defaultStyles.subtitle}>
+Generate an authorization code
+            {'\n'}
+in the Reader SDK tab
+            {'\n'}
+of the Developer Portal.
+          </Text>
         </View>
         <View style={defaultStyles.buttonContainer}>
           <CustomButton
             title="Scan QR Code"
             onPress={() => this.goToQRAuthorize()}
-            primary={true}
+            primary
           />
           <CustomButton
             title="Manually Enter Code"
@@ -68,3 +74,7 @@ export default class ChooseAuthorizeScreen extends Component {
     );
   }
 }
+
+ChooseAuthorizeScreen.propTypes = {
+  navigation: PropTypes.object.isRequired,
+};

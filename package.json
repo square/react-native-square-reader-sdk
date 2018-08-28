@@ -1,10 +1,10 @@
 {
   "name": "react-native-square-reader-sdk",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A React Native module for Square Reader SDK",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint *.js **/*.js"
+    "lint": "eslint *.js"
   },
   "keywords": [
     "react-native",

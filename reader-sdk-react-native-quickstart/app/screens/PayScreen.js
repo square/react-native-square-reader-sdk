@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { View, Text, Alert } from 'react-native';
 import { withGlobalize } from 'react-native-globalize';
 
@@ -29,11 +30,6 @@ import SquareLogo from '../components/SquareLogo';
 import { defaultStyles } from '../styles/common';
 
 class PayScreen extends Component {
-
-  state = {
-    modalVisible: false,
-  };
-
   async onCheckout() {
     // A checkout parameter is required for this checkout method
     const checkoutParams = {
@@ -57,12 +53,16 @@ class PayScreen extends Component {
     try {
       const checkoutResult = await startCheckoutAsync(checkoutParams);
       // Consume checkout result from here
-      const currencyFormatter = this.props.globalize.getCurrencyFormatter(checkoutResult.totalMoney.currencyCode, { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+      const currencyFormatter = this.props.globalize.getCurrencyFormatter(
+        checkoutResult.totalMoney.currencyCode,
+        { minimumFractionDigits: 0, maximumFractionDigits: 2 },
+      );
       const formattedCurrency = currencyFormatter(checkoutResult.totalMoney.amount / 100);
       Alert.alert(`${formattedCurrency} Successfully Charged`, 'See the debugger console for transaction details. You can refund transactions from your Square Dashboard.');
       console.log(JSON.stringify(checkoutResult));
-    } catch(ex) {
-      switch(ex.code) {
+    } catch (ex) {
+      let errorMessage = ex.message;
+      switch (ex.code) {
         case CheckoutErrorCanceled:
           // Handle canceled transaction here
           break;
@@ -70,10 +70,9 @@ class PayScreen extends Component {
           // Handle sdk not authorized
           break;
         default:
-          let errorMessage = ex.message;
           if (__DEV__) {
             errorMessage += `\n\nDebug Message: ${ex.debugMessage}`;
-            console.log(`${ex.code}:${ex.debugCode}:${ex.debugMessage}`)
+            console.log(`${ex.code}:${ex.debugCode}:${ex.debugMessage}`);
           }
           Alert.alert('Error', errorMessage);
           break;
@@ -94,13 +93,12 @@ class PayScreen extends Component {
         <View style={defaultStyles.buttonContainer}>
           <CustomButton
             title="Charge $1.00"
-            onPress={()=> this.onCheckout() }
+            onPress={() => this.onCheckout()}
             primary
           />
           <CustomButton
             title="Settings"
-            onPress={() =>
-              navigate('Setting', { location: 'Jane' })
+            onPress={() => navigate('Setting', { location: 'Jane' })
             }
           />
         </View>
@@ -108,5 +106,10 @@ class PayScreen extends Component {
     );
   }
 }
+
+PayScreen.propTypes = {
+  globalize: PropTypes.object.isRequired,
+  navigation: PropTypes.object.isRequired,
+};
 
 export default withGlobalize(PayScreen);

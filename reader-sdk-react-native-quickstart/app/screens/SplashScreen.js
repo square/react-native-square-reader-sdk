@@ -15,7 +15,10 @@ limitations under the License.
 */
 
 import React, { Component } from 'react';
-import { StyleSheet, View, Platform, Alert, Animated, Easing, Dimensions } from 'react-native';
+import PropTypes from 'prop-types';
+import {
+  StyleSheet, View, Platform, Alert, Animated, Easing, Dimensions,
+} from 'react-native';
 import Permissions from 'react-native-permissions';
 import DeviceInfo from 'react-native-device-info';
 import {
@@ -25,7 +28,6 @@ import SquareLogo from '../components/SquareLogo';
 import { backgroundColor } from '../styles/common';
 
 export default class SplashScreen extends Component {
-
   state = {
     logoTranslateY: new Animated.Value(0),
   }
@@ -35,9 +37,9 @@ export default class SplashScreen extends Component {
       this.state.logoTranslateY,
       {
         toValue: -(Dimensions.get('window').height / 2 - 120), // Calculate the position of icon after tanslate
-        easing: Easing.bezier(.25,.1,.25,1),
+        easing: Easing.bezier(0.25, 0.1, 0.25, 1),
         duration: 1500,
-      }
+      },
     ).start();
 
     window.setTimeout(async () => {
@@ -45,9 +47,9 @@ export default class SplashScreen extends Component {
       try {
         const permissions = await Permissions.checkMultiple(['microphone', 'location']);
 
-        if (Platform.OS == 'ios' && // Android doesn't need to handle permission explicitly
-            ((!DeviceInfo.isEmulator() && permissions.microphone != 'authorized') ||
-              permissions.location != 'authorized')) {
+        if (Platform.OS === 'ios' // Android doesn't need to handle permission explicitly
+            && ((!DeviceInfo.isEmulator() && permissions.microphone !== 'authorized')
+              || permissions.location !== 'authorized')) {
           this.props.navigation.navigate('PermissionSettings');
           return;
         }
@@ -60,7 +62,7 @@ export default class SplashScreen extends Component {
 
         // Permission has been granted (for iOS only) and readerSDK has been authorized
         this.props.navigation.navigate('Pay');
-      } catch(ex) {
+      } catch (ex) {
         Alert.alert('Navigation Error', ex.message);
       }
     }, 1600);
@@ -69,17 +71,21 @@ export default class SplashScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-          <SquareLogo style={{transform: [{ translateY: this.state.logoTranslateY }]}}/>
+        <SquareLogo style={{ transform: [{ translateY: this.state.logoTranslateY }] }} />
       </View>
     );
   }
 }
 
+SplashScreen.propTypes = {
+  navigation: PropTypes.object.isRequired,
+};
+
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: backgroundColor,
+    backgroundColor,
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-  }
+  },
 });
