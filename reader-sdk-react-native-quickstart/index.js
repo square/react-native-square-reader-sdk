@@ -14,8 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import {AppRegistry} from 'react-native';
+import { AppRegistry } from 'react-native';
 import App from './App';
-import {name as appName} from './app.json';
+import { name as appName } from './app.json';
 
 AppRegistry.registerComponent(appName, () => App);
