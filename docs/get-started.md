@@ -198,8 +198,8 @@ installing Reader SDK for iOS, see the [Reader SDK iOS Setup Guide] at
       "${FRAMEWORKS}/SquareReaderSDK.framework/setup"
       ```
       **Note**: Newer versions of XCode use a different build system that may
-      cause compile errors. See the [Troubleshooting guide] if you run into
-      problems.
+      cause compile errors. See the [Troubleshooting guide](troubleshooting.md)
+      if you run into problems.
 1. Disable Bitcode:
    1. Open the **Build Settings** tab for your application target.
    1. In the top right search field, search for 'bitcode'.

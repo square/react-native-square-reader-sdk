@@ -1,6 +1,6 @@
 # Reader SDK for React Native Quick Start
 
-![Sample App UI][./sampleapp-example.png]
+<img src="./sampleapp-example.png">
 
 ## Assumptions and prerequisites
 
@@ -51,8 +51,8 @@ yarn
 ## Step 2: Run the React Native sample app for iOS
 
 **NOTE**: Newer versions of XCode use a different build system that may cause
-compile errors. See the [Troubleshooting guide] if you run into problems
-building the sample app.
+compile errors. See the [Troubleshooting guide](../docs/troubleshooting.md) if
+you run into problems building the sample app.
 
 1. Change to the `ios` folder under `reader-sdk-react-native-quickstart`.
 2. Install ReaderSDK, replacing `YOUR_SQUARE_READER_APP_ID` and
@@ -120,5 +120,4 @@ You can view the [transaction details in Square Dashboard].
 [React Native Getting Started]: https://facebook.github.io/react-native/docs/getting-started.html
 [yarnpkg.com]: https://yarnpkg.com/lang/en/docs/install/
 [main README]: ../README.md
-[Troubleshooting guide]: ../docs/troubleshooting.md
 [transaction details in Square Dashboard]: https://squareup.com/dashboard/sales/transactions
