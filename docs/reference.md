@@ -308,7 +308,7 @@ Contains details related to a `card` tender used in a successful checkout flow.
 Field       | Type                        | Description
 ----------- | --------------------------- | -----------------
 entryMethod | [EntryMethod](#entrymethod) | Indicate how the card information was captured.
-card        | [Card](#cardbrand)          | Provides information about the card used for payment.
+card        | [Card](#card)               | Provides information about the card used for payment.
 
 #### Example JSON
 
