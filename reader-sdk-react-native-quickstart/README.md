@@ -1,6 +1,6 @@
 # Reader SDK for React Native Quick Start
 
-![Sample App UI][./sampleapp-example.png]
+<img src="./sampleapp-example.png">
 
 ## Assumptions and prerequisites
 
@@ -51,8 +51,8 @@ yarn
 ## Step 2: Run the React Native sample app for iOS
 
 **NOTE**: Newer versions of XCode use a different build system that may cause
-compile errors. See the [Troubleshooting guide] if you run into problems
-building the sample app.
+compile errors. See the [Troubleshooting guide](../docs/troubleshooting.md) if
+you run into problems building the sample app.
 
 1. Change to the `ios` folder under `reader-sdk-react-native-quickstart`.
 2. Install ReaderSDK, replacing `YOUR_SQUARE_READER_APP_ID` and
@@ -66,8 +66,10 @@ building the sample app.
     --app-id YOUR_SQUARE_READER_APP_ID                                    \
     --repo-password YOUR_SQUARE_READER_REPOSITORY_PASSWORD
     ```
-3. Run the React Native project from quickstart project folder:
+3. Run the React Native project from the `reader-sdk-react-native-quickstart`
+   project folder:
     ```bash
+    cd /PATH/TO/LOCAL/reader-sdk-react-native-quickstart
     react-native run-ios
     ```
 4. Go to the **Reader SDK** settings page in your [Square Application Dashboard]
@@ -98,8 +100,10 @@ You can view the [transaction details in Square Dashboard].
 5. Configure an Android emulator that runs Android API 26 (Oreo, 8.0),
    or connect your dev machine to an Android device running Android API 26 with
    development mode enabled.
-6. Run the React Native project from the quickstart project folder:
+6. Run the React Native project from the `reader-sdk-react-native-quickstart`
+   project folder:
     ```bash
+    cd /PATH/TO/LOCAL/reader-sdk-react-native-quickstart
     $ react-native run-android
     ```
 7. Go to the **Reader SDK** settings page in your [Square Application Dashboard]
@@ -120,5 +124,4 @@ You can view the [transaction details in Square Dashboard].
 [React Native Getting Started]: https://facebook.github.io/react-native/docs/getting-started.html
 [yarnpkg.com]: https://yarnpkg.com/lang/en/docs/install/
 [main README]: ../README.md
-[Troubleshooting guide]: ../docs/troubleshooting.md
 [transaction details in Square Dashboard]: https://squareup.com/dashboard/sales/transactions
