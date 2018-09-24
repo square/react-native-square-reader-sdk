@@ -282,12 +282,12 @@ try {
 
 ### Card
 
-Payment information related to `card` tenders.
+Represents the non-confidential details of a payment card.
 
-Field       | Type                        | Description
------------ | --------------------------- | -----------------
-entryMethod | [EntryMethod](#entrymethod) | Indicate how the card information was captured.
-card        | [CardBrand](#cardbrand)     | Non-sensitive information about the card used for payment.
+Field          | Type                    | Description
+-------------- | ----------------------- | -----------------
+brand          | [CardBrand](#cardbrand) | Indicates the entity responsible for issuing the card.
+lastFourDigits | String                  | Indicates how the card information was captured.
 
 #### Example JSON
 
@@ -379,6 +379,9 @@ additionalPaymentTypes | [AdditionalPaymentType](#additionalpaymenttype)[] | Val
   "allowSplitTender": false,
   "note": "Payment for dogsitting",
   "tipSettings": {
+    "showCustomTipField": "false",
+    "showSeparateTipScreen": "true",
+    "tipPercentages": [10, 15, 20]
   },
   "additionalPaymentTypes": ["cash", "manual_card_entry", "other"]
 }
@@ -391,8 +394,8 @@ additionalPaymentTypes | [AdditionalPaymentType](#additionalpaymenttype)[] | Val
 
 Contains the result of a successful checkout flow.
 
-Field               | Type                                    | Description
-------------------- | ------------------------------------------------- | -----------------
+Field               | Type                 | Description
+------------------- | -------------------- | -----------------
 totalMoney          | [Money](#money)     | The total amount of money collected during the checkout flow.
 locationId          | String              | The unique ID of the location to which the transaction was credited.
 totalTipMoney       | [Money](#money)     | The total tip amount applied across all tenders.
@@ -510,19 +513,42 @@ the currency code of the currently authorized location by default.
 
 Contains the result of a processed tender.
 
-Field     | Type                      | Description
---------- | ------------------------- | -----------------
-type      | [TenderType](#tendertype) | The method used to make payment.
-tenderId  | String                    | A unique ID issued by Square. Only set for `card` tenders.
-createdAt | String                    | The date and time when the tender was processed as determined by the client device.
+Field       | Type                        | Description
+----------- | --------------------------- | -----------------
+cardDetails | [CardDetails](#carddetails) | Details about the tender. Only set for `card` tenders.
+cashDetails | [CashDetails](#cashdetails) | Details about the tender. Only set for `cash` tenders.
+createdAt   | String                      | The date and time when the tender was processed as determined by the client device.
+tenderId    | String                      | A unique ID issued by Square. Only set for `card` tenders.
+tipMoney    | [Money](#money)             | The monetary amount added to this tender as a tip.
+totalMoney  | [Money](#money)             | The total monetary amount of this tender, including tips.
+type        | [TenderType](#tendertype)   | The method used to make payment.
+
 
 #### Example JSON
 
 ```json
 {
-  "type": "card",
+  "type": "cash",
   "tenderId": "XXXXXXXXXXXXXXXXXXXXXXXX",
-  "createdAt": "2018-08-22T18:05:18Z"
+  "createdAt": "2018-08-22T18:05:18Z",
+  "totalMoney": {
+    "amount": 1500,
+    "currencyCode": "USD"
+  },
+  "tipMoney": {
+    "amount": 500,
+    "currencyCode": "USD"
+  },
+  "cashDetails": {
+    "buyerTenderMoney": {
+      "currencyCode": "USD",
+      "amount": 2000
+    },
+    "changBackMoney": {
+      "currencyCode": "USD",
+      "amount": 500
+    }
+  }      
 }
 ```
 
