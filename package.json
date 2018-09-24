@@ -1,6 +1,6 @@
 {
   "name": "react-native-square-reader-sdk",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "A React Native module for Square Reader SDK",
   "main": "index.js",
   "scripts": {

@@ -30,6 +30,7 @@
 
 // Define all the error codes and messages below
 // These error codes and messages **MUST** align with iOS error codes and javascript error codes
+// Search KEEP_IN_SYNC_CHECKOUT_ERROR to update all places
 
 // Expected errors:
 static NSString *const RNReaderSDKCheckoutCancelled = @"CHECKOUT_CANCELED";
@@ -223,7 +224,7 @@ RCT_REMAP_METHOD(startCheckout,
     for (NSString *typeName in additionalPaymentTypes) {
         if ([typeName isEqualToString:@"cash"]) {
             sqrdAdditionalPaymentTypes |= SQRDAdditionalPaymentTypeCash;
-        } else if ([typeName isEqualToString:@"manual"]) {
+        } else if ([typeName isEqualToString:@"manual_card_entry"]) {
             sqrdAdditionalPaymentTypes |= SQRDAdditionalPaymentTypeManualCardEntry;
         } else if ([typeName isEqualToString:@"other"]) {
             sqrdAdditionalPaymentTypes |= SQRDAdditionalPaymentTypeOther;

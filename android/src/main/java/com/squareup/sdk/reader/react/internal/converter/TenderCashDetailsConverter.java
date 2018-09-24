@@ -13,22 +13,23 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-package com.squareup.sdk.reader.react.converter;
+package com.squareup.sdk.reader.react.internal.converter;
 
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.bridge.WritableNativeMap;
-import com.squareup.sdk.reader.checkout.Money;
+import com.squareup.sdk.reader.checkout.TenderCashDetails;
 
-public class MoneyConverter {
-    static public WritableMap toJSObject(Money money) {
+class TenderCashDetailsConverter {
+    private final MoneyConverter moneyConverter;
+
+    public TenderCashDetailsConverter(){
+        moneyConverter = new MoneyConverter();
+    }
+
+    public WritableMap toJSObject(TenderCashDetails tenderCashDetails) {
         WritableMap mapToReturn = new WritableNativeMap();
-        if (money == null) {
-            return mapToReturn;
-        }
-
-        mapToReturn.putDouble("amount", money.getAmount());
-        mapToReturn.putString("currencyCode", money.getCurrencyCode().name());
-
+        mapToReturn.putMap("buyerTenderedMoney", moneyConverter.toJSObject(tenderCashDetails.getBuyerTenderedMoney()));
+        mapToReturn.putMap("changeBackMoney", moneyConverter.toJSObject(tenderCashDetails.getChangeBackMoney()));
         return mapToReturn;
     }
 }

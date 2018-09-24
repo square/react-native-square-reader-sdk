@@ -26,9 +26,9 @@ limitations under the License.
 {
     NSMutableDictionary *jsTransactionResult = [[NSMutableDictionary alloc] init];
 
-    jsTransactionResult[@"transactionID"] = self.transactionID;
-    jsTransactionResult[@"transactionClientID"] = self.transactionClientID;
-    jsTransactionResult[@"locationID"] = self.locationID;
+    jsTransactionResult[@"transactionId"] = self.transactionID;
+    jsTransactionResult[@"transactionClientId"] = self.transactionClientID;
+    jsTransactionResult[@"locationId"] = self.locationID;
     jsTransactionResult[@"createdAt"] = [RNReaderSDKDateFormatter iso8601StringFromDate:self.createdAt];
     jsTransactionResult[@"totalMoney"] = [self.totalMoney jsonDictionary];
     jsTransactionResult[@"totalTipMoney"] = [self.totalTipMoney jsonDictionary];

@@ -6,18 +6,37 @@ React Native supports the following native Reader SDK versions:
   * iOS: version 1.0.1
   * Android: 1.0.3
 
-
 ## In this repo
 
 In addition to the standard React Native directories, this repo includes:
 
 * `docs` - Documentation for the React Native module, including a
-   [technical reference](docs/reference.md) and
-   [getting started guide](docs/get-started.md)
-* `reader-sdk-react-native-quickstart` - A React Native sample app with walkthrough
+   [technical reference](docs/reference.md),
+   [getting started guide](docs/get-started.md), and
+   [troubleshooting guide](doc/troubleshooting.md).
+* [`reader-sdk-react-native-quickstart`](reader-sdk-react-native-quickstart/README.md) -
+  A React Native sample app with walkthrough
 
 
-## Requirements and limitations
+## Build requirements
+
+### Android
+
+* Android SDK platform: API 26 (Oreo, 8.0).
+* Android SDK build tools: 26.0.3
+* Android Gradle Plugin: 3.0.0 or greater.
+* Support library: 26.0.2
+* Google Play Services: 12.0.1
+* Google APIs Intel x86 Atom_64 System Image
+
+### iOS
+
+* Xcode version: 9.1 or greater.
+* iOS Base SDK: 11.1 or greater.
+* Deployment target: iOS 11.0 or greater.
+
+
+## Reader SDK requirements and limitations
 
 * Reader SDK is only available for accounts based in the United States.
   Authorization requests for accounts based outside the United States return an
@@ -34,8 +53,8 @@ In addition to the standard React Native directories, this repo includes:
   the Transactions API or manually in the [Square Dashboard].
 * Reader SDK is not supported in the Square sandbox. See [Testing Mobile Apps]
   for testing recommendations.
-* Your version of Reader SDK must adhere to Square's update policy. To limit
-  risk to developers and their users, Square enforces an
+* Your version of Reader SDK must adhere to the Square SDK update policy. To
+  limit risk to developers and their users, Square enforces an
   [update policy for Reader SDK] that requires developers to keep their version
   of Reader SDK current.
 

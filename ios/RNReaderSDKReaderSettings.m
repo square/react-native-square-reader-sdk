@@ -29,6 +29,7 @@
 
 // Define all the error codes and messages below
 // These error codes and messages **MUST** align with iOS error codes and javascript error codes
+// Search KEEP_IN_SYNC_READER_SETTINGS_ERROR to update all places
 
 // Expected errors:
 static NSString *const RNReaderSDKReaderSettingsSdkNotAuthorized = @"READER_SETTINGS_SDK_NOT_AUTHORIZED";

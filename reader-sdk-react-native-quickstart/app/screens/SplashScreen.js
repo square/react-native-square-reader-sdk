@@ -20,7 +20,6 @@ import {
   StyleSheet, View, Platform, Alert, Animated, Easing, Dimensions,
 } from 'react-native';
 import Permissions from 'react-native-permissions';
-import DeviceInfo from 'react-native-device-info';
 import {
   isAuthorizedAsync,
 } from 'react-native-square-reader-sdk';
@@ -48,7 +47,7 @@ export default class SplashScreen extends Component {
         const permissions = await Permissions.checkMultiple(['microphone', 'location']);
 
         if (Platform.OS === 'ios' // Android doesn't need to handle permission explicitly
-            && ((!DeviceInfo.isEmulator() && permissions.microphone !== 'authorized')
+            && (permissions.microphone !== 'authorized'
               || permissions.location !== 'authorized')) {
           this.props.navigation.navigate('PermissionSettings');
           return;
@@ -61,7 +60,7 @@ export default class SplashScreen extends Component {
         }
 
         // Permission has been granted (for iOS only) and readerSDK has been authorized
-        this.props.navigation.navigate('Pay');
+        this.props.navigation.navigate('Checkout');
       } catch (ex) {
         Alert.alert('Navigation Error', ex.message);
       }

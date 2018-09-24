@@ -18,7 +18,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, Alert } from 'react-native';
 import Permissions from 'react-native-permissions';
-import DeviceInfo from 'react-native-device-info';
 import CustomButton from '../components/CustomButton';
 import { defaultStyles } from '../styles/common';
 import SquareLogo from '../components/SquareLogo';
@@ -64,12 +63,8 @@ export default class PermissionScreenIOS extends Component {
   async checkPermissionsAndNavigateAsync() {
     try {
       const permissions = await Permissions.checkMultiple(['microphone', 'location']);
-      if (DeviceInfo.isEmulator()) {
-        // Overide microphone prermission on emulator
-        permissions.microphone = 'authorized';
-      }
       if (permissions.microphone === 'authorized' && permissions.location === 'authorized') {
-        this.props.navigation.navigate('Auth');
+        this.props.navigation.navigate('Splash');
         return true;
       }
       this.updateMicrophoneState(permissions.microphone);
@@ -95,7 +90,7 @@ export default class PermissionScreenIOS extends Component {
         this.setState({
           micPermissionButtonLabel: 'Enable Microphone in Settings',
           micButtonEnabled: true,
-          micButtonHandler: this.openSettings.bind(this),
+          micButtonHandler: this.onOpenSettings.bind(this),
         });
         break;
       case 'restricted':

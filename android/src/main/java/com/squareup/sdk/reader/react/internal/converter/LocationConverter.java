@@ -13,26 +13,28 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-package com.squareup.sdk.reader.react.converter;
+package com.squareup.sdk.reader.react.internal.converter;
 
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.bridge.WritableNativeMap;
 import com.squareup.sdk.reader.authorization.Location;
 
-public class LocationConverter {
-    static public WritableMap toJSObject(Location location) {
-        WritableMap mapToReturn = new WritableNativeMap();
-        if (location == null) {
-            return mapToReturn;
-        }
+public final class LocationConverter {
+    private final MoneyConverter moneyConverter;
 
-        mapToReturn.putString("locationID", location.getLocationId());
+    public LocationConverter() {
+        moneyConverter = new MoneyConverter();
+    }
+
+    public WritableMap toJSObject(Location location) {
+        WritableMap mapToReturn = new WritableNativeMap();
+        mapToReturn.putString("locationId", location.getLocationId());
         mapToReturn.putString("name", location.getName());
         mapToReturn.putString("businessName", location.getBusinessName());
         mapToReturn.putBoolean("isCardProcessingActivated", location.isCardProcessingActivated());
-        mapToReturn.putMap("minimumCardPaymentAmountMoney", MoneyConverter.toJSObject(location.getMinimumCardPaymentAmountMoney()));
-        mapToReturn.putMap("maximumCardPaymentAmountMoney", MoneyConverter.toJSObject(location.getMaximumCardPaymentAmountMoney()));
-        mapToReturn.putInt("currencyCode", location.getCurrencyCode().ordinal());
+        mapToReturn.putMap("minimumCardPaymentAmountMoney", moneyConverter.toJSObject(location.getMinimumCardPaymentAmountMoney()));
+        mapToReturn.putMap("maximumCardPaymentAmountMoney", moneyConverter.toJSObject(location.getMaximumCardPaymentAmountMoney()));
+        mapToReturn.putString("currencyCode", location.getCurrencyCode().name());
 
         return mapToReturn;
     }

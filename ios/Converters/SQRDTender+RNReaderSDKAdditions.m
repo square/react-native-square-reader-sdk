@@ -15,6 +15,9 @@ limitations under the License.
 */
 
 #import "SQRDTender+RNReaderSDKAdditions.h"
+#import "SQRDMoney+RNReaderSDKAdditions.h"
+#import "SQRDTenderCardDetails+RNReaderSDKAdditions.h"
+#import "SQRDTenderCashDetails+RNReaderSDKAdditions.h"
 #import "RNReaderSDKDateFormatter.h"
 
 
@@ -23,22 +26,24 @@ limitations under the License.
 - (NSMutableDictionary *)jsonDictionary;
 {
     NSMutableDictionary *jsTenderResult = [[NSMutableDictionary alloc] init];
-    jsTenderResult[@"tenderID"] = self.tenderID;
     jsTenderResult[@"createdAt"] = [RNReaderSDKDateFormatter iso8601StringFromDate:self.createdAt];
+    jsTenderResult[@"tipMoney"] = [self.tipMoney jsonDictionary];
+    jsTenderResult[@"totalMoney"] = [self.totalMoney jsonDictionary];
 
-    NSString *jsTenderType;
+    NSString *jsTenderType = nil;
     switch (self.type) {
         case SQRDTenderTypeCard:
             jsTenderType = @"card";
+            jsTenderResult[@"tenderId"] = self.tenderID;
+            jsTenderResult[@"cardDetails"] = [self.cardDetails jsonDictionary];
             break;
         case SQRDTenderTypeCash:
             jsTenderType = @"cash";
+            jsTenderResult[@"cashDetails"] = [self.cashDetails jsonDictionary];
             break;
         case SQRDTenderTypeOther:
             jsTenderType = @"other";
             break;
-        default:
-            jsTenderType = @"unknown";
     }
     jsTenderResult[@"type"] = jsTenderType;
     return jsTenderResult;

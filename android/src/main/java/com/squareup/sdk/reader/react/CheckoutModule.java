@@ -38,16 +38,18 @@ import com.squareup.sdk.reader.checkout.TipSettings;
 import com.squareup.sdk.reader.core.CallbackReference;
 import com.squareup.sdk.reader.core.Result;
 import com.squareup.sdk.reader.core.ResultError;
-import com.squareup.sdk.reader.react.converter.CheckoutResultConverter;
-
+import com.squareup.sdk.reader.react.internal.converter.CheckoutResultConverter;
+import com.squareup.sdk.reader.react.internal.ErrorHandlerUtils;
+import com.squareup.sdk.reader.react.internal.ReaderSdkException;
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
 class CheckoutModule extends ReactContextBaseJavaModule {
     // Define all the checkout debug codes and messages below
     // These error codes and messages **MUST** align with iOS error codes and javascript error codes
+    // Search KEEP_IN_SYNC_CHECKOUT_ERROR to update all places
 
     // react native module debug error codes
     private static final String RN_CHECKOUT_ALREADY_IN_PROGRESS = "rn_checkout_already_in_progress";
@@ -57,11 +59,12 @@ class CheckoutModule extends ReactContextBaseJavaModule {
     private static final String RN_MESSAGE_CHECKOUT_ALREADY_IN_PROGRESS = "A checkout operation is already in progress. Ensure that the in-progress checkout is completed before calling startCheckoutAsync again.";
     private static final String RN_MESSAGE_CHECKOUT_INVALID_PARAMETER = "Invalid parameter found in checkout parameters.";
 
-    private CallbackReference checkoutCallbackRef;
+    private volatile CallbackReference checkoutCallbackRef;
+    private final Handler mainLooperHandler;
 
     public CheckoutModule(ReactApplicationContext reactContext) {
         super(reactContext);
-        this.checkoutCallbackRef = null;
+        mainLooperHandler = new Handler(Looper.getMainLooper());
     }
 
     @Override
@@ -74,33 +77,34 @@ class CheckoutModule extends ReactContextBaseJavaModule {
         StringBuilder paramError = new StringBuilder();
         if (!validateJSCheckoutParams(jsCheckoutParameters, paramError)) {
             String paramErrorDebugMessage = String.format("%s %s", RN_MESSAGE_CHECKOUT_INVALID_PARAMETER, paramError.toString());
-            String errorJsonMessage = ErrorHandlerUtilities.createNativeModuleError(RN_CHECKOUT_INVALID_PARAMETER, paramErrorDebugMessage);
-            promise.reject(ErrorHandlerUtilities.USAGE_ERROR, new ReaderSdkException(errorJsonMessage));
+            String errorJsonMessage = ErrorHandlerUtils.createNativeModuleError(RN_CHECKOUT_INVALID_PARAMETER, paramErrorDebugMessage);
+            promise.reject(ErrorHandlerUtils.USAGE_ERROR, new ReaderSdkException(errorJsonMessage));
             return;
         }
 
-        if (this.checkoutCallbackRef != null) {
-            String errorJsonMessage = ErrorHandlerUtilities.createNativeModuleError(RN_CHECKOUT_ALREADY_IN_PROGRESS, RN_MESSAGE_CHECKOUT_ALREADY_IN_PROGRESS);
-            promise.reject(ErrorHandlerUtilities.USAGE_ERROR, new ReaderSdkException(errorJsonMessage));
+        if (checkoutCallbackRef != null) {
+            String errorJsonMessage = ErrorHandlerUtils.createNativeModuleError(RN_CHECKOUT_ALREADY_IN_PROGRESS, RN_MESSAGE_CHECKOUT_ALREADY_IN_PROGRESS);
+            promise.reject(ErrorHandlerUtils.USAGE_ERROR, new ReaderSdkException(errorJsonMessage));
             return;
         }
 
-        this.checkoutCallbackRef = ReaderSdk.checkoutManager()
-                .addCheckoutActivityCallback(new CheckoutActivityCallback() {
-                    @Override
-                    public void onResult(Result<CheckoutResult, ResultError<CheckoutErrorCode>> result) {
-                        checkoutCallbackRef.clear();
-                        checkoutCallbackRef = null;
-                        if (result.isError()) {
-                            ResultError<CheckoutErrorCode> error = result.getError();
-                            String errorJsonMessage = ErrorHandlerUtilities.serializeErrorToJson(error.getDebugCode(), error.getMessage(), error.getDebugMessage());
-                            promise.reject(ErrorHandlerUtilities.getErrorCode(error.getCode()), new ReaderSdkException(errorJsonMessage));
-                            return;
-                        }
-                        CheckoutResult checkoutResult = result.getSuccessValue();
-                        promise.resolve(CheckoutResultConverter.toJSObject(checkoutResult));
-                    }
-                });
+        CheckoutActivityCallback checkoutCallback = new CheckoutActivityCallback() {
+            @Override
+            public void onResult(Result<CheckoutResult, ResultError<CheckoutErrorCode>> result) {
+                checkoutCallbackRef.clear();
+                checkoutCallbackRef = null;
+                if (result.isError()) {
+                    ResultError<CheckoutErrorCode> error = result.getError();
+                    String errorJsonMessage = ErrorHandlerUtils.serializeErrorToJson(error.getDebugCode(), error.getMessage(), error.getDebugMessage());
+                    promise.reject(ErrorHandlerUtils.getErrorCode(error.getCode()), new ReaderSdkException(errorJsonMessage));
+                    return;
+                }
+                CheckoutResult checkoutResult = result.getSuccessValue();
+                CheckoutResultConverter checkoutResultConverter = new CheckoutResultConverter();
+                promise.resolve(checkoutResultConverter.toJSObject(checkoutResult));
+            }
+        };
+        checkoutCallbackRef = ReaderSdk.checkoutManager().addCheckoutActivityCallback(checkoutCallback);
 
         ReadableMap jsAmountMoney = jsCheckoutParameters.getMap("amountMoney");
         Money amountMoney = new Money(
@@ -130,8 +134,8 @@ class CheckoutModule extends ReactContextBaseJavaModule {
         }
 
         final CheckoutParameters checkoutParams = checkoutParamsBuilder.build();
-        final Activity currentActivity = this.getCurrentActivity();
-        new Handler(Looper.getMainLooper()).post(new Runnable() {
+        final Activity currentActivity = getCurrentActivity();
+        mainLooperHandler.post(new Runnable() {
             @Override
             public void run() {
                 ReaderSdk.checkoutManager().startCheckoutActivity(currentActivity, checkoutParams);
@@ -143,8 +147,8 @@ class CheckoutModule extends ReactContextBaseJavaModule {
     public void onCatalystInstanceDestroy() {
         super.onCatalystInstanceDestroy();
         // clear the callback to avoid memory leaks when react native module is destroyed
-        if (this.checkoutCallbackRef != null) {
-            this.checkoutCallbackRef.clear();
+        if (checkoutCallbackRef != null) {
+            checkoutCallbackRef.clear();
         }
     }
 
@@ -169,7 +173,7 @@ class CheckoutModule extends ReactContextBaseJavaModule {
             paramError.append("'tipSettings' is not an object");
             return false;
         } else if (jsCheckoutParams.hasKey("additionalPaymentTypes") && jsCheckoutParams.getType("additionalPaymentTypes") != ReadableType.Array) {
-            paramError.append("'additionalPaymentTypes' is not a array");
+            paramError.append("'additionalPaymentTypes' is not an array");
             return false;
         }
 
@@ -193,10 +197,10 @@ class CheckoutModule extends ReactContextBaseJavaModule {
         // check tipSettings
         ReadableMap tipSettings = jsCheckoutParams.getMap("tipSettings");
         if (tipSettings.hasKey("showCustomTipField") && tipSettings.getType("showCustomTipField") != ReadableType.Boolean) {
-            paramError.append("'showCustomTipField' is not an boolean");
+            paramError.append("'showCustomTipField' is not a boolean");
             return false;
         } else if (tipSettings.hasKey("showSeparateTipScreen") && tipSettings.getType("showSeparateTipScreen") != ReadableType.Boolean) {
-            paramError.append("'showSeparateTipScreen' is not an boolean");
+            paramError.append("'showSeparateTipScreen' is not a boolean");
             return false;
         } else if (tipSettings.hasKey("tipPercentages") && tipSettings.getType("tipPercentages") != ReadableType.Array) {
             paramError.append("'tipPercentages' is not an array");
@@ -218,7 +222,7 @@ class CheckoutModule extends ReactContextBaseJavaModule {
         if (tipSettingsConfig.hasKey("tipPercentages")) {
             ReadableArray tipPercentages = tipSettingsConfig.getArray("tipPercentages");
             if (tipPercentages != null) {
-                List<Integer> percentagesList = new ArrayList<Integer>();
+                List<Integer> percentagesList = new ArrayList<>();
                 for (int i = 0; i < tipPercentages.size(); i++) {
                     percentagesList.add(tipPercentages.getInt(i));
                 }
@@ -230,7 +234,7 @@ class CheckoutModule extends ReactContextBaseJavaModule {
     }
 
     static private Set<AdditionalPaymentType> buildAdditionalPaymentTypes(ReadableArray additionalPaymentTypes) {
-        Set<AdditionalPaymentType> types = new HashSet<>();
+        Set<AdditionalPaymentType> types = new LinkedHashSet<>();
         if (additionalPaymentTypes != null) {
             for (int i = 0; i < additionalPaymentTypes.size(); i++) {
                 String typeName = additionalPaymentTypes.getString(i);
@@ -238,14 +242,14 @@ class CheckoutModule extends ReactContextBaseJavaModule {
                     case "cash":
                         types.add(AdditionalPaymentType.CASH);
                         break;
-                    case "manual":
+                    case "manual_card_entry":
                         types.add(AdditionalPaymentType.MANUAL_CARD_ENTRY);
                         break;
                     case "other":
                         types.add(AdditionalPaymentType.OTHER);
                         break;
                     default:
-                        // Skip unknown types
+                        throw new RuntimeException("Unexpected payment type: " + typeName);
                 }
             }
         }

@@ -13,7 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-package com.squareup.sdk.reader.react.converter;
+package com.squareup.sdk.reader.react.internal.converter;
 
 import com.facebook.react.bridge.WritableArray;
 import com.facebook.react.bridge.WritableMap;
@@ -22,29 +22,33 @@ import com.facebook.react.bridge.WritableNativeMap;
 import com.squareup.sdk.reader.checkout.CheckoutResult;
 import com.squareup.sdk.reader.checkout.Money;
 import com.squareup.sdk.reader.checkout.Tender;
+import com.squareup.sdk.reader.react.internal.DateFormatUtils;
 
-    public class CheckoutResultConverter {
-    static public WritableMap toJSObject(CheckoutResult result) {
+public class CheckoutResultConverter {
+    private final MoneyConverter moneyConverter;
+    private final TenderConverter tenderConverter;
+
+    public CheckoutResultConverter() {
+        moneyConverter = new MoneyConverter();
+        tenderConverter = new TenderConverter();
+    }
+
+    public WritableMap toJSObject(CheckoutResult result) {
         WritableMap mapToReturn = new WritableNativeMap();
-        if (result == null) {
-            return mapToReturn;
+        if (result.getTransactionId() != null) {
+            mapToReturn.putString("transactionId", result.getTransactionId());
         }
-        mapToReturn.putString("transactionId", result.getTransactionId());
-        mapToReturn.putString("transactionClientID", result.getTransactionClientId());
-        mapToReturn.putString("locationID", result.getLocationId());
-        mapToReturn.putString("createdAt", DateFormatUtilities.formatISO8601UTC(result.getCreatedAt()));
+        mapToReturn.putString("transactionClientId", result.getTransactionClientId());
+        mapToReturn.putString("locationId", result.getLocationId());
+        mapToReturn.putString("createdAt", DateFormatUtils.formatISO8601UTC(result.getCreatedAt()));
         Money totalMoney = result.getTotalMoney();
-        if (totalMoney != null) {
-            mapToReturn.putMap("totalMoney", MoneyConverter.toJSObject(totalMoney));
-        }
+        mapToReturn.putMap("totalMoney", moneyConverter.toJSObject(totalMoney));
         Money totalTipMoney = result.getTotalTipMoney();
-        if (totalTipMoney != null) {
-            mapToReturn.putMap("totalTipMoney", MoneyConverter.toJSObject(totalTipMoney));
-        }
+        mapToReturn.putMap("totalTipMoney", moneyConverter.toJSObject(totalTipMoney));
 
         WritableArray jsTenders = new WritableNativeArray();
         for (Tender tender : result.getTenders()) {
-            jsTenders.pushMap(TenderConverter.toJSObject(tender));
+            jsTenders.pushMap(tenderConverter.toJSObject(tender));
         }
         mapToReturn.putArray("tenders", jsTenders);
 

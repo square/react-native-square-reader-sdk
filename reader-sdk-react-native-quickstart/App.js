@@ -22,7 +22,7 @@ import {
 } from 'react-navigation';
 import ChooseAuthorizeScreen from './app/screens/ChooseAuthorizeScreen';
 import ManualAuthorizeScreen from './app/screens/ManualAuthorizeScreen';
-import PayScreen from './app/screens/PayScreen';
+import CheckoutScreen from './app/screens/CheckoutScreen';
 import SettingScreen from './app/screens/SettingScreen';
 import SplashScreen from './app/screens/SplashScreen';
 import PermissionScreenIOS from './app/screens/PermissionScreenIOS';
@@ -42,7 +42,7 @@ const AuthStack = createStackNavigator({
 });
 
 const PaymentStack = createStackNavigator({
-  Pay: PayScreen,
+  Checkout: CheckoutScreen,
   Setting: SettingScreen,
   Deauthorizing: DeauthorizingScreen,
 }, {
@@ -53,7 +53,7 @@ const RootStack = createSwitchNavigator({
   Splash: SplashScreen,
   PermissionSettings: PermissionScreenIOS,
   Auth: AuthStack,
-  Pay: PaymentStack,
+  Checkout: PaymentStack,
 }, {
   initialRouteName: 'Splash',
 });

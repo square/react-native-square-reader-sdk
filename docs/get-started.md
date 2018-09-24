@@ -10,6 +10,11 @@ for more detailed information about the methods available.
 * You will need a Square account enabled for payment processing. If you have not
   enabled payment processing on your account (or you are not sure), visit
   [squareup.com/activate].
+* Install `yarn` from [yarnpkg.com]
+* Follow the **Building Projects with Native Code** instructions in the
+  [React Native Getting Started] guide to setup your React Native development
+  environment.
+
 
 
 ## Process overview
@@ -29,21 +34,24 @@ Optional steps:
 * [Support Reader SDK deauthorization](#support-reader-sdk-deauthorization)
 
 
-## Step 1: Create a React Native project
+## Step 1: Create a React Native project for Reader SDK
 
-Follow the instructions in the [Building Projects with Native Code] guide to
-create a new React Native project. The basic command is:
+The basic command is:
 
 ```bash
-$ npm install -g react-native-cli
-$ react-native init myRNReaderSDKSample
+yarn global add react-native-cli
+react-native init myRNReaderSDKSample
 ```
+
+See [Building Projects with Native Code] guide for more detailed instructions.
 
 
 ## Step 2: Install Reader SDK for React Native
 
-1. Install the `npm` package: `$ npm install react-native-square-reader-sdk --save`
-1. Link the `npm` package: `$ react-native link react-native-square-reader-sdk`
+Add the Reader SDK package to `yarn`:
+```bash
+yarn add react-native-square-reader-sdk
+```
 
 
 ## Step 3: Request Reader SDK credentials
@@ -125,16 +133,6 @@ installing Reader SDK for Android, see the [Reader SDK Android Setup Guide] at
       // ...
     }
     ```
-1. Add the Reader SDK dependencies. Set `READER_SDK_VERSION` to the Reader SDK
-   version you are using:
-    ```
-    dependencies {
-      def readerSdkVersion = "READER_SDK_VERSION"
-      implementation "com.squareup.sdk.reader:reader-sdk-$SQUARE_READER_SDK_APPLICATION_ID:$readerSdkVersion"
-      runtimeOnly "com.squareup.sdk.reader:reader-sdk-internals:$readerSdkVersion"
-      // ...
-    }
-    ```
 1. Extend the Android Application class (`android.app.Application`) and add code
    to Import and initialize Reader SDK:
     ```
@@ -160,8 +158,6 @@ installing Reader SDK for Android, see the [Reader SDK Android Setup Guide] at
       }
     }
     ```
-1. Specify the `android:name` property for the `<application>` node in
-   `AndroidManifest.xml`.
 
 
 ## Step 5: Install Reader SDK for iOS
@@ -172,16 +168,19 @@ The key installation steps are outlined below. For more information on
 installing Reader SDK for iOS, see the [Reader SDK iOS Setup Guide] at
 [docs.connect.squareup.com].
 
+**TIP**: You can find the minimum supported Reader SDK version for iOS in the
+[main README] for this repo.
+
 1. Change to the iOS folder (`ios`) at the root of your React Native project.
 1. Download and configure the latest version of `SquareReaderSDK.framework` in
    your project root by replacing `YOUR_SQUARE_READER_APP_ID` and
    `YOUR_SQUARE_READER_REPOSITORY_PASSWORD` with your Reader SDK credentials and
    `READER_SDK_VERSION` with the Reader SDK version you are using in the code
-   below. The framework will install in the current directory.
+   below. **The framework will install in the current directory**.
     ```bash
-    ruby <(curl https://connect.squareup.com/readersdk-installer) install
-    --version READER_SDK_VERSION
-    --app-id YOUR_SQUARE_READER_APP_ID
+    ruby <(curl https://connect.squareup.com/readersdk-installer) install \
+    --version READER_SDK_VERSION                                          \
+    --app-id YOUR_SQUARE_READER_APP_ID                                    \
     --repo-password YOUR_SQUARE_READER_REPOSITORY_PASSWORD
     ```
 1. Add Reader SDK to your Xcode project:
@@ -198,6 +197,9 @@ installing Reader SDK for iOS, see the [Reader SDK iOS Setup Guide] at
       FRAMEWORKS="${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}"
       "${FRAMEWORKS}/SquareReaderSDK.framework/setup"
       ```
+      **Note**: Newer versions of XCode use a different build system that may
+      cause compile errors. See the [Troubleshooting guide] if you run into
+      problems.
 1. Disable Bitcode:
    1. Open the **Build Settings** tab for your application target.
    1. In the top right search field, search for 'bitcode'.
@@ -249,6 +251,7 @@ installing Reader SDK for iOS, see the [Reader SDK iOS Setup Guide] at
 You will also need to add code to your React Native project to request device and
 microphone permissions. See the React Native Reader SDK Quick Start Sample App
 for an example of how to do this.
+
 
 ## Step 6: Implement Reader SDK authorization
 
@@ -314,7 +317,7 @@ const checkoutParams = {
     showSeparateTipScreen: false,
     tipPercentages: [15, 20, 30],
   },
-  additionalPaymentTypes: ['cash', 'manual', 'other'],
+  additionalPaymentTypes: ['cash', 'manual_card_entry', 'other'],
 };
 
 try {
@@ -429,3 +432,5 @@ if (await canDeauthorizeAsync()) {
 [Square Application Dashboard]: https://connect.squareup.com/apps/
 [Reader SDK Android Setup Guide]: https://docs.connect.squareup.com/payments/readersdk/setup-android
 [Reader SDK iOS Setup Guide]: https://docs.connect.squareup.com/payments/readersdk/setup-ios
+[main README]: ../README.md
+[yarnpkg.com]: https://yarnpkg.com/lang/en/docs/install/

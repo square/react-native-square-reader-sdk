@@ -89,13 +89,11 @@ android {
 }
 
 dependencies {
-    api project(":rncamerakit")
-    api project(':react-native-square-reader-sdk')
-    api fileTree(dir: "libs", include: ["*.jar"])
+    implementation project(":rncamerakit")
+    implementation project(':react-native-square-reader-sdk')
+    implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
     api "com.facebook.react:react-native:+"  // From node_modules
-    implementation "com.squareup.sdk.reader:reader-sdk-$SQUARE_READER_SDK_APPLICATION_ID:1.0.3"
-    runtimeOnly "com.squareup.sdk.reader:reader-sdk-internals:1.0.3"
     implementation 'com.android.support:multidex:1.0.3' // Add this dependency if your minSdkVersion < 21
 }
 

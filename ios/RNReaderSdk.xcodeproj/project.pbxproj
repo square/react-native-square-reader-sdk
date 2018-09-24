@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11556F6221479AB9008E499E /* SQRDCard+RNReaderSDKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 11556F6021479AB9008E499E /* SQRDCard+RNReaderSDKAdditions.m */; };
+		11556F6A214B7523008E499E /* SQRDTenderCardDetails+RNReaderSDKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 11556F67214B7522008E499E /* SQRDTenderCardDetails+RNReaderSDKAdditions.m */; };
+		11556F6B214B7523008E499E /* SQRDTenderCashDetails+RNReaderSDKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 11556F69214B7523008E499E /* SQRDTenderCashDetails+RNReaderSDKAdditions.m */; };
 		1174DE63212CE7E200B0166E /* RNReaderSDKAuthorization.m in Sources */ = {isa = PBXBuildFile; fileRef = 1174DE61212CE7E100B0166E /* RNReaderSDKAuthorization.m */; };
 		1174DE66212CE82200B0166E /* SQRDLocation+RNReaderSDKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1174DE65212CE82200B0166E /* SQRDLocation+RNReaderSDKAdditions.m */; };
 		1174DE6F212CEEA300B0166E /* SQRDMoney+RNReaderSDKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1174DE6B212CEEA300B0166E /* SQRDMoney+RNReaderSDKAdditions.m */; };
@@ -31,6 +34,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		11556F6021479AB9008E499E /* SQRDCard+RNReaderSDKAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SQRDCard+RNReaderSDKAdditions.m"; sourceTree = "<group>"; };
+		11556F6121479AB9008E499E /* SQRDCard+RNReaderSDKAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SQRDCard+RNReaderSDKAdditions.h"; sourceTree = "<group>"; };
+		11556F66214B7522008E499E /* SQRDTenderCashDetails+RNReaderSDKAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SQRDTenderCashDetails+RNReaderSDKAdditions.h"; sourceTree = "<group>"; };
+		11556F67214B7522008E499E /* SQRDTenderCardDetails+RNReaderSDKAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SQRDTenderCardDetails+RNReaderSDKAdditions.m"; sourceTree = "<group>"; };
+		11556F68214B7523008E499E /* SQRDTenderCardDetails+RNReaderSDKAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SQRDTenderCardDetails+RNReaderSDKAdditions.h"; sourceTree = "<group>"; };
+		11556F69214B7523008E499E /* SQRDTenderCashDetails+RNReaderSDKAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SQRDTenderCashDetails+RNReaderSDKAdditions.m"; sourceTree = "<group>"; };
 		1174DE61212CE7E100B0166E /* RNReaderSDKAuthorization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNReaderSDKAuthorization.m; sourceTree = "<group>"; };
 		1174DE62212CE7E100B0166E /* RNReaderSDKAuthorization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNReaderSDKAuthorization.h; sourceTree = "<group>"; };
 		1174DE65212CE82200B0166E /* SQRDLocation+RNReaderSDKAdditions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SQRDLocation+RNReaderSDKAdditions.m"; sourceTree = "<group>"; };
@@ -66,6 +75,12 @@
 		1174DE64212CE7F400B0166E /* Converters */ = {
 			isa = PBXGroup;
 			children = (
+				11556F68214B7523008E499E /* SQRDTenderCardDetails+RNReaderSDKAdditions.h */,
+				11556F67214B7522008E499E /* SQRDTenderCardDetails+RNReaderSDKAdditions.m */,
+				11556F66214B7522008E499E /* SQRDTenderCashDetails+RNReaderSDKAdditions.h */,
+				11556F69214B7523008E499E /* SQRDTenderCashDetails+RNReaderSDKAdditions.m */,
+				11556F6121479AB9008E499E /* SQRDCard+RNReaderSDKAdditions.h */,
+				11556F6021479AB9008E499E /* SQRDCard+RNReaderSDKAdditions.m */,
 				1174DE75212CF10B00B0166E /* SQRDCheckoutResult+RNReaderSDKAdditions.h */,
 				1174DE6D212CEEA300B0166E /* SQRDCheckoutResult+RNReaderSDKAdditions.m */,
 				1174DE73212CF0E800B0166E /* RNReaderSDKDateFormatter.h */,
@@ -169,14 +184,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				1174DE70212CEEA300B0166E /* SQRDTender+RNReaderSDKAdditions.m in Sources */,
+				11556F6221479AB9008E499E /* SQRDCard+RNReaderSDKAdditions.m in Sources */,
 				1174DE89212CF75000B0166E /* RNReaderSDKErrorUtilities.m in Sources */,
 				1174DE8F212DCA0F00B0166E /* RNReaderSDKReaderSettings.m in Sources */,
+				11556F6A214B7523008E499E /* SQRDTenderCardDetails+RNReaderSDKAdditions.m in Sources */,
 				1174DE74212CF0E800B0166E /* RNReaderSDKDateFormatter.m in Sources */,
 				1174DE66212CE82200B0166E /* SQRDLocation+RNReaderSDKAdditions.m in Sources */,
 				1174DE90212DCA0F00B0166E /* RNReaderSDKCheckout.m in Sources */,
 				1174DE71212CEEA300B0166E /* SQRDCheckoutResult+RNReaderSDKAdditions.m in Sources */,
 				1174DE63212CE7E200B0166E /* RNReaderSDKAuthorization.m in Sources */,
 				1174DE6F212CEEA300B0166E /* SQRDMoney+RNReaderSDKAdditions.m in Sources */,
+				11556F6B214B7523008E499E /* SQRDTenderCashDetails+RNReaderSDKAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,6 +290,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/../../../ios/",
 					"$(PROJECT_DIR)/../../../",
+					"$(PROJECT_DIR)/../reader-sdk-react-native-quickstart/ios/",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -294,6 +313,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/../../../ios/",
 					"$(PROJECT_DIR)/../../../",
+					"$(PROJECT_DIR)/../reader-sdk-react-native-quickstart/ios/",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",

@@ -19,7 +19,6 @@ import PropTypes from 'prop-types';
 import { View, Text, Alert } from 'react-native';
 import {
   startReaderSettingsAsync,
-  getAuthorizedLocationAsync,
   ReaderSettingsErrorSdkNotAuthorized,
   UsageError,
 } from 'react-native-square-reader-sdk';
@@ -27,24 +26,8 @@ import CustomButton from '../components/CustomButton';
 import { defaultStyles } from '../styles/common';
 
 export default class SettingScreen extends Component {
-  state = {
-    locationName: '',
-  }
-
-  async componentWillMount() {
-    try {
-      const authorizedLocation = await getAuthorizedLocationAsync();
-      this.setState({ locationName: authorizedLocation.name });
-    } catch (ex) {
-      if (__DEV__) {
-        Alert.alert(ex.debugCode, ex.debugMessage);
-      } else {
-        Alert.alert(ex.code, ex.message);
-      }
-    }
-  }
-
   async onStartReaderSettings() {
+    const { navigate } = this.props.navigation;
     try {
       await startReaderSettingsAsync();
     } catch (ex) {
@@ -52,6 +35,7 @@ export default class SettingScreen extends Component {
       switch (ex.code) {
         case ReaderSettingsErrorSdkNotAuthorized:
           // Handle reader settings not authorized
+          navigate('Deauthorizing');
           break;
         case UsageError:
         default:
@@ -72,12 +56,13 @@ export default class SettingScreen extends Component {
   render() {
     const { navigation } = this.props;
     const { goBack } = navigation;
+    const locationName = navigation.getParam('locationName', '');
     return (
       <View style={defaultStyles.pageContainer}>
         <View style={defaultStyles.descriptionContainer}>
           <Text style={defaultStyles.title}>
-Location:
-            {this.state.locationName}
+            Location:
+            {locationName}
           </Text>
         </View>
         <View style={defaultStyles.buttonContainer}>

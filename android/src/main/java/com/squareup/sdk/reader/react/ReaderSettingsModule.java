@@ -29,10 +29,13 @@ import com.squareup.sdk.reader.core.Result;
 import com.squareup.sdk.reader.core.ResultError;
 import com.squareup.sdk.reader.hardware.ReaderSettingsActivityCallback;
 import com.squareup.sdk.reader.hardware.ReaderSettingsErrorCode;
+import com.squareup.sdk.reader.react.internal.ErrorHandlerUtils;
+import com.squareup.sdk.reader.react.internal.ReaderSdkException;
 
 class ReaderSettingsModule extends ReactContextBaseJavaModule {
     // Define all the reader settings debug codes and messages below
     // These error codes and messages **MUST** align with iOS error codes and javascript error codes
+    // Search KEEP_IN_SYNC_READER_SETTINGS_ERROR to update all places
 
     // react native module debug error codes
     private static final String RN_READER_SETTINGS_ALREADY_IN_PROGRESS = "rn_reader_settings_already_in_progress";
@@ -40,11 +43,12 @@ class ReaderSettingsModule extends ReactContextBaseJavaModule {
     // react native module debug messages
     private static final String RN_MESSAGE_READER_SETTINGS_ALREADY_IN_PROGRESS = "A reader settings operation is already in progress. Ensure that the in-progress reader settings is completed before calling startReaderSettingsAsync again.";
 
-    private CallbackReference readerSettingCallbackRef;
+    private volatile CallbackReference readerSettingCallbackRef;
+    private final Handler mainLooperHandler;
 
     public ReaderSettingsModule(ReactApplicationContext reactContext) {
         super(reactContext);
-        this.readerSettingCallbackRef = null;
+        mainLooperHandler = new Handler(Looper.getMainLooper());
     }
 
     @Override
@@ -54,29 +58,30 @@ class ReaderSettingsModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void startReaderSettings(final Promise promise) {
-        if (this.readerSettingCallbackRef != null) {
-            String errorJsonMessage = ErrorHandlerUtilities.createNativeModuleError(RN_READER_SETTINGS_ALREADY_IN_PROGRESS, RN_MESSAGE_READER_SETTINGS_ALREADY_IN_PROGRESS);
-            promise.reject(ErrorHandlerUtilities.USAGE_ERROR, new ReaderSdkException(errorJsonMessage));
+        if (readerSettingCallbackRef != null) {
+            String errorJsonMessage = ErrorHandlerUtils.createNativeModuleError(RN_READER_SETTINGS_ALREADY_IN_PROGRESS, RN_MESSAGE_READER_SETTINGS_ALREADY_IN_PROGRESS);
+            promise.reject(ErrorHandlerUtils.USAGE_ERROR, new ReaderSdkException(errorJsonMessage));
             return;
         }
-        this.readerSettingCallbackRef = ReaderSdk.readerManager()
-                .addReaderSettingsActivityCallback(new ReaderSettingsActivityCallback() {
-                    @Override
-                    public void onResult(Result<Void, ResultError<ReaderSettingsErrorCode>> result) {
-                        readerSettingCallbackRef.clear();
-                        readerSettingCallbackRef = null;
-                        if (result.isError()) {
-                            ResultError<ReaderSettingsErrorCode> error = result.getError();
-                            String errorJsonMessage = ErrorHandlerUtilities.serializeErrorToJson(error.getDebugCode(), error.getMessage(), error.getDebugMessage());
-                            promise.reject(ErrorHandlerUtilities.getErrorCode(error.getCode()), new ReaderSdkException(errorJsonMessage));
-                            return;
-                        }
-                        promise.resolve(null);
-                    }
-                });
+        ReaderSettingsActivityCallback readerSettingsCallback = new ReaderSettingsActivityCallback() {
+            @Override
+            public void onResult(Result<Void, ResultError<ReaderSettingsErrorCode>> result) {
+                readerSettingCallbackRef.clear();
+                readerSettingCallbackRef = null;
+                if (result.isError()) {
+                    ResultError<ReaderSettingsErrorCode> error = result.getError();
+                    String errorJsonMessage = ErrorHandlerUtils.serializeErrorToJson(error.getDebugCode(), error.getMessage(), error.getDebugMessage());
+                    promise.reject(ErrorHandlerUtils.getErrorCode(error.getCode()), new ReaderSdkException(errorJsonMessage));
+                    return;
+                }
+                promise.resolve(null);
+            }
+        };
+        readerSettingCallbackRef = ReaderSdk.readerManager()
+                .addReaderSettingsActivityCallback(readerSettingsCallback);
 
-        final Activity currentActivity = this.getCurrentActivity();
-        new Handler(Looper.getMainLooper()).post(new Runnable() {
+        final Activity currentActivity = getCurrentActivity();
+        mainLooperHandler.post(new Runnable() {
             @Override
             public void run() {
                 ReaderSdk.readerManager().startReaderSettingsActivity(currentActivity);
@@ -88,8 +93,8 @@ class ReaderSettingsModule extends ReactContextBaseJavaModule {
     public void onCatalystInstanceDestroy() {
         super.onCatalystInstanceDestroy();
         // clear the callback to avoid memory leaks when react native module is destroyed
-        if (this.readerSettingCallbackRef != null) {
-            this.readerSettingCallbackRef.clear();
+        if (readerSettingCallbackRef != null) {
+            readerSettingCallbackRef.clear();
         }
     }
 }

@@ -23,36 +23,47 @@ import ProgressView from '../components/ProgressView';
 export default class AuthorizingScreen extends Component {
   componentDidMount() {
     const { navigation } = this.props;
+    this.authorize(navigation);
+  }
+
+  async authorize(navigation) {
     const authCode = navigation.getParam('authCode', '');
-    window.setTimeout(async () => {
-      if (!authCode) {
-        Alert.alert('Error: empty auth code');
-        navigation.goBack();
-        return;
+    if (!authCode) {
+      Alert.alert('Error: empty auth code');
+      navigation.goBack();
+      return;
+    }
+    try {
+      await authorizeAsync(authCode);
+      this.props.navigation.navigate('Checkout');
+    } catch (ex) {
+      let errorMessage = ex.message;
+      switch (ex.code) {
+        case AuthorizeErrorNoNetwork:
+          // Remind connecting to network and retry
+          Alert.alert(
+            'Network error',
+            ex.message,
+            [
+              { text: 'Retry', onPress: () => this.authorize(navigation) },
+              { text: 'Cancel', onPress: () => navigation.navigate('Authorize'), style: 'cancel' },
+            ],
+          );
+          break;
+        case UsageError:
+          if (__DEV__) {
+            errorMessage += `\n\nDebug Message: ${ex.debugMessage}`;
+            console.log(`${ex.code}:${ex.debugCode}:${ex.debugMessage}`);
+          }
+          Alert.alert('Error', errorMessage);
+          navigation.navigate('Authorize');
+          break;
+        default:
+          Alert.alert('Error', errorMessage);
+          navigation.navigate('Authorize');
+          break;
       }
-      try {
-        await authorizeAsync(authCode);
-        this.props.navigation.navigate('Pay');
-      } catch (ex) {
-        let errorMessage = ex.message;
-        switch (ex.code) {
-          case AuthorizeErrorNoNetwork:
-            Alert.alert(ex.code, ex.message);
-            // Remind connecting to network
-            break;
-          case UsageError:
-            if (__DEV__) {
-              errorMessage += `\n\nDebug Message: ${ex.debugMessage}`;
-              console.log(`${ex.code}:${ex.debugCode}:${ex.debugMessage}`);
-            }
-            Alert.alert('Error', errorMessage);
-            break;
-          default:
-            break;
-        }
-        navigation.navigate('Authorize');
-      }
-    }, 1000);
+    }
   }
 
   render() {

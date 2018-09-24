@@ -4,35 +4,46 @@ This technical reference documents methods available in the React Native
 wrapper for Reader SDK. For detailed documentation on Reader SDK, please see
 [docs.connect.squareup.com].
 
-Method                                                    | Return Type | Description
---------------------------------------------------------- | ----------- | ---
-[authorizeAsync](#authorizeasync)                         | void                  | Authorizes Reader SDK to collect payments.
-[canDeauthorizeAsync](#candeauthorizeasync)               | boolean               | Verifies Reader SDK can be deauthorized.
-[deauthorizeAsync](#deauthorizeasync)                     | void                  | Deauthorizes Reader SDK.
-[getAuthorizedLocationAsync](#getauthorizedlocationasync) | [Location](#location) | Returns the currently authorized location
-[isAuthorizedAsync](#isauthorizedasync)                   | boolean               | Verifies Reader SDK is currently authorized for payment collection.
-[startCheckoutAsync](#startcheckoutasync)                 | void                  | Begins the checkout workflow.
-[startReaderSettingsAsync](#startreadersettingsasync)     | void                  | Starts the Reader settings flow for connecting Square Reader
-
 ---
 
-* [Methods](#methods)
+* [Methods at a glance](#methods-at-a-glance)
+* [Method details](#method-details)
 * [Objects](#objects)
-* [Enums](#enums)
+* [Constants](#constants)
+* [Errors](#errors)
 
 ---
 
-## Methods
 
-### `authorizeAsync`
+
+## Methods at a glance
+
+Method                                                    | Return Object                       | Description
+--------------------------------------------------------- | --------------------------------- | ---
+[authorizeAsync](#authorizeasync)                         | [Location](#location)             | Authorizes Reader SDK to collect payments.
+[canDeauthorizeAsync](#candeauthorizeasync)               | boolean                           | Verifies Reader SDK can be deauthorized.
+[deauthorizeAsync](#deauthorizeasync)                     | void                              | Deauthorizes Reader SDK.
+[getAuthorizedLocationAsync](#getauthorizedlocationasync) | [Location](#location)             | Returns the currently authorized location
+[isAuthorizedAsync](#isauthorizedasync)                   | boolean                           | Verifies Reader SDK is currently authorized for payment collection.
+[startCheckoutAsync](#startcheckoutasync)                 | [CheckoutResult](#checkoutresult) | Begins the checkout workflow.
+[startReaderSettingsAsync](#startreadersettingsasync)     | void                              | Starts the Reader settings flow for connecting Square Reader
+
+
+
+## Method details
+
+### authorizeAsync
 
 Used to authorize [Reader SDK] to collect payments on behalf of a Square
-location. On success, `authorizeAsync` returns information about the currently
-authorized location.
+location.
 
-Parameter  | Type   | Description
----------- | ------ | -----------
-`authCode` | string | Authorization code from the [Mobile Authorization API]
+Parameter | Type   | Description
+--------- | ------ | -----------
+authCode  | string | Authorization code from the [Mobile Authorization API]
+
+* **On success**: returns information about the currently authorized location as a
+  [Location](#location) object.
+* **On failure**: throws [`USAGE_ERROR`](#e1) or [`AUTHORIZE_NO_NETWORK`](#e2).
 
 #### Example usage
 
@@ -64,10 +75,15 @@ try {
 ```
 
 
-### `canDeauthorizeAsync`
+---
 
-Used to determine if it is safe to deauthorize Reader SDK. Returns `true` if all
-transactions have been successfully synced to Square.
+### canDeauthorizeAsync
+
+Used to determine if it is safe to deauthorize Reader SDK.
+
+* **On success**: returns `true` if all transactions have successfully synced to
+  Square, `false` otherwise.
+* **On failure**: throws [`USAGE_ERROR`](#e1).
 
 #### Example usage
 
@@ -84,10 +100,15 @@ if (await canDeauthorizeAsync()) {
 ```
 
 
-### `deauthorizeAsync`
+---
+
+### deauthorizeAsync
 
 Used to deauthorize [Reader SDK]. Reader SDK cannot be deauthorized if there
 are transactions that have not been synced to Square.
+
+* **On success**: returns nothing.
+* **On failure**: throws [`USAGE_ERROR`](#e1) or [`AUTHORIZE_NO_NETWORK`](#e2).
 
 #### Example usage
 
@@ -108,11 +129,16 @@ try {
 ```
 
 
-### `getAuthorizedLocationAsync`
+---
+
+### getAuthorizedLocationAsync
 
 Used to fetch information about the location currently authorized for Reader
-SDK. Returns an error if Reader SDK is not already authorized and a
-[`Location`](#location) on success.
+SDK.
+
+* **On success**: returns information about the currently authorized location as a
+  [Location](#location) object.
+* **On failure**: throws [`USAGE_ERROR`](#e1).
 
 #### Example usage
 
@@ -133,11 +159,17 @@ try {
 }
 ```
 
-### `isAuthorizedAsync`
+
+---
+
+### isAuthorizedAsync
 
 Used to determine if Reader SDK is currently authorized to accept payments.
-Returns `true` if the authorization flow was completed with a valid
-[Mobile Authorization API] token.
+
+* **On success**: returns `true` if the authorization flow was completed with a
+  valid [Mobile Authorization API] token, `false` otherwise.
+* **On failure**: throws [`USAGE_ERROR`](#e1).
+
 
 #### Example usage
 
@@ -153,16 +185,23 @@ if (await isAuthorizedAsync()) {
 }
 ```
 
-### `startCheckoutAsync`
+
+---
+
+### startCheckoutAsync
 
 Used to start the checkout flow and collect payment information from Square
-Reader. Returns a [CheckoutResult](#checkoutresult) on success and an error
-otherwise (for example, if Reader SDK is not currently authorized).
+Reader.
 
-#### Parameters
+Parameter      | Type                                    | Description
+-------------- | --------------------------------------- | -----------
+checkoutParams | [CheckoutParameter](#checkoutparameter) | Configures the checkout flow and transaction amount.
 
-* `checkoutParams` - a [CheckoutParameter](#checkoutparameter) object.
-Configures the checkout flow and transaction amount.
+* **On success**: returns information about the checkout result as a
+  [CheckoutResult](#checkoutresult) object.
+* **On failure**: throws [`USAGE_ERROR`](#e1), [`CHECKOUT_CANCELED`](#e3), or
+  [`CHECKOUT_SDK_NOT_AUTHORIZED`](#e4)
+
 
 #### Example usage
 
@@ -197,10 +236,17 @@ try {
 }
 ```
 
-### `startReaderSettingsAsync`
+
+---
+
+### startReaderSettingsAsync
 
 Used to start the Reader settings flow. Returns an error if Reader SDK is not
 currently authorized.
+
+* **On success**: returns nothing.
+* **On failure**: throws [`USAGE_ERROR`](#e1) or
+  [`READER_SETTINGS_SDK_NOT_AUTHORIZED`](#e5)
 
 #### Example usage
 
@@ -231,13 +277,86 @@ try {
 ```
 
 
+
 ## Objects
+
+### Card
+
+Payment information related to `card` tenders.
+
+Field       | Type                        | Description
+----------- | --------------------------- | -----------------
+entryMethod | [EntryMethod](#entrymethod) | Indicate how the card information was captured.
+card        | [CardBrand](#cardbrand)     | Non-sensitive information about the card used for payment.
+
+#### Example JSON
+
+```json
+{
+  "brand": "VISA",
+  "lastFourDigits": "1111"
+}
+```
+
+
+---
+
+### CardDetails
+
+Contains details related to a `card` tender used in a successful checkout flow.
+
+Field       | Type                        | Description
+----------- | --------------------------- | -----------------
+entryMethod | [EntryMethod](#entrymethod) | Indicate how the card information was captured.
+card        | [Card](#cardbrand)          | Provides information about the card used for payment.
+
+#### Example JSON
+
+```json
+{
+  "entryMethod": "MANUALLY_ENTERED",
+  "card": {
+    "brand": "VISA",
+    "lastFourDigits": "1111"
+  }
+}
+```
+
+
+---
+
+### CashDetails
+
+Contains details related to a `cash` tender used in a successful checkout flow.
+
+Field            | Type            | Description
+---------------- | --------------- | -----------------
+buyerTenderMoney | [Money](#money) | The total payment amount provided as `cash` during checkout.
+changBackMoney   | [Money](#money) | The total change provided as `cash` during checkout.
+
+#### Example JSON
+
+```json
+{
+  "buyerTenderMoney": {
+    "currencyCode": "USD",
+    "amount": 110
+  },
+  "changBackMoney": {
+    "currencyCode": "USD",
+    "amount": 10
+  }
+}
+```
+
+
+---
 
 ### CheckoutParameter
 
 Configures the UI experience for the checkout flow.
 
-Field                  | Type                                    | Description
+Field                  | Type                                              | Description
 ---------------------- | ------------------------------------------------- | -----------------
 amountMoney            | [Money](#money)                                   | **REQUIRED**. The total payment amount.
 skipReceipt            | boolean                                           | Indicates that the digital receipt options screen should not be displayed during checkout. Default: `null`
@@ -261,9 +380,12 @@ additionalPaymentTypes | [AdditionalPaymentType](#additionalpaymenttype)[] | Val
   "note": "Payment for dogsitting",
   "tipSettings": {
   },
-  "additionalPaymentTypes": ["cash", "manual", "other"]
+  "additionalPaymentTypes": ["cash", "manual_card_entry", "other"]
 }
 ```
+
+
+---
 
 ### CheckoutResult
 
@@ -272,20 +394,19 @@ Contains the result of a successful checkout flow.
 Field               | Type                                    | Description
 ------------------- | ------------------------------------------------- | -----------------
 totalMoney          | [Money](#money)     | The total amount of money collected during the checkout flow.
-locationID          | String              | The unique ID of the location to which the transaction was credited.
+locationId          | String              | The unique ID of the location to which the transaction was credited.
 totalTipMoney       | [Money](#money)     | The total tip amount applied across all tenders.
-transactionID       | String              | Assigned when the card is processed by Square..
-transactionClientID | String              | A unique client-generated ID.
+transactionClientId | String              | A unique client-generated ID.
 createdAt           | String              | The date and time when the transaction was completed as determined by the client device.
 tenders             | [Tender](#tender)[] | The set of tenders associated with a successful transaction.
-transactionID       | String              | A unique ID issued by Square. Only set for successful transactions that include one or more card tenders.
+transactionId       | String              | A unique ID issued by Square. Only set for successful transactions that include one or more card tenders.
 
-All successful transactions include a client-generated ID (`transactionClientID`).
-Transactions with card tenders also include a `transactionID` that is assigned
+All successful transactions include a client-generated ID (`transactionClientId`).
+Transactions with card tenders also include a `transactionId` that is assigned
 when the card is processed by Square.
 
 To reconcile transactions that do not have card tenders, use
-`transactionClientID` to match client-generated transactions to the `client_id`
+`transactionClientId` to match client-generated transactions to the `client_id`
 field in transactions returned by the ListTransactions endpoint of the
 [Transactions API].
 
@@ -297,7 +418,7 @@ field in transactions returned by the ListTransactions endpoint of the
   "currencyCode": "USD",
   "amount": 100
 },
-"locationID": "XXXXXXXXXXXXX",
+"locationId": "XXXXXXXXXXXXX",
 "totalTipMoney": {
   "currencyCode": "USD",
   "amount": 0
@@ -309,16 +430,18 @@ field in transactions returned by the ListTransactions endpoint of the
   },
   {
     "type": "card",
-    "tenderID": "XXXXXXXXXXXXXXXXXXXXXXXX",
+    "tenderId": "XXXXXXXXXXXXXXXXXXXXXXXX",
     "createdAt": "2018-08-22T18:05:59Z"
   },
 ],
-  "transactionID": "XXXXXXXXXXXXXXXXXXXXXXXX",
-  "transactionClientID": "0X0000X0-0000-000X-XX0X-X00XX00X00X0",
+  "transactionId": "XXXXXXXXXXXXXXXXXXXXXXXX",
+  "transactionClientId": "0X0000X0-0000-000X-XX0X-X00XX00X00X0",
   "createdAt": "2018-08-22T18:05:21Z"
 }
 ```
 
+
+---
 
 ### Location
 
@@ -332,7 +455,7 @@ isCardProcessingActivated     | boolean         | Indicates whether or not this 
 maximumCardPaymentAmountMoney | [Money](#money) | The maximum card payment amount allowed at this location.
 minimumCardPaymentAmountMoney | [Money](#money) | The minimum card payment amount allowed at this location.
 name                          | String          | The nickname of the location as set in the [Square Dashboard].
-locationID                    | String          | A unique ID for the location assigned by Square
+locationId                    | String          | A unique ID for the location assigned by Square
 
 #### Example JSON
 
@@ -348,10 +471,12 @@ locationID                    | String          | A unique ID for the location a
     "amount": 100,
     "currencyCode": "USD"},
   "name": "Chicago Treat-mobile",
-  "locationID": "XXXXXXXXXXXXX"
+  "locationId": "XXXXXXXXXXXXX"
 }
 ```
 
+
+---
 
 ### Money
 
@@ -379,6 +504,8 @@ the currency code of the currently authorized location by default.
 ```
 
 
+---
+
 ### Tender
 
 Contains the result of a processed tender.
@@ -386,7 +513,7 @@ Contains the result of a processed tender.
 Field     | Type                      | Description
 --------- | ------------------------- | -----------------
 type      | [TenderType](#tendertype) | The method used to make payment.
-tenderID  | String                    | A unique ID issued by Square. Only set for `card` tenders.
+tenderId  | String                    | A unique ID issued by Square. Only set for `card` tenders.
 createdAt | String                    | The date and time when the tender was processed as determined by the client device.
 
 #### Example JSON
@@ -394,11 +521,13 @@ createdAt | String                    | The date and time when the tender was pr
 ```json
 {
   "type": "card",
-  "tenderID": "XXXXXXXXXXXXXXXXXXXXXXXX",
+  "tenderId": "XXXXXXXXXXXXXXXXXXXXXXXX",
   "createdAt": "2018-08-22T18:05:18Z"
 }
 ```
 
+
+---
 
 ### TipSettings
 
@@ -420,6 +549,8 @@ tipPercentages        | Integer[] | A list of up to 3 non-negative integers from
 }
 ```
 
+
+
 ## Constants
 
 ### AdditionalPaymentType
@@ -432,6 +563,40 @@ payments via Square Readers:
 * `other` - Check, third-party gift cards, and other payment types.
 
 
+---
+
+### CardBrand
+
+Supported brands for `card` payments accepted during the Reader SDK checkout
+flow.
+
+* `VISA` - Visa Inc. credit or debit card.
+* `MASTERCARD` - Mastercard Incorporated credit or debit card.
+* `AMERICAN_EXPRESS` - merican Express Company credit card.
+* `DISCOVER` - Discover Financial Services credit card.
+* `DISCOVER_DINERS` - Diners Club International credit card.
+* `INTERAC` - Canadian Interbank Network debit card.
+* `JCB` - Japan Credit Bureau credit card.
+* `CHINA_UNIONPAY` - China UnionPay credit card.
+* `SQUARE_GIFT_CARD` - [Square-issued gift card].
+* `OTHER_BRAND` - An unexpected card type.
+
+
+---
+
+### EntryMethod
+
+Entry methods for `card` payments accepted during the Reader SDK checkout flow.
+
+* `CHIP` - Card information collected with Square Reader via chip ("dip").
+* `CONTACTLESS` - Card information collected with Square Reader via NFC ("tap").
+* `MANUALLY_ENTERED` - Card information collected by typing it in ("keyed-in").
+* `SWIPE` - Card information collected with Square Reader via magstripe ("swipe").
+* `UNKNOWN` - **iOS only**. Card information collected in some other way (e.g., Apple Pay digital wallet).
+
+
+---
+
 ### TenderType
 
 Methods used to provide payment during a successful checkout flow:
@@ -441,15 +606,16 @@ Methods used to provide payment during a successful checkout flow:
 * `other` - Check, third-party gift cards, and other payment types.
 
 
+
 ## Errors
 
-* `USAGE_ERROR` - Reader SDK was used in an unexpected or unsupported way.
-* `AUTHORIZE_NO_NETWORK` - Reader SDK could not connect to the network.
-* `CHECKOUT_CANCELED` - The user canceled the checkout flow.
-* `CHECKOUT_SDK_NOT_AUTHORIZED` - The checkout flow started but Reader SDK was
-  not authorized.
-* `READER_SETTINGS_SDK_NOT_AUTHORIZED` - The Reader settings flow started but
-  Reader SDK was not authorized.
+Error                                               | Cause                                                               | Returned by
+--------------------------------------------------- | ------------------------------------------------------------------- | ---
+<a id="e1">`USAGE_ERROR`</a>                        | Reader SDK was used in an unexpected or unsupported way.            | all methods
+<a id="e2">`AUTHORIZE_NO_NETWORK`</a>               | Reader SDK could not connect to the network.                        | [authorizeAsync](#authorizeasync)
+<a id="e3">`CHECKOUT_CANCELED`</a>                  | The user canceled the checkout flow.                                | [startCheckoutAsync](#startcheckoutasync)
+<a id="e4">`CHECKOUT_SDK_NOT_AUTHORIZED`</a>        | The checkout flow started but Reader SDK was not authorized.        | [startCheckoutAsync](#startcheckoutasync)
+<a id="e5">`READER_SETTINGS_SDK_NOT_AUTHORIZED`</a> | The Reader settings flow started but Reader SDK was not authorized. | [startReaderSettingsAsync](#startreadersettingsasync)
 
 
 [//]: # "Link anchor definitions"
@@ -458,4 +624,5 @@ Methods used to provide payment during a successful checkout flow:
 [Reader SDK]: https://docs.connect.squareup.com/payments/readersdk/overview
 [ISO 4217 format]: https://www.iban.com/currency-codes.html
 [Square Dashboard]: https://squareup.com/dashboard/
-[Transactions API]:
+[Transactions API]: https://docs.connect.squareup.com/payments/transactions/overview
+[Square-issued gift card]: https://squareup.com/us/en/software/gift-cards

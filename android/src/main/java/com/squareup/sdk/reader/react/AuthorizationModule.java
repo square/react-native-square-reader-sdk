@@ -31,29 +31,34 @@ import com.squareup.sdk.reader.authorization.Location;
 import com.squareup.sdk.reader.core.CallbackReference;
 import com.squareup.sdk.reader.core.Result;
 import com.squareup.sdk.reader.core.ResultError;
-import com.squareup.sdk.reader.react.converter.LocationConverter;
+import com.squareup.sdk.reader.react.internal.ErrorHandlerUtils;
+import com.squareup.sdk.reader.react.internal.converter.LocationConverter;
+import com.squareup.sdk.reader.react.internal.ReaderSdkException;
 
 class AuthorizationModule extends ReactContextBaseJavaModule {
     // Define all the authorization error debug codes and messages below
     // These error codes and messages **MUST** align with iOS error codes and javascript error codes
+    // Search KEEP_IN_SYNC_AUTHORIZE_ERROR to update all places
 
     // react native module debug error codes
-    private static final String RN_AUTHORIZE_ALREADY_IN_PROGRESS = "rn_authorize_already_in_progress";
     private static final String RN_AUTH_LOCATION_NOT_AUTHORIZED = "rn_auth_location_not_authorized";
-    private static final String RN_DEAUTHORIZE_ALREADY_IN_PROGRESS = "rn_deauthorize_already_in_progress";
 
     // react native module debug messages
+    private static final String RN_MESSAGE_AUTH_LOCATION_NOT_AUTHORIZED = "This device must be authorized with a Square location in order to get that location. Obtain an authorization code for a Square location from the mobile/authorization-code endpoint and then call authorizeAsync.";
+
+    // Android only react native errors and messages
+    private static final String RN_AUTHORIZE_ALREADY_IN_PROGRESS = "rn_authorize_already_in_progress";
+    private static final String RN_DEAUTHORIZE_ALREADY_IN_PROGRESS = "rn_deauthorize_already_in_progress";
     private static final String RN_MESSAGE_AUTHORIZE_ALREADY_IN_PROGRESS = "Authorization is already in progress. Please wait for authorizeAsync to complete.";
-    private static final String RN_MESSAGE_AUTH_LOCATION_NOT_AUTHORIZED = "You should authorize first before get authorize location.";
     private static final String RN_MESSAGE_DEAUTHORIZE_ALREADY_IN_PROGRESS = "Deauthorization is already in progress. Please wait for deauthorizeAsync to complete.";
 
-    private CallbackReference authorizeCallbackRef;
-    private CallbackReference deauthorizeCallbackRef;
+    private volatile CallbackReference authorizeCallbackRef;
+    private volatile CallbackReference deauthorizeCallbackRef;
+    private final Handler mainLooperHandler;
 
     public AuthorizationModule(ReactApplicationContext reactContext) {
         super(reactContext);
-        this.authorizeCallbackRef = null;
-        this.deauthorizeCallbackRef = null;
+        mainLooperHandler = new Handler(Looper.getMainLooper());
     }
 
     @Override
@@ -69,36 +74,39 @@ class AuthorizationModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void authorizedLocation(Promise promise) {
         if (ReaderSdk.authorizationManager().getAuthorizationState().isAuthorized()) {
-            promise.resolve(LocationConverter.toJSObject(ReaderSdk.authorizationManager().getAuthorizationState().getAuthorizedLocation()));
+            LocationConverter locationConverter = new LocationConverter();
+            promise.resolve(locationConverter.toJSObject(ReaderSdk.authorizationManager().getAuthorizationState().getAuthorizedLocation()));
         } else {
-            String errorJsonMessage = ErrorHandlerUtilities.createNativeModuleError(RN_AUTH_LOCATION_NOT_AUTHORIZED, RN_MESSAGE_AUTH_LOCATION_NOT_AUTHORIZED);
-            promise.reject(ErrorHandlerUtilities.USAGE_ERROR, new ReaderSdkException(errorJsonMessage));
+            String errorJsonMessage = ErrorHandlerUtils.createNativeModuleError(RN_AUTH_LOCATION_NOT_AUTHORIZED, RN_MESSAGE_AUTH_LOCATION_NOT_AUTHORIZED);
+            promise.reject(ErrorHandlerUtils.USAGE_ERROR, new ReaderSdkException(errorJsonMessage));
         }
     }
 
     @ReactMethod
     public void authorize(final String authCode, final Promise promise) {
-        if (this.authorizeCallbackRef != null) {
-            String errorJsonMessage = ErrorHandlerUtilities.createNativeModuleError(RN_AUTHORIZE_ALREADY_IN_PROGRESS, RN_MESSAGE_AUTHORIZE_ALREADY_IN_PROGRESS);
-            promise.reject(ErrorHandlerUtilities.USAGE_ERROR, new ReaderSdkException(errorJsonMessage));
+        if (authorizeCallbackRef != null) {
+            String errorJsonMessage = ErrorHandlerUtils.createNativeModuleError(RN_AUTHORIZE_ALREADY_IN_PROGRESS, RN_MESSAGE_AUTHORIZE_ALREADY_IN_PROGRESS);
+            promise.reject(ErrorHandlerUtils.USAGE_ERROR, new ReaderSdkException(errorJsonMessage));
             return;
         }
-        this.authorizeCallbackRef = ReaderSdk.authorizationManager().addAuthorizeCallback(new AuthorizeCallback() {
+        AuthorizeCallback authCallback = new AuthorizeCallback() {
             @Override
             public void onResult(Result<Location, ResultError<AuthorizeErrorCode>> result) {
                 authorizeCallbackRef.clear();
                 authorizeCallbackRef = null;
                 if (result.isError()) {
                     ResultError<AuthorizeErrorCode> error = result.getError();
-                    String errorJsonMessage = ErrorHandlerUtilities.serializeErrorToJson(error.getDebugCode(), error.getMessage(), error.getDebugMessage());
-                    promise.reject(ErrorHandlerUtilities.getErrorCode(error.getCode()), new ReaderSdkException(errorJsonMessage));
+                    String errorJsonMessage = ErrorHandlerUtils.serializeErrorToJson(error.getDebugCode(), error.getMessage(), error.getDebugMessage());
+                    promise.reject(ErrorHandlerUtils.getErrorCode(error.getCode()), new ReaderSdkException(errorJsonMessage));
                     return;
                 }
                 Location location = result.getSuccessValue();
-                promise.resolve(LocationConverter.toJSObject(location));
+                LocationConverter locationConverter = new LocationConverter();
+                promise.resolve(locationConverter.toJSObject(location));
             }
-        });
-        new Handler(Looper.getMainLooper()).post(new Runnable() {
+        };
+        authorizeCallbackRef = ReaderSdk.authorizationManager().addAuthorizeCallback(authCallback);
+        mainLooperHandler.post(new Runnable() {
             @Override
             public void run() {
                 ReaderSdk.authorizationManager().authorize(authCode);
@@ -113,26 +121,27 @@ class AuthorizationModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void deauthorize(final Promise promise) {
-        if (this.deauthorizeCallbackRef != null) {
-            String errorJsonMessage = ErrorHandlerUtilities.createNativeModuleError(RN_DEAUTHORIZE_ALREADY_IN_PROGRESS, RN_MESSAGE_DEAUTHORIZE_ALREADY_IN_PROGRESS);
-            promise.reject(ErrorHandlerUtilities.USAGE_ERROR, new ReaderSdkException(errorJsonMessage));
+        if (deauthorizeCallbackRef != null) {
+            String errorJsonMessage = ErrorHandlerUtils.createNativeModuleError(RN_DEAUTHORIZE_ALREADY_IN_PROGRESS, RN_MESSAGE_DEAUTHORIZE_ALREADY_IN_PROGRESS);
+            promise.reject(ErrorHandlerUtils.USAGE_ERROR, new ReaderSdkException(errorJsonMessage));
             return;
         }
-        this.deauthorizeCallbackRef = ReaderSdk.authorizationManager().addDeauthorizeCallback(new DeauthorizeCallback() {
+        DeauthorizeCallback deauthCallback = new DeauthorizeCallback() {
             @Override
             public void onResult(Result<Void, ResultError<DeauthorizeErrorCode>> result) {
                 deauthorizeCallbackRef.clear();
                 deauthorizeCallbackRef = null;
                 if (result.isError()) {
                     ResultError<DeauthorizeErrorCode> error = result.getError();
-                    String errorJsonMessage = ErrorHandlerUtilities.serializeErrorToJson(error.getDebugCode(), error.getMessage(), error.getDebugMessage());
-                    promise.reject(ErrorHandlerUtilities.getErrorCode(error.getCode()), new ReaderSdkException(errorJsonMessage));
+                    String errorJsonMessage = ErrorHandlerUtils.serializeErrorToJson(error.getDebugCode(), error.getMessage(), error.getDebugMessage());
+                    promise.reject(ErrorHandlerUtils.getErrorCode(error.getCode()), new ReaderSdkException(errorJsonMessage));
                     return;
                 }
                 promise.resolve(null);
             }
-        });
-        new Handler(Looper.getMainLooper()).post(new Runnable() {
+        };
+        deauthorizeCallbackRef = ReaderSdk.authorizationManager().addDeauthorizeCallback(deauthCallback);
+        mainLooperHandler.post(new Runnable() {
             @Override
             public void run() {
                 ReaderSdk.authorizationManager().deauthorize();
@@ -144,12 +153,11 @@ class AuthorizationModule extends ReactContextBaseJavaModule {
     public void onCatalystInstanceDestroy() {
         super.onCatalystInstanceDestroy();
         // clear the callback to avoid memory leaks when react native module is destroyed
-        if (this.authorizeCallbackRef != null) {
-            this.authorizeCallbackRef.clear();
+        if (authorizeCallbackRef != null) {
+            authorizeCallbackRef.clear();
         }
-        if (this.deauthorizeCallbackRef != null) {
-            this.deauthorizeCallbackRef.clear();
+        if (deauthorizeCallbackRef != null) {
+            deauthorizeCallbackRef.clear();
         }
     }
-
 }

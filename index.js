@@ -63,9 +63,12 @@ export async function startReaderSettingsAsync() {
 export const UsageError = 'USAGE_ERROR';
 
 // Expected errors:
+// Search KEEP_IN_SYNC_AUTHORIZE_ERROR to update all places
 export const AuthorizeErrorNoNetwork = 'AUTHORIZE_NO_NETWORK';
+// Search KEEP_IN_SYNC_CHECKOUT_ERROR to update all places
 export const CheckoutErrorCanceled = 'CHECKOUT_CANCELED';
 export const CheckoutErrorSdkNotAuthorized = 'CHECKOUT_SDK_NOT_AUTHORIZED';
+// Search KEEP_IN_SYNC_READER_SETTINGS_ERROR to update all places
 export const ReaderSettingsErrorSdkNotAuthorized = 'READER_SETTINGS_SDK_NOT_AUTHORIZED';
 
 function createReaderSDKError(ex) {

@@ -22,6 +22,7 @@
 
 // Define all the error codes and messages below
 // These error codes and messages **MUST** align with iOS error codes and javascript error codes
+// Search KEEP_IN_SYNC_AUTHORIZE_ERROR to update all places
 
 // Expected errors:
 static NSString *const RNReaderSDKAuthorizeNoNetwork = @"AUTHORIZE_NO_NETWORK";
@@ -30,7 +31,7 @@ static NSString *const RNReaderSDKAuthorizeNoNetwork = @"AUTHORIZE_NO_NETWORK";
 static NSString *const RNReaderSDKRNAuthLocationNotAuthorized = @"rn_auth_location_not_authorized";
 
 // react native module debug messages
-static NSString *const RNReaderSDKRNMessageAuthLocationNotAuthorized = @"You should authorize first before get authorize location.";
+static NSString *const RNReaderSDKRNMessageAuthLocationNotAuthorized = @"This device must be authorized with a Square location in order to get that location. Obtain an authorization code for a Square location from the mobile/authorization-code endpoint and then call authorizeAsync.";
 
 
 @implementation RNReaderSDKAuthorization
@@ -112,7 +113,7 @@ RCT_REMAP_METHOD(canDeauthorize,
                      rejecter
                  : (RCTPromiseRejectBlock)reject)
 {
-    resolve([NSNumber numberWithBool:SQRDReaderSDK.sharedSDK.canDeauthorize]);
+    resolve(@(SQRDReaderSDK.sharedSDK.canDeauthorize));
 }
 
 - (NSString *)getAuthorizationErrorCode:(NSInteger)nativeErrorCode

@@ -1,6 +1,6 @@
 {
   "name": "reader-sdk-react-native-quickstart",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
@@ -14,6 +14,7 @@
     "react-native-device-info": "^0.21.5",
     "react-native-globalize": "^2.0.1",
     "react-native-permissions": "^1.1.1",
+    "react-native-square-reader-sdk": "^1.0.0",
     "react-navigation": "^2.6.2"
   },
   "devDependencies": {

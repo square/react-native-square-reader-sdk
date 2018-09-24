@@ -23,7 +23,7 @@ limitations under the License.
 - (NSMutableDictionary *)jsonDictionary
 {
     NSMutableDictionary *jsLocationResult = [[NSMutableDictionary alloc] init];
-    jsLocationResult[@"locationID"] = self.locationID;
+    jsLocationResult[@"locationId"] = self.locationID;
     jsLocationResult[@"name"] = self.name;
     jsLocationResult[@"businessName"] = self.businessName;
     jsLocationResult[@"isCardProcessingActivated"] = [NSNumber numberWithBool:self.isCardProcessingActivated == YES];
