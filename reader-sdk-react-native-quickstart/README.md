@@ -50,9 +50,9 @@ yarn
 
 ## Step 2: Run the React Native sample app for iOS
 
-**NOTE**: Newer versions of XCode use a different build system that may cause
-compile errors. See the [Troubleshooting guide](../docs/troubleshooting.md) if
-you run into problems building the sample app.
+**NOTE**: XCode 10+ uses a different build system that may cause compile errors.
+See the [Troubleshooting guide](../docs/troubleshooting.md) if you run into
+problems building the sample app.
 
 1. Change to the `ios` folder under `reader-sdk-react-native-quickstart`.
 2. Install ReaderSDK, replacing `YOUR_SQUARE_READER_APP_ID` and
