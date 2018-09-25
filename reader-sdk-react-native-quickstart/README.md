@@ -1,4 +1,4 @@
-# Reader SDK for React Native Quick Start
+# React Native Plugin for Reader SDK Quick Start
 
 <img src="./sampleapp-example.png">
 
@@ -23,13 +23,13 @@ This quick start guide makes the following assumptions:
   [React Native Getting Started] guide to setup your React Native development
   environment.
 * Confirm your environment meets the Reader SDK build requirements listed in the
-  [main README] for this repo.
+  [root README] for this repo.
 * Clone this repo (if you have not already):
   `git clone https://github.com/square/react-native-square-reader-sdk.git`
 
 ### Install `react-native-square-reader-sdk`
 
-Change to the quick start sample folder and install the module using `yarn`:
+Change to the quick start sample folder and install the plugin using `yarn`:
 
 ```bash
 cd /PATH/TO/LOCAL/reader-sdk-react-native-quickstart
@@ -50,15 +50,15 @@ yarn
 
 ## Step 2: Run the React Native sample app for iOS
 
-**NOTE**: Newer versions of XCode use a different build system that may cause
-compile errors. See the [Troubleshooting guide](../docs/troubleshooting.md) if
-you run into problems building the sample app.
+**NOTE**: XCode 10+ uses a different build system that may cause compile errors.
+See the [Troubleshooting guide](../docs/troubleshooting.md) if you run into
+problems building the sample app.
 
 1. Change to the `ios` folder under `reader-sdk-react-native-quickstart`.
 2. Install ReaderSDK, replacing `YOUR_SQUARE_READER_APP_ID` and
    `YOUR_SQUARE_READER_REPOSITORY_PASSWORD` with your Reader SDK credentials
    and `READER_SDK_VERSION` with the Reader SDK version you are using. You can
-   find the minimum supported Reader SDK version for iOS in the [main README]
+   find the minimum supported Reader SDK version for iOS in the [root README]
    for this repo:
     ```bash
     ruby <(curl https://connect.squareup.com/readersdk-installer) install \
@@ -95,7 +95,7 @@ You can view the [transaction details in Square Dashboard].
 3. Open the Android project,
    `<ProjectDir>/reader-sdk-react-native-quickstart/android/` in Android Studio.
 4. Confirm you have installed the required Android SDK elements. If you are
-   unsure, the Reader SDK build requirements are listed in the [main README] for
+   unsure, the Reader SDK build requirements are listed in the [root README] for
    this repo.
 5. Configure an Android emulator that runs Android API 26 (Oreo, 8.0),
    or connect your dev machine to an Android device running Android API 26 with
@@ -123,5 +123,5 @@ You can view the [transaction details in Square Dashboard].
 [Square Application Dashboard]: https://connect.squareup.com/apps/
 [React Native Getting Started]: https://facebook.github.io/react-native/docs/getting-started.html
 [yarnpkg.com]: https://yarnpkg.com/lang/en/docs/install/
-[main README]: ../README.md
+[root README]: ../README.md
 [transaction details in Square Dashboard]: https://squareup.com/dashboard/sales/transactions

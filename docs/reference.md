@@ -494,7 +494,7 @@ amount       | integer | **REQUIRED** The amount of money, in the smallest denom
 currencyCode | string  | The type of currency, in [ISO 4217 format]. For example, the currency code for US dollars is USD.
 
 All `Money` objects require an `amount` and `currencyCode` but `currenyCode` is
-optional for the Reader SDK React Native module because `Money` objects will use
+optional for the Reader SDK React Native plugin because `Money` objects will use
 the currency code of the currently authorized location by default.
 
 #### Example JSON
