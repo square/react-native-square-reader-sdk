@@ -1,4 +1,4 @@
-# Getting Started with the Reader SDK React Native module
+# Getting Started with the React Native plugin for Reader SDK
 
 This guide walks you through the process of setting up a new React Native
 project with Reader SDK. See the
@@ -68,7 +68,7 @@ yarn add react-native-square-reader-sdk
 
 ## Step 4: Install Reader SDK for Android
 
-To use the React Native module on Android devices, you need to install Reader
+To use the React Native plugin on Android devices, you need to install Reader
 SDK for Android so it is available to the React Native library as a resource.
 The key installation steps are outlined below. For more information on
 installing Reader SDK for Android, see the [Reader SDK Android Setup Guide] at
@@ -156,7 +156,7 @@ installing Reader SDK for Android, see the [Reader SDK Android Setup Guide] at
 
 ## Step 5: Install Reader SDK for iOS
 
-To use the React Native module on iOS devices, you need to install Reader
+To use the React Native plugin on iOS devices, you need to install Reader
 SDK for iOS so it is available to the React Native library as a resource.
 The key installation steps are outlined below. For more information on
 installing Reader SDK for iOS, see the [Reader SDK iOS Setup Guide] at

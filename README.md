@@ -1,6 +1,6 @@
-# React Native module for Reader SDK
+# React Native plugin for Reader SDK
 
-This repo contains a React Native module for Square [Reader SDK]. Reader SDK for
+This repo contains a React Native plugin for Square [Reader SDK]. Reader SDK for
 React Native supports the following native Reader SDK versions:
 
   * iOS: version 1.0.1
@@ -10,7 +10,7 @@ React Native supports the following native Reader SDK versions:
 
 In addition to the standard React Native directories, this repo includes:
 
-* `docs` - Documentation for the React Native module, including a
+* `docs` - Documentation for the React Native plugin, including a
   [getting started guide](docs/get-started.md),
   [technical reference](docs/reference.md), and
   [troubleshooting guide](docs/troubleshooting.md).

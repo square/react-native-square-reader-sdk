@@ -1,4 +1,4 @@
-# Reader SDK for React Native Quick Start
+# React Native Plugin for Reader SDK Quick Start
 
 <img src="./sampleapp-example.png">
 
@@ -29,7 +29,7 @@ This quick start guide makes the following assumptions:
 
 ### Install `react-native-square-reader-sdk`
 
-Change to the quick start sample folder and install the module using `yarn`:
+Change to the quick start sample folder and install the plugin using `yarn`:
 
 ```bash
 cd /PATH/TO/LOCAL/reader-sdk-react-native-quickstart
