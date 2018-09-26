@@ -84,3 +84,7 @@ limitations under the License.
 [Square Dashboard]: https://squareup.com/dashboard/
 [update policy for Reader SDK]: https://docs.connect.squareup.com/payments/readersdk/overview#readersdkupdatepolicy
 [Testing Mobile Apps]: https://docs.connect.squareup.com/testing/mobile
+[getting started guide]: https://github.com/square/react-native-square-reader-sdk/tree/master/docs/get-started.md
+[technical reference]: https://github.com/square/react-native-square-reader-sdk/tree/master/docs/reference.md
+[troubleshooting guide]: https://github.com/square/react-native-square-reader-sdk/tree/master/docs/troubleshooting.md
+[`reader-sdk-react-native-quickstart`]: https://github.com/square/react-native-square-reader-sdk/tree/master/reader-sdk-react-native-quickstart/README.md
