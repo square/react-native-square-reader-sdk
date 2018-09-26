@@ -428,3 +428,4 @@ if (await canDeauthorizeAsync()) {
 [Reader SDK iOS Setup Guide]: https://docs.connect.squareup.com/payments/readersdk/setup-ios
 [root README]: ../README.md
 [yarnpkg.com]: https://yarnpkg.com/lang/en/docs/install/
+[React Native Getting Started]: https://facebook.github.io/react-native/docs/getting-started.html
