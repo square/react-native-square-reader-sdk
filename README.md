@@ -85,4 +85,4 @@ limitations under the License.
 [getting started guide]: https://github.com/square/react-native-square-reader-sdk/tree/master/docs/get-started.md
 [technical reference]: https://github.com/square/react-native-square-reader-sdk/tree/master/docs/reference.md
 [troubleshooting guide]: https://github.com/square/react-native-square-reader-sdk/tree/master/docs/troubleshooting.md
-[`reader-sdk-react-native-quickstart`]: https://github.com/square/react-native-square-reader-sdk/tree/master/reader-sdk-react-native-quickstart/README.md
+[`reader-sdk-react-native-quickstart`]: https://github.com/square/react-native-square-reader-sdk/tree/master/reader-sdk-react-native-quickstart
