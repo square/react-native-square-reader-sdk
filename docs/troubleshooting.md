@@ -1,4 +1,4 @@
-# Troubleshooting the Reader SDK React Native module
+# Troubleshooting the Reader SDK React Native plugin
 
 Likely causes and solutions for common problems.
 

@@ -1,5 +1,5 @@
 ## Changelog
 
-### v0.0.1 Sep 21, 2018
+### v1.0.0 Sep 27, 2018
 
-* Initial release. (TOBEADDED)
+* Initial release.
