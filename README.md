@@ -11,11 +11,9 @@ React Native supports the following native Reader SDK versions:
 In addition to the standard React Native directories, this repo includes:
 
 * `docs` - Documentation for the React Native plugin, including a
-  [getting started guide](docs/get-started.md),
-  [technical reference](docs/reference.md), and
-  [troubleshooting guide](docs/troubleshooting.md).
-* [`reader-sdk-react-native-quickstart`](reader-sdk-react-native-quickstart/README.md) -
-  A React Native sample app with walkthrough.
+  [getting started guide], [technical reference], and [troubleshooting guide].
+* [`reader-sdk-react-native-quickstart`] - A React Native sample app with
+  walkthrough.
 
 
 ## Build requirements
