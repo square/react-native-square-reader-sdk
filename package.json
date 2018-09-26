@@ -1,14 +1,21 @@
 {
   "name": "react-native-square-reader-sdk",
   "version": "1.0.0",
-  "description": "A React Native module for Square Reader SDK",
+  "description": "A React Native plugin for Square Reader SDK",
+  "homepage": "https://github.com/square/react-native-square-reader-sdk",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/square/react-native-square-reader-sdk.git"
+  },
   "main": "index.js",
   "scripts": {
     "lint": "eslint *.js"
   },
   "keywords": [
     "react-native",
-    "reader-sdk"
+    "reader-sdk",
+    "square",
+    "payments"
   ],
   "author": "Square, Inc.",
   "license": "Apache-2.0",

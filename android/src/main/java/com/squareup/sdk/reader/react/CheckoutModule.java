@@ -194,17 +194,19 @@ class CheckoutModule extends ReactContextBaseJavaModule {
             return false;
         }
 
-        // check tipSettings
-        ReadableMap tipSettings = jsCheckoutParams.getMap("tipSettings");
-        if (tipSettings.hasKey("showCustomTipField") && tipSettings.getType("showCustomTipField") != ReadableType.Boolean) {
-            paramError.append("'showCustomTipField' is not a boolean");
-            return false;
-        } else if (tipSettings.hasKey("showSeparateTipScreen") && tipSettings.getType("showSeparateTipScreen") != ReadableType.Boolean) {
-            paramError.append("'showSeparateTipScreen' is not a boolean");
-            return false;
-        } else if (tipSettings.hasKey("tipPercentages") && tipSettings.getType("tipPercentages") != ReadableType.Array) {
-            paramError.append("'tipPercentages' is not an array");
-            return false;
+        if (jsCheckoutParams.hasKey("tipSettings")) {
+            // check tipSettings
+            ReadableMap tipSettings = jsCheckoutParams.getMap("tipSettings");
+            if (tipSettings.hasKey("showCustomTipField") && tipSettings.getType("showCustomTipField") != ReadableType.Boolean) {
+                paramError.append("'showCustomTipField' is not a boolean");
+                return false;
+            } else if (tipSettings.hasKey("showSeparateTipScreen") && tipSettings.getType("showSeparateTipScreen") != ReadableType.Boolean) {
+                paramError.append("'showSeparateTipScreen' is not a boolean");
+                return false;
+            } else if (tipSettings.hasKey("tipPercentages") && tipSettings.getType("tipPercentages") != ReadableType.Array) {
+                paramError.append("'tipPercentages' is not an array");
+                return false;
+            }
         }
 
         return true;
