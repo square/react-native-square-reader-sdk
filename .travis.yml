@@ -1,0 +1,7 @@
+language: node_js
+
+node_js:
+  - '6'
+
+script:
+  - yarn && yarn lint && cd reader-sdk-react-native-quickstart && yarn && yarn lint && cd ..

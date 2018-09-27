@@ -1,7 +1,0 @@
-language: node_js
-
-node_js:
-  - '6'
-
-script:
-  - yarn install && yarn lint && yarn link && cd reader-sdk-react-native-quickstart && yarn install && yarn link react-native-square-reader-sdk && yarn lint && yarn unlink react-native-square-reader-sdk && cd .. && yarn unlink
