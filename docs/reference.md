@@ -359,7 +359,7 @@ Configures the UI experience for the checkout flow.
 Field                  | Type                                              | Description
 ---------------------- | ------------------------------------------------- | -----------------
 amountMoney            | [Money](#money)                                   | **REQUIRED**. The total payment amount.
-skipReceipt            | boolean                                           | Indicates that the digital receipt options screen should not be displayed during checkout. Default: `null`
+skipReceipt            | boolean                                           | Indicates that the digital receipt options screen should not be displayed during checkout. Default: `false`
 alwaysRequireSignature | boolean                                           | Indicates that signature collection is required during checkout for all card transactions. Default: `true`
 allowSplitTender       | boolean                                           | Indicates that multiple payment methods are allowed. Default: `false`
 note                   | String                                            | A note to display on digital receipts and in the [Square Dashboard]. Default: `null`

@@ -80,8 +80,8 @@ installing Reader SDK for Android, see the [Reader SDK Android Setup Guide] at
    to increase the max heap size provided to the Gradle daemon and set variables
    for the Square application ID and repository password:
    ```
-    SQUARE_READER_SDK_APPLICATION_ID={YOUR_APP_ID}
-    SQUARE_READER_SDK_REPOSITORY_PASSWORD={YOUR_APP_ID}
+    SQUARE_READER_SDK_APPLICATION_ID=YOUR_SQUARE_READER_APP_ID
+    SQUARE_READER_SDK_REPOSITORY_PASSWORD=YOUR_SQUARE_READER_REPOSITORY_PASSWORD
     org.gradle.jvmargs=-Xmx4g
    ```
 1. Add the Reader SDK variables from your properties file to the `build.gradle`
@@ -428,3 +428,4 @@ if (await canDeauthorizeAsync()) {
 [Reader SDK iOS Setup Guide]: https://docs.connect.squareup.com/payments/readersdk/setup-ios
 [root README]: ../README.md
 [yarnpkg.com]: https://yarnpkg.com/lang/en/docs/install/
+[React Native Getting Started]: https://facebook.github.io/react-native/docs/getting-started.html
