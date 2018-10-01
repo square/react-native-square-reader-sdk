@@ -193,6 +193,9 @@ if (await isAuthorizedAsync()) {
 Used to start the checkout flow and collect payment information from Square
 Reader.
 
+**Notice**: You can not start checkout flow from a modal screen, close the modal
+screen before you call this method.
+
 Parameter      | Type                                    | Description
 -------------- | --------------------------------------- | -----------
 checkoutParams | [CheckoutParameter](#checkoutparameter) | Configures the checkout flow and transaction amount.

@@ -288,6 +288,9 @@ Add code to your React Native project that starts the checkout flow and handles
 the response. Reader SDK must be authorized before starting the checkout flow
 and connecting a Reader is only required for card payments.
 
+**Notice**: You can not start checkout flow from a modal screen, close the modal
+screen before you call this method.
+
 ```javascript
 import {
   startCheckoutAsync,
