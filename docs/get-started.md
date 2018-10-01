@@ -255,7 +255,7 @@ Add code to your React Native project that authorizes Reader SDK:
 ```javascript
 import {
   authorizeAsync,
-  AuthorizeErrorNoNetowrk,
+  AuthorizeErrorNoNetwork,
   UsageError,
 } from 'react-native-square-reader-sdk';
 ...
@@ -266,7 +266,7 @@ try {
   // Authorized and authorizedLocation is available
 } catch(ex) {
   switch(ex.code) {
-    case AuthorizeErrorNoNetowrk:
+    case AuthorizeErrorNoNetwork:
       // Remind connecting to network
       break;
     case UsageError:
@@ -288,8 +288,8 @@ Add code to your React Native project that starts the checkout flow and handles
 the response. Reader SDK must be authorized before starting the checkout flow
 and connecting a Reader is only required for card payments.
 
-**Notice**: You can not start checkout flow from a modal screen, close the modal
-screen before you call this method.
+**Note**: You cannot start the checkout flow from a modal screen. To start
+checkout, you must close the modal before calling `startCheckoutAsync`.
 
 ```javascript
 import {

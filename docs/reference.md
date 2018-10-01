@@ -50,7 +50,7 @@ authCode  | string | Authorization code from the [Mobile Authorization API]
 ```javascript
 import {
   authorizeAsync,
-  AuthorizeErrorNoNetowrk,
+  AuthorizeErrorNoNetwork,
   UsageError,
 } from 'react-native-square-reader-sdk';
 ...
@@ -191,10 +191,7 @@ if (await isAuthorizedAsync()) {
 ### startCheckoutAsync
 
 Used to start the checkout flow and collect payment information from Square
-Reader.
-
-**Notice**: You can not start checkout flow from a modal screen, close the modal
-screen before you call this method.
+Reader. Checkout cannot be started from a modal screen.
 
 Parameter      | Type                                    | Description
 -------------- | --------------------------------------- | -----------
