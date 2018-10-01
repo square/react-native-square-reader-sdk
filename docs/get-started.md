@@ -46,11 +46,12 @@ react-native init myRNReaderSDKSample
 See [Building Projects with Native Code] guide for more detailed instructions.
 
 
-## Step 2: Install Reader SDK for React Native
+## Step 2: Install React Native plugin for Reader SDK and link the plugin
 
 Add the Reader SDK package to `yarn`:
 ```bash
 yarn add react-native-square-reader-sdk
+react-native link react-native-square-reader-sdk
 ```
 
 
