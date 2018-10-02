@@ -29,7 +29,7 @@ limitations under the License.
     jsLocationResult[@"isCardProcessingActivated"] = [NSNumber numberWithBool:self.isCardProcessingActivated == YES];
     jsLocationResult[@"minimumCardPaymentAmountMoney"] = [self.minimumCardPaymentAmountMoney jsonDictionary];
     jsLocationResult[@"maximumCardPaymentAmountMoney"] = [self.maximumCardPaymentAmountMoney jsonDictionary];
-    jsLocationResult[@"currencyCode"] = @(self.currencyCode);
+    jsLocationResult[@"currencyCode"] = SQRDCurrencyCodeGetISOCurrencyCode(self.currencyCode);
     return jsLocationResult;
 }
 
