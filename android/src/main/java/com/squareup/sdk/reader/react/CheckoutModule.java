@@ -184,7 +184,7 @@ class CheckoutModule extends ReactContextBaseJavaModule {
             return false;
         }
         if (amountMoney.hasKey("currencyCode") && amountMoney.getType("currencyCode") != ReadableType.String) {
-            paramError.append("'currencyCode' is not an String");
+            paramError.append("'currencyCode' is not a String");
             return false;
         }
         if (amountMoneyMap.containsKey("currencyCode")) {
