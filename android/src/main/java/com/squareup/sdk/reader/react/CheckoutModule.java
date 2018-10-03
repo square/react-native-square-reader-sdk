@@ -184,14 +184,16 @@ class CheckoutModule extends ReactContextBaseJavaModule {
             return false;
         }
         if (amountMoney.hasKey("currencyCode") && amountMoney.getType("currencyCode") != ReadableType.String) {
-            paramError.append("'amount' is not an integer");
+            paramError.append("'currencyCode' is not a String");
             return false;
         }
-        try {
-            CurrencyCode.valueOf(amountMoney.getString("currencyCode"));
-        } catch (IllegalArgumentException ex) {
-            paramError.append("failed to parse 'currencyCode'");
-            return false;
+        if (amountMoneyMap.containsKey("currencyCode")) {
+            try {
+                CurrencyCode.valueOf(amountMoney.getString("currencyCode"));
+            } catch (IllegalArgumentException ex) {
+                paramError.append("failed to parse 'currencyCode'");
+                return false;
+            }
         }
 
         if (jsCheckoutParams.hasKey("tipSettings")) {
