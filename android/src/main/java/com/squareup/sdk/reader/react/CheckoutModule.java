@@ -187,7 +187,7 @@ class CheckoutModule extends ReactContextBaseJavaModule {
             paramError.append("'currencyCode' is not a String");
             return false;
         }
-        if (amountMoneyMap.containsKey("currencyCode")) {
+        if (amountMoney.hasKey("currencyCode")) {
             try {
                 CurrencyCode.valueOf(amountMoney.getString("currencyCode"));
             } catch (IllegalArgumentException ex) {

@@ -1,5 +1,9 @@
 ## Changelog
 
+### v1.0.2 Oct 4, 2018
+
+* fixed Android plugin compile regression
+
 ### v1.0.1 Oct 4, 2018
 
 * fixed iOS `location.currencyCode` conversion bug, change int to string (ISOCurrencyCode)
