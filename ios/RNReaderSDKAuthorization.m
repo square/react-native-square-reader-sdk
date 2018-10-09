@@ -91,7 +91,9 @@ RCT_REMAP_METHOD(isAuthorized,
                      rejecter
                  : (RCTPromiseRejectBlock)reject)
 {
-    resolve(@(SQRDReaderSDK.sharedSDK.isAuthorized));
+    dispatch_async(dispatch_get_main_queue(), ^{
+        resolve(@(SQRDReaderSDK.sharedSDK.isAuthorized));
+    });
 }
 
 RCT_REMAP_METHOD(authorizedLocation,
@@ -100,11 +102,13 @@ RCT_REMAP_METHOD(authorizedLocation,
                      rejecter
                  : (RCTPromiseRejectBlock)reject)
 {
-    if (SQRDReaderSDK.sharedSDK.isAuthorized) {
-        resolve([SQRDReaderSDK.sharedSDK.authorizedLocation jsonDictionary]);
-    } else {
-        reject(RNReaderSDKUsageError, [RNReaderSDKErrorUtilities createNativeModuleError:RNReaderSDKRNAuthLocationNotAuthorized debugMessage:RNReaderSDKRNMessageAuthLocationNotAuthorized], nil);
-    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (SQRDReaderSDK.sharedSDK.isAuthorized) {
+            resolve([SQRDReaderSDK.sharedSDK.authorizedLocation jsonDictionary]);
+        } else {
+            reject(RNReaderSDKUsageError, [RNReaderSDKErrorUtilities createNativeModuleError:RNReaderSDKRNAuthLocationNotAuthorized debugMessage:RNReaderSDKRNMessageAuthLocationNotAuthorized], nil);
+        }
+    });
 }
 
 RCT_REMAP_METHOD(canDeauthorize,
@@ -113,7 +117,9 @@ RCT_REMAP_METHOD(canDeauthorize,
                      rejecter
                  : (RCTPromiseRejectBlock)reject)
 {
-    resolve(@(SQRDReaderSDK.sharedSDK.canDeauthorize));
+    dispatch_async(dispatch_get_main_queue(), ^{
+        resolve(@(SQRDReaderSDK.sharedSDK.canDeauthorize));
+    });
 }
 
 - (NSString *)getAuthorizationErrorCode:(NSInteger)nativeErrorCode
