@@ -1,5 +1,9 @@
 ## Changelog
 
+### v1.0.3 Oct 9, 2018
+
+* fixed iOS threading issue
+
 ### v1.0.2 Oct 4, 2018
 
 * fixed Android plugin compile regression
