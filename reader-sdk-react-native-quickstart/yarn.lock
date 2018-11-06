@@ -3045,7 +3045,7 @@ global@^4.3.0:
     min-document "^2.19.0"
     process "~0.5.1"
 
-"globalize@github:joshswan/globalize":
+globalize@joshswan/globalize:
   version "1.1.1"
   resolved "https://codeload.github.com/joshswan/globalize/tar.gz/1e0466dcba692e3a7674e40a43d23f160f4f4bf4"
 
@@ -5432,10 +5432,8 @@ react-native-screens@^1.0.0-alpha.11:
   resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-1.0.0-alpha.14.tgz#fe3ccdcec7be8e1ada090c34a7f8951337adf653"
   integrity sha512-SXVl5dnN5ZgV7jF2NdqScp91qW3QOZipBPp8f0CpAtb/ucEQkteiQnTGb4BNS5OvpMVi1UNw4BXWhUsKRPqzPw==
 
-react-native-square-reader-sdk@^1.0.0:
+"react-native-square-reader-sdk@file:..":
   version "1.0.3"
-  resolved "https://registry.yarnpkg.com/react-native-square-reader-sdk/-/react-native-square-reader-sdk-1.0.3.tgz#d279eba9f6e1d0b369deaa6f7d4529bfdd616d2f"
-  integrity sha512-nYxrFUDjhzFz33ioJorKY8eNXaV/KAbVwWpF/5FiUAZL+YorOdZmJvAZC8cTdthBq5T9Rd9k4W5Gup1gAikWgQ==
 
 react-native-tab-view@^0.0.77:
   version "0.0.77"
