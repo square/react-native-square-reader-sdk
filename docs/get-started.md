@@ -88,7 +88,7 @@ installing Reader SDK for Android, see the [Reader SDK Android Setup Guide] at
 1. Add the Reader SDK variables from your properties file to the `build.gradle`
    file of your `:app module:` and confirm that the Google repository is set
    properly:
-    ```
+    ```gradle
     repositories {
       google()
       maven {
@@ -104,7 +104,7 @@ installing Reader SDK for Android, see the [Reader SDK Android Setup Guide] at
 1. Reader SDK and its dependencies contain more than 65k methods, so your build
    script must enable Multidex. If your `minSdkVersion` is less than **21**, you
    also need to include the `multidex` dependency:
-    ```
+    ```gradle
     android {
       defaultConfig {
         minSdkVersion 19
@@ -120,7 +120,7 @@ installing Reader SDK for Android, see the [Reader SDK Android Setup Guide] at
     }
     ```
 1. Configure the Multidex options:
-    ```
+    ```gradle
     android {
       // ...
       dexOptions {
@@ -136,7 +136,7 @@ installing Reader SDK for Android, see the [Reader SDK Android Setup Guide] at
     ```
 1. Extend the Android Application class (`android.app.Application`) and add code
    to Import and initialize Reader SDK:
-    ```
+    ```java
     import com.squareup.sdk.reader.ReaderSdk;
 
     public class ExampleApplication extends Application {
@@ -154,7 +154,28 @@ installing Reader SDK for Android, see the [Reader SDK Android Setup Guide] at
     }
     ```
 
+---
+**Note:** Reader SDK is guaranteed to work with support library version 26.0.2. If you want to use a higher version of support library, you will need to update build.gradle to add the targeted version of the required libraries (e.g. design, support-v4, recyclerview-v7).
 
+If you use a higher version of the support library, we recommend establishing a resolution strategy in build.gradle to ensure all support library dependencies are on the same version. For example:
+
+```gradle
+configurations.all {
+  resolutionStrategy {
+    eachDependency { details ->
+      // Force all primary support libraries to the same version
+      if (details.requested.group == 'com.android.support'
+        && details.requested.name != 'multidex'
+        && details.requested.name != 'multidex-instrumentation') {
+        // Force the version that works for you.
+        // Square has tested ReaderSDK with 26.0.2
+        details.useVersion '26.0.2'
+      }
+    }
+  }
+}
+```
+---
 ## Step 5: Install Reader SDK for iOS
 
 To use the React Native plugin on iOS devices, you need to install Reader
