@@ -102,21 +102,15 @@ installing Reader SDK for Android, see the [Reader SDK Android Setup Guide] at
     }
     ```
 1. Reader SDK and its dependencies contain more than 65k methods, so your build
-   script must enable Multidex. If your `minSdkVersion` is less than **21**, you
-   also need to include the `multidex` dependency:
+   script must enable Multidex.
+
     ```gradle
     android {
       defaultConfig {
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 26
         multiDexEnabled true
       }
-    }
-
-    dependencies {
-      // Add this dependency if your minSdkVersion < 21
-      implementation 'com.android.support:multidex:1.0.3'
-      // ...
     }
     ```
 1. Configure the Multidex options:
@@ -328,7 +322,7 @@ const checkoutParams = {
   },
   // Optional for all following configuration
   skipReceipt: false,
-  alwaysRequireSignature: true,
+  collectSignature: true,
   allowSplitTender: false,
   note: 'ReaderSDKSample Transaction',
   tipSettings: {

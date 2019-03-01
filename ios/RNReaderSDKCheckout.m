@@ -81,13 +81,13 @@ RCT_REMAP_METHOD(startCheckout,
             checkoutParams.note = jsParams[@"note"];
         }
         if (jsParams[@"skipReceipt"]) {
-            checkoutParams.skipReceipt = ([jsParams[@"skipReceipt"] boolValue] == YES);
+            checkoutParams.skipReceipt = [jsParams[@"skipReceipt"] boolValue];
         }
-        if (jsParams[@"alwaysRequireSignature"]) {
-            checkoutParams.alwaysRequireSignature = ([jsParams[@"alwaysRequireSignature"] boolValue] == YES);
+        if (jsParams[@"collectSignature"]) {
+            checkoutParams.collectSignature = [jsParams[@"collectSignature"] boolValue];
         }
         if (jsParams[@"allowSplitTender"]) {
-            checkoutParams.allowSplitTender = ([jsParams[@"allowSplitTender"] boolValue] == YES);
+            checkoutParams.allowSplitTender = [jsParams[@"allowSplitTender"] boolValue];
         }
         if (jsParams[@"tipSettings"]) {
             SQRDTipSettings *tipSettings = [self buildTipSettings:jsParams[@"tipSettings"]];
@@ -146,8 +146,8 @@ RCT_REMAP_METHOD(startCheckout,
         *errorMsg = @"'skipReceipt' is not a boolean";
         return NO;
     }
-    if (jsCheckoutParameters[@"alwaysRequireSignature"] && ![jsCheckoutParameters[@"alwaysRequireSignature"] isKindOfClass:[NSNumber class]]) {
-        *errorMsg = @"'alwaysRequireSignature' is not a boolean";
+    if (jsCheckoutParameters[@"collectSignature"] && ![jsCheckoutParameters[@"collectSignature"] isKindOfClass:[NSNumber class]]) {
+        *errorMsg = @"'collectSignature' is not a boolean";
         return NO;
     }
     if (jsCheckoutParameters[@"allowSplitTender"] && ![jsCheckoutParameters[@"allowSplitTender"] isKindOfClass:[NSNumber class]]) {
@@ -202,10 +202,10 @@ RCT_REMAP_METHOD(startCheckout,
 {
     SQRDTipSettings *tipSettings = [SQRDTipSettings alloc];
     if (tipSettingConfig[@"showCustomTipField"]) {
-        tipSettings.showCustomTipField = ([tipSettingConfig[@"showCustomTipField"] boolValue] == YES);
+        tipSettings.showCustomTipField = [tipSettingConfig[@"showCustomTipField"] boolValue];
     }
     if (tipSettingConfig[@"showSeparateTipScreen"]) {
-        tipSettings.showSeparateTipScreen = ([tipSettingConfig[@"showSeparateTipScreen"] boolValue] == YES);
+        tipSettings.showSeparateTipScreen = [tipSettingConfig[@"showSeparateTipScreen"] boolValue];
     }
     if (tipSettingConfig[@"tipPercentages"]) {
         NSMutableArray *tipPercentages = [[NSMutableArray alloc] init];

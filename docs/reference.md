@@ -360,7 +360,7 @@ Field                  | Type                                              | Des
 ---------------------- | ------------------------------------------------- | -----------------
 amountMoney            | [Money](#money)                                   | **REQUIRED**. The total payment amount.
 skipReceipt            | boolean                                           | Indicates that the digital receipt options screen should not be displayed during checkout. Default: `false`
-alwaysRequireSignature | boolean                                           | Indicates that signature collection is required during checkout for all card transactions. Default: `true`
+collectSignature       | boolean                                           | Indicates that signature collection is required during checkout. When false, the signature screen will never be displayed; when true, it will always be used. Default: `false`
 allowSplitTender       | boolean                                           | Indicates that multiple payment methods are allowed. Default: `false`
 note                   | String                                            | A note to display on digital receipts and in the [Square Dashboard]. Default: `undefined` (empty note)
 tipSettings            | [TipSettings](#tipsettings)                       | Settings that configure the tipping behavior of the checkout flow. Default: `undefined` (Tip screen disabled)
@@ -375,7 +375,7 @@ additionalPaymentTypes | [AdditionalPaymentType](#additionalpaymenttype)[] | Val
     "currencyCode": "USD"
   },
   "skipReceipt": false,
-  "alwaysRequireSignature": true,
+  "collectSignature": true,
   "allowSplitTender": false,
   "note": "Payment for dogsitting",
   "tipSettings": {
