@@ -1,12 +1,18 @@
 ## Changelog
 
+### v1.1.0 Mar 3rd, 2019
+
+* remove `alwaysRequireSignature` and add `collectSignature` to checkout configuration.
+* bump the minimum dependency to Reader SDK 1.1.1(iOS)/1.1.3(Android).
+* this change **does NOT** include all new features introduced in Reader SDK 1.1.* such as **Store customer card**, see reader SDK [Change Log](https://docs.connect.squareup.com/changelog/mobile-logs/2019-02-13) for details.
+
 ### v1.0.3 Oct 9, 2018
 
-* fixed iOS threading issue
+* fixed iOS threading issue.
 
 ### v1.0.2 Oct 4, 2018
 
-* fixed Android plugin compile regression
+* fixed Android plugin compile regression.
 
 ### v1.0.1 Oct 4, 2018
 
