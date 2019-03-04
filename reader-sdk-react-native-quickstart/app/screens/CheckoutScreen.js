@@ -60,7 +60,7 @@ class CheckoutScreen extends Component {
       },
       // Optional for all following configuration
       skipReceipt: false,
-      alwaysRequireSignature: true,
+      collectSignature: true,
       allowSplitTender: false,
       note: 'Hello 💳 💰 World!',
       tipSettings: {

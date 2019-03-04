@@ -55,6 +55,9 @@ class CardConverter {
                 case SQUARE_GIFT_CARD:
                     brandStringMap.put(brand, "SQUARE_GIFT_CARD");
                     break;
+                case EFTPOS:
+                    brandStringMap.put(brand, "EFTPOS");
+                    break;
                 case OTHER_BRAND:
                     brandStringMap.put(brand, "OTHER_BRAND");
                     break;

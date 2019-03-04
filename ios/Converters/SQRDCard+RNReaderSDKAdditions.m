@@ -62,6 +62,9 @@ limitations under the License.
         case SQRDCardBrandSquareGiftCard:
             result = @"SQUARE_GIFT_CARD";
             break;
+        case SQRDCardBrandEftpos:
+            result = @"EFTPOS";
+            break;
         case SQRDCardBrandOtherBrand:
             result = @"OTHER_BRAND";
             break;

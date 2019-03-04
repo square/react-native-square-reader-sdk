@@ -31,14 +31,15 @@ buildscript {
 apply plugin: 'com.android.library'
 
 def DEFAULT_PLAY_SERVICES_BASE_VERSION = '12.0.1'
+def MIN_READER_SDK_VERSION = '1.1.3'
 
 android {
     compileSdkVersion 26
     buildToolsVersion "26.0.3"
 
     defaultConfig {
-        minSdkVersion 19
-        targetSdkVersion 25
+        minSdkVersion 21
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -66,7 +67,7 @@ repositories {
 }
 
 dependencies {
-    def readerSdkVersion = '1.0.4'
+    def readerSdkVersion = rootProject.hasProperty('readerSdkVersion') ? rootProject.readerSdkVersion : MIN_READER_SDK_VERSION
     def playServicesBaseVersion = rootProject.hasProperty('googlePlayServiceVersion') ? rootProject.googlePlayServiceVersion : DEFAULT_PLAY_SERVICES_BASE_VERSION
     implementation 'com.facebook.react:react-native:+'
     implementation "com.google.android.gms:play-services-base:$playServicesBaseVersion"
