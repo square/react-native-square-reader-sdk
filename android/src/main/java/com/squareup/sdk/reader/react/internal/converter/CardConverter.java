@@ -21,7 +21,7 @@ import com.squareup.sdk.reader.checkout.Card;
 import java.util.HashMap;
 import java.util.Map;
 
-class CardConverter {
+public class CardConverter {
     private static final Map<Card.Brand, String> brandStringMap;
 
     static {
@@ -71,6 +71,10 @@ class CardConverter {
         WritableMap mapToReturn = new WritableNativeMap();
         mapToReturn.putString("brand", brandStringMap.get(card.getBrand()));
         mapToReturn.putString("lastFourDigits", card.getLastFourDigits());
+        mapToReturn.putInt("expirationMonth", card.getExpirationMonth());
+        mapToReturn.putInt("expirationYear", card.getExpirationYear());
+        mapToReturn.putString("id", card.getId());
+        mapToReturn.putString("cardholderName", card.getCardholderName());
         return mapToReturn;
     }
 }
