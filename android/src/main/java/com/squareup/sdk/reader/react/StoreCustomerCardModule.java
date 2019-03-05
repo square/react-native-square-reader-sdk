@@ -36,13 +36,13 @@ import com.squareup.sdk.reader.react.internal.converter.CardConverter;
 class StoreCustomerCardModule extends ReactContextBaseJavaModule {
     // Define all the store customer card debug codes and messages below
     // These error codes and messages **MUST** align with iOS error codes and javascript error codes
-    // Search KEEP_IN_SYNC_ADD_CUSTOMER_CARD_ERROR to update all places
+    // Search KEEP_IN_SYNC_STORE_CUSTOMER_CARD_ERROR to update all places
 
     // react native module debug error codes
-    private static final String RN_ADD_CUSTOMER_CARD_ALREADY_IN_PROGRESS = "rn_store_customer_card_already_in_progress";
+    private static final String RN_STORE_CUSTOMER_CARD_ALREADY_IN_PROGRESS = "rn_store_customer_card_already_in_progress";
 
     // react native module debug messages
-    private static final String RN_MESSAGE_ADD_CUSTOMER_CARD_ALREADY_IN_PROGRESS = "A store customer card operation is already in progress. Ensure that the in-progress store customer card is completed before calling startStoreCardAsync again.";
+    private static final String RN_MESSAGE_STORE_CUSTOMER_CARD_ALREADY_IN_PROGRESS = "A store customer card operation is already in progress. Ensure that the in-progress store customer card is completed before calling startStoreCardAsync again.";
 
     private volatile CallbackReference storeCardCallbackRef;
     private final Handler mainLooperHandler;
@@ -60,7 +60,7 @@ class StoreCustomerCardModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void startStoreCard(final String customerId, final Promise promise) {
         if (storeCardCallbackRef != null) {
-            String errorJsonMessage = ErrorHandlerUtils.createNativeModuleError(RN_ADD_CUSTOMER_CARD_ALREADY_IN_PROGRESS, RN_MESSAGE_ADD_CUSTOMER_CARD_ALREADY_IN_PROGRESS);
+            String errorJsonMessage = ErrorHandlerUtils.createNativeModuleError(RN_STORE_CUSTOMER_CARD_ALREADY_IN_PROGRESS, RN_MESSAGE_STORE_CUSTOMER_CARD_ALREADY_IN_PROGRESS);
             promise.reject(ErrorHandlerUtils.USAGE_ERROR, new ReaderSdkException(errorJsonMessage));
             return;
         }

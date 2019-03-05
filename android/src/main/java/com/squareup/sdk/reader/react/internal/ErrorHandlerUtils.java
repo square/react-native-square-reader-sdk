@@ -90,19 +90,19 @@ public class ErrorHandlerUtils {
 
         storeCustomerCardErrorMap = new LinkedHashMap<>();
         for(StoreCustomerCardErrorCode storeCustomerCardErrorCode : StoreCustomerCardErrorCode.values()) {
-            // Search KEEP_IN_SYNC_ADD_CUSTOMER_CARD_ERROR to update all places
+            // Search KEEP_IN_SYNC_STORE_CUSTOMER_CARD_ERROR to update all places
             switch (storeCustomerCardErrorCode) {
                 case CANCELED:
-                    storeCustomerCardErrorMap.put(StoreCustomerCardErrorCode.CANCELED, "ADD_CUSTOMER_CARD_CANCELED");
+                    storeCustomerCardErrorMap.put(StoreCustomerCardErrorCode.CANCELED, "STORE_CUSTOMER_CARD_CANCELED");
                     break;
                 case INVALID_CUSTOMER_ID:
-                    storeCustomerCardErrorMap.put(StoreCustomerCardErrorCode.INVALID_CUSTOMER_ID, "ADD_CUSTOMER_CARD_INVALID_CUSTOMER_ID");
+                    storeCustomerCardErrorMap.put(StoreCustomerCardErrorCode.INVALID_CUSTOMER_ID, "STORE_CUSTOMER_CARD_INVALID_CUSTOMER_ID");
                     break;
                 case SDK_NOT_AUTHORIZED:
-                    storeCustomerCardErrorMap.put(StoreCustomerCardErrorCode.SDK_NOT_AUTHORIZED, "ADD_CUSTOMER_CARD_SDK_NOT_AUTHORIZED");
+                    storeCustomerCardErrorMap.put(StoreCustomerCardErrorCode.SDK_NOT_AUTHORIZED, "STORE_CUSTOMER_CARD_SDK_NOT_AUTHORIZED");
                     break;
                 case NO_NETWORK:
-                    storeCustomerCardErrorMap.put(StoreCustomerCardErrorCode.NO_NETWORK, "ADD_CUSTOMER_CARD_NO_NETWORK");
+                    storeCustomerCardErrorMap.put(StoreCustomerCardErrorCode.NO_NETWORK, "STORE_CUSTOMER_CARD_NO_NETWORK");
                     break;
                 case USAGE_ERROR:
                     // Usage error is handled separately

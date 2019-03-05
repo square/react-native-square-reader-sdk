@@ -28,13 +28,13 @@
 
 // Define all the error codes and messages below
 // These error codes and messages **MUST** align with iOS error codes and javascript error codes
-// Search KEEP_IN_SYNC_ADD_CUSTOMER_CARD_ERROR to update all places
+// Search KEEP_IN_SYNC_STORE_CUSTOMER_CARD_ERROR to update all places
 
 // Expected errors:
-static NSString *const RNReaderSDKStoreCustomerCardCancelled = @"ADD_CUSTOMER_CARD_CANCELED";
-static NSString *const RNReaderSDKStoreCustomerCardInvalidCustomerID = @"ADD_CUSTOMER_CARD_INVALID_CUSTOMER_ID";
-static NSString *const RNReaderSDKStoreCustomerCardSdkNotAuthorized = @"ADD_CUSTOMER_CARD_SDK_NOT_AUTHORIZED";
-static NSString *const RNReaderSDKStoreCustomerCardNoNetwork = @"ADD_CUSTOMER_CARD_NO_NETWORK";
+static NSString *const RNReaderSDKStoreCustomerCardCancelled = @"STORE_CUSTOMER_CARD_CANCELED";
+static NSString *const RNReaderSDKStoreCustomerCardInvalidCustomerID = @"STORE_CUSTOMER_CARD_INVALID_CUSTOMER_ID";
+static NSString *const RNReaderSDKStoreCustomerCardSdkNotAuthorized = @"STORE_CUSTOMER_CARD_SDK_NOT_AUTHORIZED";
+static NSString *const RNReaderSDKStoreCustomerCardNoNetwork = @"STORE_CUSTOMER_CARD_NO_NETWORK";
 
 // React native module debug error codes
 static NSString *const RNReaderSDKRNStoreCustomerCardAlreadyInProgress = @"rn_add_customer_already_in_progress";
