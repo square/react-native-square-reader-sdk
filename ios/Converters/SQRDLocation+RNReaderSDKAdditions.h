@@ -19,6 +19,6 @@ limitations under the License.
 
 @interface SQRDLocation (RNReaderSDKAdditions)
 
-- (NSMutableDictionary *)jsonDictionary;
+- (NSDictionary *)jsonDictionary;
 
 @end

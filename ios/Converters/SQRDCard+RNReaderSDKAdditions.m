@@ -22,16 +22,19 @@ limitations under the License.
 
 @implementation SQRDCard (RNReaderSDKAdditions)
 
-- (NSMutableDictionary *)jsonDictionary
+- (NSDictionary *)jsonDictionary
 {
-    NSMutableDictionary *jsTransactionResult = [[NSMutableDictionary alloc] init];
-    jsTransactionResult[@"brand"] = [self getBrandString:self.brand];
-    jsTransactionResult[@"lastFourDigits"] = self.lastFourDigits;
-
-    return jsTransactionResult;
+    return @{
+        @"brand" : [self _stringForBrand:self.brand],
+        @"lastFourDigits" : self.lastFourDigits,
+        @"expirationMonth" : self.expirationMonth ?: [NSNull null],
+        @"expirationYear" : self.expirationYear ?: [NSNull null],
+        @"id" : self.cardID ?: [NSNull null],
+        @"cardholderName" : self.cardholderName ?: [NSNull null],
+    };
 }
 
-- (NSString *) getBrandString:(SQRDCardBrand)brand
+- (NSString *) _stringForBrand:(SQRDCardBrand)brand
 {
     NSString *result = nil;
     switch(brand) {

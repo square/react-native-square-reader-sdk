@@ -17,8 +17,6 @@
 #import "RNReaderSDKCheckout.h"
 #import "RNReaderSDKErrorUtilities.h"
 #import "Converters/SQRDCheckoutResult+RNReaderSDKAdditions.h"
-#import <CoreLocation/CoreLocation.h>
-#import <AVFoundation/AVFoundation.h>
 
 
 @interface RNReaderSDKCheckout ()

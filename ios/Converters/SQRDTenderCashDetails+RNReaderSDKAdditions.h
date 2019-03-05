@@ -19,6 +19,6 @@ limitations under the License.
 
 @interface SQRDTenderCashDetails (RNReaderSDKAdditions)
 
-- (NSMutableDictionary *)jsonDictionary;
+- (NSDictionary *)jsonDictionary;
 
 @end

@@ -22,24 +22,22 @@ limitations under the License.
 
 @implementation SQRDCheckoutResult (RNReaderSDKAdditions)
 
-- (NSMutableDictionary *)jsonDictionary
+- (NSDictionary *)jsonDictionary
 {
-    NSMutableDictionary *jsTransactionResult = [[NSMutableDictionary alloc] init];
-
-    jsTransactionResult[@"transactionId"] = self.transactionID;
-    jsTransactionResult[@"transactionClientId"] = self.transactionClientID;
-    jsTransactionResult[@"locationId"] = self.locationID;
-    jsTransactionResult[@"createdAt"] = [RNReaderSDKDateFormatter iso8601StringFromDate:self.createdAt];
-    jsTransactionResult[@"totalMoney"] = [self.totalMoney jsonDictionary];
-    jsTransactionResult[@"totalTipMoney"] = [self.totalTipMoney jsonDictionary];
-
     NSMutableArray *jsTenders = [[NSMutableArray alloc] init];
     for (SQRDTender *tender in self.tenders) {
         [jsTenders addObject:[tender jsonDictionary]];
     }
-    jsTransactionResult[@"tenders"] = jsTenders;
 
-    return jsTransactionResult;
+    return @{
+        @"transactionId" : self.transactionID,
+        @"transactionClientId" : self.transactionClientID,
+        @"locationId" : self.locationID,
+        @"createdAt" : [RNReaderSDKDateFormatter iso8601StringFromDate:self.createdAt],
+        @"totalMoney" : [self.totalMoney jsonDictionary],
+        @"totalTipMoney" : [self.totalTipMoney jsonDictionary],
+        @"tenders" : jsTenders,
+    };
 }
 
 @end

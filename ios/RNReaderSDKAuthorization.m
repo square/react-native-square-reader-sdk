@@ -17,8 +17,6 @@
 #import "RNReaderSDKAuthorization.h"
 #import "RNReaderSDKErrorUtilities.h"
 #import "Converters/SQRDLocation+RNReaderSDKAdditions.h"
-#import <CoreLocation/CoreLocation.h>
-#import <AVFoundation/AVFoundation.h>
 
 // Define all the error codes and messages below
 // These error codes and messages **MUST** align with iOS error codes and javascript error codes

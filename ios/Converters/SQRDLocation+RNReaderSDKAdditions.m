@@ -20,17 +20,17 @@ limitations under the License.
 
 @implementation SQRDLocation (RNReaderSDKAdditions)
 
-- (NSMutableDictionary *)jsonDictionary
+- (NSDictionary *)jsonDictionary
 {
-    NSMutableDictionary *jsLocationResult = [[NSMutableDictionary alloc] init];
-    jsLocationResult[@"locationId"] = self.locationID;
-    jsLocationResult[@"name"] = self.name;
-    jsLocationResult[@"businessName"] = self.businessName;
-    jsLocationResult[@"isCardProcessingActivated"] = @(self.isCardProcessingActivated);
-    jsLocationResult[@"minimumCardPaymentAmountMoney"] = [self.minimumCardPaymentAmountMoney jsonDictionary];
-    jsLocationResult[@"maximumCardPaymentAmountMoney"] = [self.maximumCardPaymentAmountMoney jsonDictionary];
-    jsLocationResult[@"currencyCode"] = SQRDCurrencyCodeGetISOCurrencyCode(self.currencyCode);
-    return jsLocationResult;
+    return @{
+        @"locationId" : self.locationID,
+        @"name" : self.name,
+        @"businessName" : self.businessName,
+        @"isCardProcessingActivated" : @(self.isCardProcessingActivated),
+        @"minimumCardPaymentAmountMoney" : [self.minimumCardPaymentAmountMoney jsonDictionary],
+        @"maximumCardPaymentAmountMoney" : [self.maximumCardPaymentAmountMoney jsonDictionary],
+        @"currencyCode" : SQRDCurrencyCodeGetISOCurrencyCode(self.currencyCode),
+    };
 }
 
 @end

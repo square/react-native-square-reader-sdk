@@ -19,6 +19,7 @@
 		1174DE89212CF75000B0166E /* RNReaderSDKErrorUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 1174DE88212CF75000B0166E /* RNReaderSDKErrorUtilities.m */; };
 		1174DE8F212DCA0F00B0166E /* RNReaderSDKReaderSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1174DE8B212DCA0E00B0166E /* RNReaderSDKReaderSettings.m */; };
 		1174DE90212DCA0F00B0166E /* RNReaderSDKCheckout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1174DE8C212DCA0E00B0166E /* RNReaderSDKCheckout.m */; };
+		11F898BF222DF699001ABB26 /* RNReaderSDKStoreCustomerCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F898BE222DF699001ABB26 /* RNReaderSDKStoreCustomerCard.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -58,6 +59,8 @@
 		1174DE8C212DCA0E00B0166E /* RNReaderSDKCheckout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNReaderSDKCheckout.m; sourceTree = "<group>"; };
 		1174DE8D212DCA0E00B0166E /* RNReaderSDKCheckout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNReaderSDKCheckout.h; sourceTree = "<group>"; };
 		1174DE8E212DCA0E00B0166E /* RNReaderSDKReaderSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNReaderSDKReaderSettings.h; sourceTree = "<group>"; };
+		11F898BD222DF698001ABB26 /* RNReaderSDKStoreCustomerCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNReaderSDKStoreCustomerCard.h; sourceTree = "<group>"; };
+		11F898BE222DF699001ABB26 /* RNReaderSDKStoreCustomerCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNReaderSDKStoreCustomerCard.m; sourceTree = "<group>"; };
 		134814201AA4EA6300B7C361 /* libRNReaderSDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNReaderSDK.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -118,6 +121,8 @@
 				1174DE61212CE7E100B0166E /* RNReaderSDKAuthorization.m */,
 				1174DE8D212DCA0E00B0166E /* RNReaderSDKCheckout.h */,
 				1174DE8C212DCA0E00B0166E /* RNReaderSDKCheckout.m */,
+				11F898BD222DF698001ABB26 /* RNReaderSDKStoreCustomerCard.h */,
+				11F898BE222DF699001ABB26 /* RNReaderSDKStoreCustomerCard.m */,
 				1174DE8E212DCA0E00B0166E /* RNReaderSDKReaderSettings.h */,
 				1174DE8B212DCA0E00B0166E /* RNReaderSDKReaderSettings.m */,
 				1174DE8A212CF77A00B0166E /* RNReaderSDKErrorUtilities.h */,
@@ -183,6 +188,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11F898BF222DF699001ABB26 /* RNReaderSDKStoreCustomerCard.m in Sources */,
 				1174DE70212CEEA300B0166E /* SQRDTender+RNReaderSDKAdditions.m in Sources */,
 				11556F6221479AB9008E499E /* SQRDCard+RNReaderSDKAdditions.m in Sources */,
 				1174DE89212CF75000B0166E /* RNReaderSDKErrorUtilities.m in Sources */,

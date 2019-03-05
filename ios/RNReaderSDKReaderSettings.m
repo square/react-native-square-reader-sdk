@@ -16,8 +16,6 @@
 
 #import "RNReaderSDKReaderSettings.h"
 #import "RNReaderSDKErrorUtilities.h"
-#import <CoreLocation/CoreLocation.h>
-#import <AVFoundation/AVFoundation.h>
 
 
 @interface RNReaderSDKReaderSettings ()

@@ -23,7 +23,7 @@ limitations under the License.
 
 @implementation SQRDTender (RNReaderSDKAdditions)
 
-- (NSMutableDictionary *)jsonDictionary;
+- (NSDictionary *)jsonDictionary;
 {
     NSMutableDictionary *jsTenderResult = [[NSMutableDictionary alloc] init];
     jsTenderResult[@"createdAt"] = [RNReaderSDKDateFormatter iso8601StringFromDate:self.createdAt];

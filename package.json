@@ -9,7 +9,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "lint": "eslint *.js"
+    "lint": "eslint ./ --ext .js"
   },
   "keywords": [
     "react-native",
