@@ -1,6 +1,10 @@
 ## Changelog
 
-### v1.1.0 Mar 3rd, 2019
+### v1.1.1 Mar 5, 2019
+
+* fix missing `collectSignature` for android checkout parameter.
+
+### v1.1.0 Mar 3, 2019
 
 * remove `alwaysRequireSignature` and add `collectSignature` to checkout configuration.
 * bump the minimum dependency to Reader SDK 1.1.1(iOS)/1.1.3(Android).

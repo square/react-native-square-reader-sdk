@@ -118,8 +118,8 @@ class CheckoutModule extends ReactContextBaseJavaModule {
         if (jsCheckoutParameters.hasKey("skipReceipt")) {
             checkoutParamsBuilder.skipReceipt(jsCheckoutParameters.getBoolean("skipReceipt"));
         }
-        if (jsCheckoutParameters.hasKey("alwaysRequireSignature")) {
-            checkoutParamsBuilder.alwaysRequireSignature(jsCheckoutParameters.getBoolean("alwaysRequireSignature"));
+        if (jsCheckoutParameters.hasKey("collectSignature")) {
+            checkoutParamsBuilder.collectSignature(jsCheckoutParameters.getBoolean("collectSignature"));
         }
         if (jsCheckoutParameters.hasKey("allowSplitTender")) {
             checkoutParamsBuilder.allowSplitTender(jsCheckoutParameters.getBoolean("allowSplitTender"));
@@ -160,8 +160,8 @@ class CheckoutModule extends ReactContextBaseJavaModule {
         } else if (jsCheckoutParams.hasKey("skipReceipt") && jsCheckoutParams.getType("skipReceipt") != ReadableType.Boolean) {
             paramError.append("'skipReceipt' is not a boolean");
             return false;
-        } else if (jsCheckoutParams.hasKey("alwaysRequireSignature") && jsCheckoutParams.getType("alwaysRequireSignature") != ReadableType.Boolean) {
-            paramError.append("'alwaysRequireSignature' is not a boolean");
+        } else if (jsCheckoutParams.hasKey("collectSignature") && jsCheckoutParams.getType("collectSignature") != ReadableType.Boolean) {
+            paramError.append("'collectSignature' is not a boolean");
             return false;
         } else if (jsCheckoutParams.hasKey("allowSplitTender") && jsCheckoutParams.getType("allowSplitTender") != ReadableType.Boolean) {
             paramError.append("'allowSplitTender' is not a boolean");
