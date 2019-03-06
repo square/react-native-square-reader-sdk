@@ -30,7 +30,7 @@ limitations under the License.
     }
 
     return @{
-        @"transactionId" : self.transactionID,
+        @"transactionId" : self.transactionID ?: [NSNull null],
         @"transactionClientId" : self.transactionClientID,
         @"locationId" : self.locationID,
         @"createdAt" : [RNReaderSDKDateFormatter iso8601StringFromDate:self.createdAt],

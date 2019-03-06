@@ -71,8 +71,12 @@ public class CardConverter {
         WritableMap mapToReturn = new WritableNativeMap();
         mapToReturn.putString("brand", brandStringMap.get(card.getBrand()));
         mapToReturn.putString("lastFourDigits", card.getLastFourDigits());
-        mapToReturn.putInt("expirationMonth", card.getExpirationMonth());
-        mapToReturn.putInt("expirationYear", card.getExpirationYear());
+        if (card.getExpirationMonth() != null) {
+            mapToReturn.putInt("expirationMonth", card.getExpirationMonth());
+        }
+        if (card.getExpirationYear() != null) {
+            mapToReturn.putInt("expirationYear", card.getExpirationYear());
+        }
         mapToReturn.putString("id", card.getId());
         mapToReturn.putString("cardholderName", card.getCardholderName());
         return mapToReturn;
