@@ -85,7 +85,7 @@ export const CheckoutErrorSdkNotAuthorized = 'CHECKOUT_SDK_NOT_AUTHORIZED';
 export const ReaderSettingsErrorSdkNotAuthorized = 'READER_SETTINGS_SDK_NOT_AUTHORIZED';
 // Search KEEP_IN_SYNC_STORE_CUSTOMER_CARD_ERROR to update all places
 export const StoreCustomerCardCancelled = 'STORE_CUSTOMER_CARD_CANCELED';
-export const StoreCustomerCardInvalidCustomerID = 'STORE_CUSTOMER_CARD_INVALID_CUSTOMER_ID';
+export const StoreCustomerCardInvalidCustomerId = 'STORE_CUSTOMER_CARD_INVALID_CUSTOMER_ID';
 export const StoreCustomerCardSdkNotAuthorized = 'STORE_CUSTOMER_CARD_SDK_NOT_AUTHORIZED';
 export const StoreCustomerCardNoNetwork = 'STORE_CUSTOMER_CARD_NO_NETWORK';
 
