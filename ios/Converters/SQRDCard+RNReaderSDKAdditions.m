@@ -34,10 +34,10 @@ limitations under the License.
     };
 }
 
-- (NSString *) _stringForBrand:(SQRDCardBrand)brand
+- (NSString *)_stringForBrand:(SQRDCardBrand)brand
 {
     NSString *result = nil;
-    switch(brand) {
+    switch (brand) {
         case SQRDCardBrandVisa:
             result = @"VISA";
             break;

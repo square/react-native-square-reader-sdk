@@ -60,8 +60,8 @@ RCT_REMAP_METHOD(startStoreCard,
             reject(RNReaderSDKUsageError, [RNReaderSDKErrorUtilities createNativeModuleError:RNReaderSDKRNStoreCustomerCardAlreadyInProgress debugMessage:RNReaderSDKRNMessageStoreCustomerCardAlreadyInProgress], nil);
             return;
         }
-        
-        SQRDStoreCustomerCardController *storeCustomerCardContorller =  [[SQRDStoreCustomerCardController alloc] initWithCustomerID:customerID delegate:self];
+
+        SQRDStoreCustomerCardController *storeCustomerCardContorller = [[SQRDStoreCustomerCardController alloc] initWithCustomerID:customerID delegate:self];
 
         self.storeCardResolver = resolve;
         self.storeCardRejecter = reject;
@@ -82,8 +82,8 @@ RCT_REMAP_METHOD(startStoreCard,
     NSString *debugCode = error.userInfo[SQRDErrorDebugCodeKey];
     NSString *debugMessage = error.userInfo[SQRDErrorDebugMessageKey];
     self.storeCardRejecter([self getStoreCardErrorCode:error.code],
-                          [RNReaderSDKErrorUtilities serializeErrorToJson:debugCode message:message debugMessage:debugMessage],
-                          error);
+                           [RNReaderSDKErrorUtilities serializeErrorToJson:debugCode message:message debugMessage:debugMessage],
+                           error);
     [self clearStoreCardHooks];
 }
 

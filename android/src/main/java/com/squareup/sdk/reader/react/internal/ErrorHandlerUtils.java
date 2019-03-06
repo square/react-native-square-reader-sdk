@@ -150,7 +150,7 @@ public class ErrorHandlerUtils {
             } else if (nativeErrorCode instanceof StoreCustomerCardErrorCode) {
                 StoreCustomerCardErrorCode storeCustomerCardErrorCode = (StoreCustomerCardErrorCode)nativeErrorCode;
                 errorCodeString = storeCustomerCardErrorMap.get(storeCustomerCardErrorCode);
-            }else {
+            } else {
                 throw new RuntimeException("Unexpected error code: " + nativeErrorCode.toString());
             }
             return errorCodeString;

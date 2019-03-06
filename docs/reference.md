@@ -285,7 +285,8 @@ Used to start the store a card for a customer flow.
 
 The card information is stored on Square servers, not on the specific device running Reader SDK. This means cards cannot be saved on file when offline, and that saved cards for a customer are available from any device, keyed by customer ID.
 
-* **On success**: returns nothing.
+* **On success**: returns information about the stored card as a
+  [Card](#card) object.
 * **On failure**: throws [`USAGE_ERROR`](#e1),
 [`STORE_CUSTOMER_CARD_CANCELED`](#e6),
 [`STORE_CUSTOMER_CARD_INVALID_CUSTOMER_ID`](#e7),
@@ -355,7 +356,11 @@ cardholderName    | String                  | The cardholder name. This value is
 ```json
 {
   "brand": "VISA",
-  "lastFourDigits": "1111"
+  "lastFourDigits": "1111",
+  "expirationMonth": 10,
+  "expirationYear": 2019,
+  "id": "ccof:GrUQnrDgWnQIK6tp3GB",
+  "cardHolderName": "Tod Hu"
 }
 ```
 
@@ -666,6 +671,7 @@ flow.
 * `JCB` - Japan Credit Bureau credit card.
 * `CHINA_UNIONPAY` - China UnionPay credit card.
 * `SQUARE_GIFT_CARD` - [Square-issued gift card].
+* `EFTPOS` - EFTPos.
 * `OTHER_BRAND` - An unexpected card type.
 
 
