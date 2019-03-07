@@ -68,6 +68,7 @@ public class CardConverter {
     }
 
     public WritableMap toJSObject(Card card) {
+        // We use this "Ignore if null" principle for all returned dictionary
         WritableMap mapToReturn = new WritableNativeMap();
         mapToReturn.putString("brand", brandStringMap.get(card.getBrand()));
         mapToReturn.putString("lastFourDigits", card.getLastFourDigits());
@@ -77,8 +78,12 @@ public class CardConverter {
         if (card.getExpirationYear() != null) {
             mapToReturn.putInt("expirationYear", card.getExpirationYear());
         }
-        mapToReturn.putString("id", card.getId());
-        mapToReturn.putString("cardholderName", card.getCardholderName());
+        if (card.getId() != null) {
+            mapToReturn.putString("id", card.getId());
+        }
+        if (card.getCardholderName() != null) {
+            mapToReturn.putString("cardholderName", card.getCardholderName());
+        }
         return mapToReturn;
     }
 }

@@ -24,17 +24,26 @@ limitations under the License.
 
 - (NSDictionary *)jsonDictionary
 {
-    return @{
-        @"brand" : [self _stringForBrand:self.brand],
-        @"lastFourDigits" : self.lastFourDigits,
-        @"expirationMonth" : self.expirationMonth ?: [NSNull null],
-        @"expirationYear" : self.expirationYear ?: [NSNull null],
-        @"id" : self.cardID ?: [NSNull null],
-        @"cardholderName" : self.cardholderName ?: [NSNull null],
-    };
+    // We use this "Ignore if null" principle for all returned dictionary
+    NSMutableDictionary *jsTransactionResult = [[NSMutableDictionary alloc] init];
+    jsTransactionResult[@"brand"] = [self _stringFromBrand:self.brand];
+    jsTransactionResult[@"lastFourDigits"] = self.lastFourDigits;
+    if (self.expirationMonth) {
+        jsTransactionResult[@"expirationMonth"] = self.expirationMonth;
+    }
+    if (self.self.expirationYear) {
+        jsTransactionResult[@"expirationYear"] = self.expirationYear;
+    }
+    if (self.cardID) {
+        jsTransactionResult[@"id"] = self.cardID;
+    }
+    if (self.cardholderName) {
+        jsTransactionResult[@"cardholderName"] = self.cardholderName;
+    }
+    return jsTransactionResult;
 }
 
-- (NSString *)_stringForBrand:(SQRDCardBrand)brand
+- (NSString *)_stringFromBrand:(SQRDCardBrand)brand
 {
     NSString *result = nil;
     switch (brand) {

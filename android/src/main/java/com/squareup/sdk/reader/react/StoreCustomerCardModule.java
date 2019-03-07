@@ -46,10 +46,12 @@ class StoreCustomerCardModule extends ReactContextBaseJavaModule {
 
     private volatile CallbackReference storeCardCallbackRef;
     private final Handler mainLooperHandler;
+    private final CardConverter cardConverter;
 
     public StoreCustomerCardModule(ReactApplicationContext reactContext) {
         super(reactContext);
         mainLooperHandler = new Handler(Looper.getMainLooper());
+        cardConverter = new CardConverter();
     }
 
     @Override
@@ -78,7 +80,6 @@ class StoreCustomerCardModule extends ReactContextBaseJavaModule {
                 }
 
                 Card card = result.getSuccessValue();
-                CardConverter cardConverter = new CardConverter();
                 promise.resolve(cardConverter.toJSObject(card));
             }
         };

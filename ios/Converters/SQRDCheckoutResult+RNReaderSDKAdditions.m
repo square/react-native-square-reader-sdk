@@ -24,20 +24,25 @@ limitations under the License.
 
 - (NSDictionary *)jsonDictionary
 {
+    // We use this "Ignore if null" principle for all returned dictionary
+    NSMutableDictionary *jsTransactionResult = [[NSMutableDictionary alloc] init];
+    
+    if (self.transactionID) {
+        jsTransactionResult[@"transactionId"] = self.transactionID;
+    }
+    jsTransactionResult[@"transactionClientId"] = self.transactionClientID;
+    jsTransactionResult[@"locationId"] = self.locationID;
+    jsTransactionResult[@"createdAt"] = [RNReaderSDKDateFormatter iso8601StringFromDate:self.createdAt];
+    jsTransactionResult[@"totalMoney"] = [self.totalMoney jsonDictionary];
+    jsTransactionResult[@"totalTipMoney"] = [self.totalTipMoney jsonDictionary];
+    
     NSMutableArray *jsTenders = [[NSMutableArray alloc] init];
     for (SQRDTender *tender in self.tenders) {
         [jsTenders addObject:[tender jsonDictionary]];
     }
-
-    return @{
-        @"transactionId" : self.transactionID ?: [NSNull null],
-        @"transactionClientId" : self.transactionClientID,
-        @"locationId" : self.locationID,
-        @"createdAt" : [RNReaderSDKDateFormatter iso8601StringFromDate:self.createdAt],
-        @"totalMoney" : [self.totalMoney jsonDictionary],
-        @"totalTipMoney" : [self.totalTipMoney jsonDictionary],
-        @"tenders" : jsTenders,
-    };
+    jsTransactionResult[@"tenders"] = jsTenders;
+    
+    return jsTransactionResult;
 }
 
 @end

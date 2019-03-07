@@ -81,7 +81,7 @@ RCT_REMAP_METHOD(startStoreCard,
     NSString *message = error.localizedDescription;
     NSString *debugCode = error.userInfo[SQRDErrorDebugCodeKey];
     NSString *debugMessage = error.userInfo[SQRDErrorDebugMessageKey];
-    self.storeCardRejecter([self getStoreCardErrorCode:error.code],
+    self.storeCardRejecter([self _storeCustomerCardErrorCodeFromNativeErrorCode:error.code],
                            [RNReaderSDKErrorUtilities serializeErrorToJson:debugCode message:message debugMessage:debugMessage],
                            error);
     [self clearStoreCardHooks];
@@ -101,7 +101,7 @@ RCT_REMAP_METHOD(startStoreCard,
 }
 
 
-- (NSString *)getStoreCardErrorCode:(NSInteger)nativeErrorCode
+- (NSString *)_storeCustomerCardErrorCodeFromNativeErrorCode:(NSInteger)nativeErrorCode
 {
     NSString *errorCode = @"UNKNOWN";
     if (nativeErrorCode == SQRDStoreCustomerCardControllerErrorUsageError) {

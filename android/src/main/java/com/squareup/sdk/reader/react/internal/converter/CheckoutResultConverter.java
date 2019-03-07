@@ -34,6 +34,7 @@ public class CheckoutResultConverter {
     }
 
     public WritableMap toJSObject(CheckoutResult result) {
+        // We use this "Ignore if null" principle for all returned dictionary
         WritableMap mapToReturn = new WritableNativeMap();
         if (result.getTransactionId() != null) {
             mapToReturn.putString("transactionId", result.getTransactionId());

@@ -23,12 +23,12 @@ limitations under the License.
 - (NSDictionary *)jsonDictionary
 {
     return @{
-        @"entryMethod" : [self getTenderCardDetailsEntryMethodString:self.entryMethod],
+        @"entryMethod" : [self _stringFromTenderCardDetailsEntryMethod:self.entryMethod],
         @"card" : [self.card jsonDictionary],
     };
 }
 
-- (NSString *)getTenderCardDetailsEntryMethodString:(SQRDTenderCardDetailsEntryMethod)method
+- (NSString *)_stringFromTenderCardDetailsEntryMethod:(SQRDTenderCardDetailsEntryMethod)method
 {
     NSString *result = nil;
     switch (method) {

@@ -51,7 +51,7 @@ RCT_REMAP_METHOD(authorize,
                                          NSString *message = error.localizedDescription;
                                          NSString *debugCode = error.userInfo[SQRDErrorDebugCodeKey];
                                          NSString *debugMessage = error.userInfo[SQRDErrorDebugMessageKey];
-                                         reject([self getAuthorizationErrorCode:error.code],
+                                         reject([self _authorizationErrorCodeFromNativeErrorCode:error.code],
                                                 [RNReaderSDKErrorUtilities serializeErrorToJson:debugCode message:message debugMessage:debugMessage],
                                                 error);
                                          return;
@@ -120,7 +120,7 @@ RCT_REMAP_METHOD(canDeauthorize,
     });
 }
 
-- (NSString *)getAuthorizationErrorCode:(NSInteger)nativeErrorCode
+- (NSString *)_authorizationErrorCodeFromNativeErrorCode:(NSInteger)nativeErrorCode
 {
     NSString *errorCode = @"UNKNOWN";
     if (nativeErrorCode == SQRDAuthorizationErrorUsageError) {
