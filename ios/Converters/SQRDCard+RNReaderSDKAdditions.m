@@ -40,7 +40,7 @@ limitations under the License.
     if (self.cardholderName) {
         jsTransactionResult[@"cardholderName"] = self.cardholderName;
     }
-    return jsTransactionResult;
+    return [jsTransactionResult copy];
 }
 
 - (NSString *)_stringFromBrand:(SQRDCardBrand)brand

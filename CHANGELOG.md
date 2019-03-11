@@ -1,5 +1,9 @@
 ## Changelog
 
+### v1.1.2 Mar 13, 2019
+
+* add **store customer card** suport.
+
 ### v1.1.1 Mar 5, 2019
 
 * fix missing `collectSignature` for android checkout parameter.

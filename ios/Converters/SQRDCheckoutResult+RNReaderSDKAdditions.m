@@ -42,7 +42,7 @@ limitations under the License.
     }
     jsTransactionResult[@"tenders"] = jsTenders;
     
-    return jsTransactionResult;
+    return [jsTransactionResult copy];
 }
 
 @end

@@ -47,7 +47,7 @@ limitations under the License.
             break;
     }
     jsTenderResult[@"type"] = jsTenderType;
-    return jsTenderResult;
+    return [jsTenderResult copy];
 }
 
 @end
