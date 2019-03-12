@@ -394,7 +394,45 @@ clearing it when you receive the result (success or failure) so users know that
 work is being done in the background.
 
 ```javascript
-EXAMPLE CODE HERE
+import {
+  startStoreCardAsync,
+  StoreCustomerCardCancelled,
+  StoreCustomerCardInvalidCustomerId,
+  StoreCustomerCardSdkNotAuthorized,
+  StoreCustomerCardNoNetwork,
+} from 'react-native-square-reader-sdk';
+...
+// Get customer Id from Connect Customers API
+const customerId = 'DRYKVK5Y6H5R4JH9ZPQB3XPZQC';
+
+try {
+  const cardInfo = await startStoreCardAsync(customerId);
+  Alert.alert(JSON.stringify(cardInfo));
+} catch (ex) {
+  let errorMessage = ex.message;
+  switch (ex.code) {
+    case StoreCustomerCardCancelled:
+      // Handle canceled here
+      console.log('transaction canceled.');
+      break;
+    case StoreCustomerCardInvalidCustomerId:
+      // Handle invalid customer id error
+      break;
+    case StoreCustomerCardNoNetwork:
+      // Handle no network error
+      break;
+    case StoreCustomerCardSdkNotAuthorized:
+      // Handle sdk not authorized
+      break;
+    default:
+      if (__DEV__) {
+        errorMessage += `\n\nDebug Message: ${ex.debugMessage}`;
+        console.log(`${ex.code}:${ex.debugCode}:${ex.debugMessage}`);
+      }
+      Alert.alert('Error', errorMessage);
+      break;
+  }
+}
 ```
 
 
