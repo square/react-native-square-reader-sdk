@@ -707,11 +707,11 @@ Error                                                    | Cause                
 <a id="e1">`USAGE_ERROR`</a>                             | Reader SDK was used in an unexpected or unsupported way.            | all methods
 <a id="e2">`AUTHORIZE_NO_NETWORK`</a>                    | Reader SDK could not connect to the network.                        | [authorizeAsync](#authorizeasync)
 <a id="e3">`CHECKOUT_CANCELED`</a>                       | The user canceled the checkout flow.                                | [startCheckoutAsync](#startcheckoutasync)
-<a id="e4">`CHECKOUT_SDK_NOT_AUTHORIZED`</a>             | Reader SDK was not authorized.                                      | [startCheckoutAsync](#startcheckoutasync)
-<a id="e5">`READER_SETTINGS_SDK_NOT_AUTHORIZED`</a>      | Reader SDK was not authorized.                                      | [startReaderSettingsAsync](#startreadersettingsasync)
+<a id="e4">`CHECKOUT_SDK_NOT_AUTHORIZED`</a>             | The checkout flow started but Reader SDK was not authorized.        | [startCheckoutAsync](#startcheckoutasync)
+<a id="e5">`READER_SETTINGS_SDK_NOT_AUTHORIZED`</a>      | The Reader settings flow started but Reader SDK was not authorized. | [startReaderSettingsAsync](#startreadersettingsasync)
 <a id="e6">`STORE_CUSTOMER_CARD_CANCELED`</a>            | The user canceled the store card flow.                              | [startStoreCardAsync](#startstorecardasync)
 <a id="e7">`STORE_CUSTOMER_CARD_INVALID_CUSTOMER_ID`</a> | The customer ID passed into the controller was invalid.             | [startStoreCardAsync](#startstorecardasync)
-<a id="e8">`STORE_CUSTOMER_CARD_SDK_NOT_AUTHORIZED`</a>  | Reader SDK was not authorized.                                      | [startStoreCardAsync](#startstorecardasync)
+<a id="e8">`STORE_CUSTOMER_CARD_SDK_NOT_AUTHORIZED`</a>  | The store customer card flow started but Reader SDK was not authorized. | [startStoreCardAsync](#startstorecardasync)
 <a id="e9">`STORE_CUSTOMER_CARD_NO_NETWORK`</a>          | Reader SDK could not connect to the network.                        | [startStoreCardAsync](#startstorecardasync)
 
 
