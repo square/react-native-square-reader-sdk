@@ -346,9 +346,9 @@ Field             | Type                    | Description
 ----------------- | ----------------------- | --------------------
 brand             | [CardBrand](#cardbrand) | Indicates the entity responsible for issuing the card.
 lastFourDigits    | String                  | Indicates how the card information was captured.
-expirationMonth   | integer                 | The month of the card’s expiration date, if available. This value is always between 1 and 12, inclusive.
-expirationYear    | integer                 | The four-digit year of the card’s expiration date, if available.
-id                | String                  | The card’s unique ID, if any. This value is present only if this object represents a customer’s card on file.
+expirationMonth   | integer                 | The month when the associated card expires, if available. Expiration month is always an integer between 1 and 12, inclusive.
+expirationYear    | integer                 | The 4-digit year when the associated card expires, if available.
+id                | String                  | The unique, Square-issued identifier for the card. Only set when the object represents a saved card on file.
 cardholderName    | String                  | The cardholder name. This value is present only if this object represents a customer’s card on file.
 
 #### Example JSON
@@ -711,7 +711,7 @@ Error                                                    | Cause                
 <a id="e5">`READER_SETTINGS_SDK_NOT_AUTHORIZED`</a>      | The Reader settings flow started but Reader SDK was not authorized. | [startReaderSettingsAsync](#startreadersettingsasync)
 <a id="e6">`STORE_CUSTOMER_CARD_CANCELED`</a>            | The user canceled the store card flow.                              | [startStoreCardAsync](#startstorecardasync)
 <a id="e7">`STORE_CUSTOMER_CARD_INVALID_CUSTOMER_ID`</a> | The customer ID passed into the controller was invalid.             | [startStoreCardAsync](#startstorecardasync)
-<a id="e8">`STORE_CUSTOMER_CARD_SDK_NOT_AUTHORIZED`</a>  | The store customer card flow started but Reader SDK was not authorized. | [startStoreCardAsync](#startstorecardasync)
+<a id="e8">`STORE_CUSTOMER_CARD_SDK_NOT_AUTHORIZED`</a>  | The flow to store a customer card started but Reader SDK was not authorized. | [startStoreCardAsync](#startstorecardasync)
 <a id="e9">`STORE_CUSTOMER_CARD_NO_NETWORK`</a>          | Reader SDK could not connect to the network.                        | [startStoreCardAsync](#startstorecardasync)
 
 
