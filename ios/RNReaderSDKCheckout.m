@@ -17,8 +17,6 @@
 #import "RNReaderSDKCheckout.h"
 #import "RNReaderSDKErrorUtilities.h"
 #import "Converters/SQRDCheckoutResult+RNReaderSDKAdditions.h"
-#import <CoreLocation/CoreLocation.h>
-#import <AVFoundation/AVFoundation.h>
 
 
 @interface RNReaderSDKCheckout ()
@@ -63,7 +61,7 @@ RCT_REMAP_METHOD(startCheckout,
             return;
         }
         NSString *paramError = nil;
-        if ([self validateJSCheckoutParameters:jsParams errorMsg:&paramError] == NO) {
+        if ([self _validateJSCheckoutParameters:jsParams errorMsg:&paramError] == NO) {
             NSString *paramErrorDebugMessage = [NSString stringWithFormat:@"%@ %@", RNReaderSDKRNMessageCheckoutInvalidParameter, paramError];
             reject(RNReaderSDKUsageError, [RNReaderSDKErrorUtilities createNativeModuleError:RNReaderSDKRNCheckoutInvalidParameter debugMessage:paramErrorDebugMessage], nil);
             return;
@@ -90,11 +88,11 @@ RCT_REMAP_METHOD(startCheckout,
             checkoutParams.allowSplitTender = [jsParams[@"allowSplitTender"] boolValue];
         }
         if (jsParams[@"tipSettings"]) {
-            SQRDTipSettings *tipSettings = [self buildTipSettings:jsParams[@"tipSettings"]];
+            SQRDTipSettings *tipSettings = [self _buildTipSettings:jsParams[@"tipSettings"]];
             checkoutParams.tipSettings = tipSettings;
         }
         if (jsParams[@"additionalPaymentTypes"]) {
-            checkoutParams.additionalPaymentTypes = [self buildAdditionalPaymentTypes:jsParams[@"additionalPaymentTypes"]];
+            checkoutParams.additionalPaymentTypes = [self _buildAdditionalPaymentTypes:jsParams[@"additionalPaymentTypes"]];
         }
         SQRDCheckoutController *checkoutController = [[SQRDCheckoutController alloc] initWithParameters:checkoutParams delegate:self];
 
@@ -108,7 +106,7 @@ RCT_REMAP_METHOD(startCheckout,
 - (void)checkoutController:(SQRDCheckoutController *)checkoutController didFinishCheckoutWithResult:(SQRDCheckoutResult *)result
 {
     self.checkoutResolver([result jsonDictionary]);
-    [self clearCheckoutHooks];
+    [self _clearCheckoutHooks];
 }
 
 - (void)checkoutController:(SQRDCheckoutController *)checkoutController didFailWithError:(NSError *)error
@@ -116,26 +114,26 @@ RCT_REMAP_METHOD(startCheckout,
     NSString *message = error.localizedDescription;
     NSString *debugCode = error.userInfo[SQRDErrorDebugCodeKey];
     NSString *debugMessage = error.userInfo[SQRDErrorDebugMessageKey];
-    self.checkoutRejecter([self getCheckoutErrorCode:error.code],
+    self.checkoutRejecter([self _checkoutErrorCodeFromNativeErrorCode:error.code],
                           [RNReaderSDKErrorUtilities serializeErrorToJson:debugCode message:message debugMessage:debugMessage],
                           error);
-    [self clearCheckoutHooks];
+    [self _clearCheckoutHooks];
 }
 
 - (void)checkoutControllerDidCancel:(SQRDCheckoutController *)checkoutController
 {
     // Return transaction cancel as an error in order to align with Android implementation
     self.checkoutRejecter(RNReaderSDKCheckoutCancelled, [RNReaderSDKErrorUtilities createNativeModuleError:RNReaderSDKCheckoutCancelled debugMessage:@"The user canceled the transaction."], nil);
-    [self clearCheckoutHooks];
+    [self _clearCheckoutHooks];
 }
 
-- (void)clearCheckoutHooks
+- (void)_clearCheckoutHooks
 {
     self.checkoutResolver = nil;
     self.checkoutRejecter = nil;
 }
 
-- (BOOL)validateJSCheckoutParameters:(NSDictionary *)jsCheckoutParameters errorMsg:(NSString **)errorMsg
+- (BOOL)_validateJSCheckoutParameters:(NSDictionary *)jsCheckoutParameters errorMsg:(NSString **)errorMsg
 {
     // check types of all parameters
     if (!jsCheckoutParameters[@"amountMoney"] || ![jsCheckoutParameters[@"amountMoney"] isKindOfClass:[NSDictionary class]]) {
@@ -198,7 +196,7 @@ RCT_REMAP_METHOD(startCheckout,
     return YES;
 }
 
-- (SQRDTipSettings *)buildTipSettings:(NSDictionary *)tipSettingConfig
+- (SQRDTipSettings *)_buildTipSettings:(NSDictionary *)tipSettingConfig
 {
     SQRDTipSettings *tipSettings = [SQRDTipSettings alloc];
     if (tipSettingConfig[@"showCustomTipField"]) {
@@ -218,7 +216,7 @@ RCT_REMAP_METHOD(startCheckout,
     return tipSettings;
 }
 
-- (SQRDAdditionalPaymentTypes)buildAdditionalPaymentTypes:(NSArray *)additionalPaymentTypes
+- (SQRDAdditionalPaymentTypes)_buildAdditionalPaymentTypes:(NSArray *)additionalPaymentTypes
 {
     SQRDAdditionalPaymentTypes sqrdAdditionalPaymentTypes = 0;
     for (NSString *typeName in additionalPaymentTypes) {
@@ -234,7 +232,7 @@ RCT_REMAP_METHOD(startCheckout,
     return sqrdAdditionalPaymentTypes;
 }
 
-- (NSString *)getCheckoutErrorCode:(NSInteger)nativeErrorCode
+- (NSString *)_checkoutErrorCodeFromNativeErrorCode:(NSInteger)nativeErrorCode
 {
     NSString *errorCode = @"UNKNOWN";
     if (nativeErrorCode == SQRDCheckoutControllerErrorUsageError) {

@@ -1,6 +1,6 @@
 {
   "name": "react-native-square-reader-sdk",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A React Native plugin for Square Reader SDK",
   "homepage": "https://github.com/square/react-native-square-reader-sdk",
   "repository": {
@@ -9,7 +9,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "lint": "eslint *.js"
+    "lint": "eslint ./ --ext .js"
   },
   "keywords": [
     "react-native",
@@ -20,7 +20,7 @@
   "author": "Square, Inc.",
   "license": "Apache-2.0",
   "peerDependencies": {
-    "react-native": "0.55.4"
+    "react-native": ">= 0.55.4"
   },
   "devDependencies": {
     "babel-eslint": "^9.0.0",

@@ -22,19 +22,31 @@ limitations under the License.
 
 @implementation SQRDCard (RNReaderSDKAdditions)
 
-- (NSMutableDictionary *)jsonDictionary
+- (NSDictionary *)jsonDictionary
 {
+    // We use this "Ignore if null" principle for all returned dictionary
     NSMutableDictionary *jsTransactionResult = [[NSMutableDictionary alloc] init];
-    jsTransactionResult[@"brand"] = [self getBrandString:self.brand];
+    jsTransactionResult[@"brand"] = [self _stringFromBrand:self.brand];
     jsTransactionResult[@"lastFourDigits"] = self.lastFourDigits;
-
-    return jsTransactionResult;
+    if (self.expirationMonth) {
+        jsTransactionResult[@"expirationMonth"] = self.expirationMonth;
+    }
+    if (self.self.expirationYear) {
+        jsTransactionResult[@"expirationYear"] = self.expirationYear;
+    }
+    if (self.cardID) {
+        jsTransactionResult[@"id"] = self.cardID;
+    }
+    if (self.cardholderName) {
+        jsTransactionResult[@"cardholderName"] = self.cardholderName;
+    }
+    return [jsTransactionResult copy];
 }
 
-- (NSString *) getBrandString:(SQRDCardBrand)brand
+- (NSString *)_stringFromBrand:(SQRDCardBrand)brand
 {
     NSString *result = nil;
-    switch(brand) {
+    switch (brand) {
         case SQRDCardBrandVisa:
             result = @"VISA";
             break;

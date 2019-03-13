@@ -28,11 +28,11 @@ limitations under the License.
 {
     static NSISO8601DateFormatter *dateFormatter = nil;
     static dispatch_once_t onceToken = 0;
-    
+
     dispatch_once(&onceToken, ^{
         dateFormatter = [[NSISO8601DateFormatter alloc] init];
     });
-    
+
     return dateFormatter;
 }
 

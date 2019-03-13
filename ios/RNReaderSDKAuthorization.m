@@ -17,8 +17,6 @@
 #import "RNReaderSDKAuthorization.h"
 #import "RNReaderSDKErrorUtilities.h"
 #import "Converters/SQRDLocation+RNReaderSDKAdditions.h"
-#import <CoreLocation/CoreLocation.h>
-#import <AVFoundation/AVFoundation.h>
 
 // Define all the error codes and messages below
 // These error codes and messages **MUST** align with iOS error codes and javascript error codes
@@ -53,7 +51,7 @@ RCT_REMAP_METHOD(authorize,
                                          NSString *message = error.localizedDescription;
                                          NSString *debugCode = error.userInfo[SQRDErrorDebugCodeKey];
                                          NSString *debugMessage = error.userInfo[SQRDErrorDebugMessageKey];
-                                         reject([self getAuthorizationErrorCode:error.code],
+                                         reject([self _authorizationErrorCodeFromNativeErrorCode:error.code],
                                                 [RNReaderSDKErrorUtilities serializeErrorToJson:debugCode message:message debugMessage:debugMessage],
                                                 error);
                                          return;
@@ -122,7 +120,7 @@ RCT_REMAP_METHOD(canDeauthorize,
     });
 }
 
-- (NSString *)getAuthorizationErrorCode:(NSInteger)nativeErrorCode
+- (NSString *)_authorizationErrorCodeFromNativeErrorCode:(NSInteger)nativeErrorCode
 {
     NSString *errorCode = @"UNKNOWN";
     if (nativeErrorCode == SQRDAuthorizationErrorUsageError) {

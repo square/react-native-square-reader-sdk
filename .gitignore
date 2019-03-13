@@ -49,3 +49,4 @@ android/.project
 android/.settings/org.eclipse.buildship.core.prefs
 android/.classpath
 .clang-format
+android/bin/

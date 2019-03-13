@@ -14,11 +14,15 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+#if __has_include("RCTBridgeModule.h")
+#import "RCTBridgeModule.h"
+#else
+#import <React/RCTBridgeModule.h>
+#endif
+
 @import SquareReaderSDK;
 
 
-@interface SQRDTender (RNReaderSDKAdditions)
-
-- (NSDictionary *)jsonDictionary;
+@interface RNReaderSDKStoreCustomerCard : NSObject <RCTBridgeModule, SQRDStoreCustomerCardControllerDelegate>
 
 @end

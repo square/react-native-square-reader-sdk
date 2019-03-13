@@ -20,21 +20,18 @@ limitations under the License.
 
 @implementation SQRDTenderCardDetails (RNReaderSDKAdditions)
 
-- (NSMutableDictionary *)jsonDictionary
+- (NSDictionary *)jsonDictionary
 {
-    NSMutableDictionary *jsTransactionResult = [[NSMutableDictionary alloc] init];
-
-    jsTransactionResult[@"entryMethod"] = [self getTenderCardDetailsEntryMethodString:self.entryMethod];
-    jsTransactionResult[@"card"] = [self.card jsonDictionary];
-
-    return jsTransactionResult;
+    return @{
+        @"entryMethod" : [self _stringFromTenderCardDetailsEntryMethod:self.entryMethod],
+        @"card" : [self.card jsonDictionary],
+    };
 }
 
-- (NSString*) getTenderCardDetailsEntryMethodString:(SQRDTenderCardDetailsEntryMethod)method
+- (NSString *)_stringFromTenderCardDetailsEntryMethod:(SQRDTenderCardDetailsEntryMethod)method
 {
-    NSString* result = nil;
-    switch(method)
-    {
+    NSString *result = nil;
+    switch (method) {
         case SQRDTenderCardDetailsEntryMethodManuallyEntered:
             result = @"MANUALLY_ENTERED";
             break;

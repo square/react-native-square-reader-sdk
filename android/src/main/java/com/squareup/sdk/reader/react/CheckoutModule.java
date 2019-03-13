@@ -61,10 +61,12 @@ class CheckoutModule extends ReactContextBaseJavaModule {
 
     private volatile CallbackReference checkoutCallbackRef;
     private final Handler mainLooperHandler;
+    private final CheckoutResultConverter checkoutResultConverter;
 
     public CheckoutModule(ReactApplicationContext reactContext) {
         super(reactContext);
         mainLooperHandler = new Handler(Looper.getMainLooper());
+        checkoutResultConverter = new CheckoutResultConverter();
     }
 
     @Override
@@ -100,7 +102,6 @@ class CheckoutModule extends ReactContextBaseJavaModule {
                     return;
                 }
                 CheckoutResult checkoutResult = result.getSuccessValue();
-                CheckoutResultConverter checkoutResultConverter = new CheckoutResultConverter();
                 promise.resolve(checkoutResultConverter.toJSObject(checkoutResult));
             }
         };

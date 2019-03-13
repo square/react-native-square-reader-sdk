@@ -19,12 +19,12 @@ limitations under the License.
 
 @implementation SQRDMoney (RNReaderSDKAdditions)
 
-- (NSMutableDictionary *)jsonDictionary
+- (NSDictionary *)jsonDictionary
 {
-    NSMutableDictionary *jsMoneyResult = [[NSMutableDictionary alloc] init];
-    jsMoneyResult[@"amount"] = @(self.amount);
-    jsMoneyResult[@"currencyCode"] = SQRDCurrencyCodeGetISOCurrencyCode(self.currencyCode);
-    return jsMoneyResult;
+    return @{
+        @"amount" : @(self.amount),
+        @"currencyCode" : SQRDCurrencyCodeGetISOCurrencyCode(self.currencyCode),
+    };
 }
 
 @end

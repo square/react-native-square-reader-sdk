@@ -31,6 +31,7 @@ public class ReaderSdkPackage implements ReactPackage {
         modules.add(new AuthorizationModule(reactContext));
         modules.add(new CheckoutModule(reactContext));
         modules.add(new ReaderSettingsModule(reactContext));
+        modules.add(new StoreCustomerCardModule(reactContext));
         return modules;
     }
 

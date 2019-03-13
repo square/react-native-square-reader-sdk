@@ -20,14 +20,12 @@ limitations under the License.
 
 @implementation SQRDTenderCashDetails (RNReaderSDKAdditions)
 
-- (NSMutableDictionary *)jsonDictionary
+- (NSDictionary *)jsonDictionary
 {
-    NSMutableDictionary *jsTransactionResult = [[NSMutableDictionary alloc] init];
-
-    jsTransactionResult[@"buyerTenderedMoney"] = [self.buyerTenderedMoney jsonDictionary];
-    jsTransactionResult[@"changeBackMoney"] = [self.changeBackMoney jsonDictionary];
-
-    return jsTransactionResult;
+    return @{
+        @"buyerTenderedMoney" : [self.buyerTenderedMoney jsonDictionary],
+        @"changeBackMoney" : [self.changeBackMoney jsonDictionary],
+    };
 }
 
 @end

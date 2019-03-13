@@ -1,6 +1,11 @@
 import { NativeModules } from 'react-native'; // eslint-disable-line import/no-unresolved
 
-const { RNReaderSDKAuthorization, RNReaderSDKCheckout, RNReaderSDKReaderSettings } = NativeModules;
+const {
+  RNReaderSDKAuthorization,
+  RNReaderSDKCheckout,
+  RNReaderSDKReaderSettings,
+  RNReaderSDKStoreCustomerCard,
+} = NativeModules;
 
 export async function authorizeAsync(authCode) {
   try {
@@ -58,6 +63,14 @@ export async function startReaderSettingsAsync() {
   }
 }
 
+export async function startStoreCardAsync(customerId) {
+  try {
+    return await RNReaderSDKStoreCustomerCard.startStoreCard(customerId);
+  } catch (ex) {
+    throw createReaderSDKError(ex);
+  }
+}
+
 // error codes are defined below, both iOS and Android *MUST* return same error for these errors:
 // Usage error
 export const UsageError = 'USAGE_ERROR';
@@ -70,6 +83,11 @@ export const CheckoutErrorCanceled = 'CHECKOUT_CANCELED';
 export const CheckoutErrorSdkNotAuthorized = 'CHECKOUT_SDK_NOT_AUTHORIZED';
 // Search KEEP_IN_SYNC_READER_SETTINGS_ERROR to update all places
 export const ReaderSettingsErrorSdkNotAuthorized = 'READER_SETTINGS_SDK_NOT_AUTHORIZED';
+// Search KEEP_IN_SYNC_STORE_CUSTOMER_CARD_ERROR to update all places
+export const StoreCustomerCardCancelled = 'STORE_CUSTOMER_CARD_CANCELED';
+export const StoreCustomerCardInvalidCustomerId = 'STORE_CUSTOMER_CARD_INVALID_CUSTOMER_ID';
+export const StoreCustomerCardSdkNotAuthorized = 'STORE_CUSTOMER_CARD_SDK_NOT_AUTHORIZED';
+export const StoreCustomerCardNoNetwork = 'STORE_CUSTOMER_CARD_NO_NETWORK';
 
 function createReaderSDKError(ex) {
   try {

@@ -16,8 +16,6 @@
 
 #import "RNReaderSDKReaderSettings.h"
 #import "RNReaderSDKErrorUtilities.h"
-#import <CoreLocation/CoreLocation.h>
-#import <AVFoundation/AVFoundation.h>
 
 
 @interface RNReaderSDKReaderSettings ()
@@ -75,7 +73,7 @@ RCT_REMAP_METHOD(startReaderSettings,
     NSString *message = error.localizedDescription;
     NSString *debugCode = error.userInfo[SQRDErrorDebugCodeKey];
     NSString *debugMessage = error.userInfo[SQRDErrorDebugMessageKey];
-    self.readerSettingRejecter([self getReaderSettingsErrorCode:error.code],
+    self.readerSettingRejecter([self _readerSettingsErrorCodeFromNativeErrorCode:error.code],
                                [RNReaderSDKErrorUtilities serializeErrorToJson:debugCode message:message debugMessage:debugMessage],
                                error);
     [self clearReaderSettingHooks];
@@ -87,7 +85,7 @@ RCT_REMAP_METHOD(startReaderSettings,
     self.readerSettingRejecter = nil;
 }
 
-- (NSString *)getReaderSettingsErrorCode:(NSInteger)nativeErrorCode
+- (NSString *)_readerSettingsErrorCodeFromNativeErrorCode:(NSInteger)nativeErrorCode
 {
     NSString *errorCode = @"UNKNOWN";
     if (nativeErrorCode == SQRDReaderSettingsControllerErrorUsageError) {

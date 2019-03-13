@@ -18,9 +18,10 @@ package com.squareup.sdk.reader.react.internal;
 import com.squareup.sdk.reader.authorization.AuthorizeErrorCode;
 import com.squareup.sdk.reader.checkout.CheckoutErrorCode;
 import com.squareup.sdk.reader.core.ErrorCode;
+import com.squareup.sdk.reader.crm.StoreCustomerCardErrorCode;
 import com.squareup.sdk.reader.hardware.ReaderSettingsErrorCode;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,10 +36,11 @@ public class ErrorHandlerUtils {
     private static final Map<AuthorizeErrorCode, String> authorizeErrorMap;
     private static final Map<CheckoutErrorCode, String> checkoutErrorMap;
     private static final Map<ReaderSettingsErrorCode, String> readerSettingsErrorMap;
+    private static final Map<StoreCustomerCardErrorCode, String> storeCustomerCardErrorMap;
 
     static {
         // Build Expected Error mappings
-        authorizeErrorMap = new HashMap<>();
+        authorizeErrorMap = new LinkedHashMap<>();
         for(AuthorizeErrorCode authorizeErrorCode : AuthorizeErrorCode.values()) {
             // Search KEEP_IN_SYNC_AUTHORIZE_ERROR to update all places
             switch (authorizeErrorCode) {
@@ -53,7 +55,7 @@ public class ErrorHandlerUtils {
             }
         }
 
-        checkoutErrorMap = new HashMap<>();
+        checkoutErrorMap = new LinkedHashMap<>();
         for(CheckoutErrorCode checkoutErrorCode : CheckoutErrorCode.values()) {
             // Search KEEP_IN_SYNC_CHECKOUT_ERROR to update all places
             switch (checkoutErrorCode) {
@@ -71,7 +73,7 @@ public class ErrorHandlerUtils {
             }
         }
 
-        readerSettingsErrorMap = new HashMap<>();
+        readerSettingsErrorMap = new LinkedHashMap<>();
         for(ReaderSettingsErrorCode readerSettingsErrorCode : ReaderSettingsErrorCode.values()) {
             // Search KEEP_IN_SYNC_READER_SETTINGS_ERROR to update all places
             switch (readerSettingsErrorCode) {
@@ -83,6 +85,30 @@ public class ErrorHandlerUtils {
                     break;
                 default:
                     throw new RuntimeException("Unexpected reader settings error code: " + readerSettingsErrorCode.name());
+            }
+        }
+
+        storeCustomerCardErrorMap = new LinkedHashMap<>();
+        for(StoreCustomerCardErrorCode storeCustomerCardErrorCode : StoreCustomerCardErrorCode.values()) {
+            // Search KEEP_IN_SYNC_STORE_CUSTOMER_CARD_ERROR to update all places
+            switch (storeCustomerCardErrorCode) {
+                case CANCELED:
+                    storeCustomerCardErrorMap.put(StoreCustomerCardErrorCode.CANCELED, "STORE_CUSTOMER_CARD_CANCELED");
+                    break;
+                case INVALID_CUSTOMER_ID:
+                    storeCustomerCardErrorMap.put(StoreCustomerCardErrorCode.INVALID_CUSTOMER_ID, "STORE_CUSTOMER_CARD_INVALID_CUSTOMER_ID");
+                    break;
+                case SDK_NOT_AUTHORIZED:
+                    storeCustomerCardErrorMap.put(StoreCustomerCardErrorCode.SDK_NOT_AUTHORIZED, "STORE_CUSTOMER_CARD_SDK_NOT_AUTHORIZED");
+                    break;
+                case NO_NETWORK:
+                    storeCustomerCardErrorMap.put(StoreCustomerCardErrorCode.NO_NETWORK, "STORE_CUSTOMER_CARD_NO_NETWORK");
+                    break;
+                case USAGE_ERROR:
+                    // Usage error is handled separately
+                    break;
+                default:
+                    throw new RuntimeException("Unexpected reader settings error code: " + storeCustomerCardErrorCode.name());
             }
         }
     }
@@ -121,6 +147,9 @@ public class ErrorHandlerUtils {
             } else if (nativeErrorCode instanceof ReaderSettingsErrorCode) {
                 ReaderSettingsErrorCode readerSettingsErrorCode = (ReaderSettingsErrorCode)nativeErrorCode;
                 errorCodeString = readerSettingsErrorMap.get(readerSettingsErrorCode);
+            } else if (nativeErrorCode instanceof StoreCustomerCardErrorCode) {
+                StoreCustomerCardErrorCode storeCustomerCardErrorCode = (StoreCustomerCardErrorCode)nativeErrorCode;
+                errorCodeString = storeCustomerCardErrorMap.get(storeCustomerCardErrorCode);
             } else {
                 throw new RuntimeException("Unexpected error code: " + nativeErrorCode.toString());
             }

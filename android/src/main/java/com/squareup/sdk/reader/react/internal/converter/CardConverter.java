@@ -21,7 +21,7 @@ import com.squareup.sdk.reader.checkout.Card;
 import java.util.HashMap;
 import java.util.Map;
 
-class CardConverter {
+public class CardConverter {
     private static final Map<Card.Brand, String> brandStringMap;
 
     static {
@@ -68,9 +68,22 @@ class CardConverter {
     }
 
     public WritableMap toJSObject(Card card) {
+        // We use this "Ignore if null" principle for all returned dictionary
         WritableMap mapToReturn = new WritableNativeMap();
         mapToReturn.putString("brand", brandStringMap.get(card.getBrand()));
         mapToReturn.putString("lastFourDigits", card.getLastFourDigits());
+        if (card.getExpirationMonth() != null) {
+            mapToReturn.putInt("expirationMonth", card.getExpirationMonth());
+        }
+        if (card.getExpirationYear() != null) {
+            mapToReturn.putInt("expirationYear", card.getExpirationYear());
+        }
+        if (card.getId() != null) {
+            mapToReturn.putString("id", card.getId());
+        }
+        if (card.getCardholderName() != null) {
+            mapToReturn.putString("cardholderName", card.getCardholderName());
+        }
         return mapToReturn;
     }
 }

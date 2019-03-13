@@ -277,6 +277,64 @@ try {
 ```
 
 
+---
+
+### startStoreCardAsync
+
+Used to start the store a card for a customer flow.
+
+The card information is stored on Square servers, not on the specific device running Reader SDK. This means cards cannot be saved on file when offline, and that saved cards for a customer are available from any device, keyed by customer ID.
+
+* **On success**: returns information about the stored card as a
+  [Card](#card) object.
+* **On failure**: throws [`USAGE_ERROR`](#e1),
+[`STORE_CUSTOMER_CARD_CANCELED`](#e6),
+[`STORE_CUSTOMER_CARD_INVALID_CUSTOMER_ID`](#e7),
+[`STORE_CUSTOMER_CARD_SDK_NOT_AUTHORIZED`](#e8) or
+[`STORE_CUSTOMER_CARD_NO_NETWORK`](#e9)
+
+#### Example usage
+
+```javascript
+import {
+  startStoreCardAsync,
+  StoreCustomerCardCancelled,
+  StoreCustomerCardInvalidCustomerId,
+  StoreCustomerCardSdkNotAuthorized,
+  StoreCustomerCardNoNetwork,
+  UsageError,
+} from 'react-native-square-reader-sdk';
+...
+const customerId = 'DRYKVK5Y6H5R4JH9ZPQB3XPZQC';
+try {
+  const card = await startStoreCardAsync(customerId);
+  // Customer's card is stored successfully and card infomation is available
+} catch (ex) {
+  let errorMessage = ex.message;
+  switch (ex.code) {
+    case StoreCustomerCardCancelled:
+      // Handle canceled
+      break;
+    case StoreCustomerCardInvalidCustomerId:
+      // Handle invalid customer id error
+      break;
+    case StoreCustomerCardNoNetwork:
+      // Handle no network error
+      break;
+    case StoreCustomerCardSdkNotAuthorized:
+      // Handle sdk not authorized
+      break;
+    default:
+      if (__DEV__) {
+        errorMessage += `\n\nDebug Message: ${ex.debugMessage}`;
+        console.log(`${ex.code}:${ex.debugCode}:${ex.debugMessage}`);
+      }
+      Alert.alert('Error', errorMessage);
+      break;
+  }
+}
+```
+
 
 ## Objects
 
@@ -284,17 +342,25 @@ try {
 
 Represents the non-confidential details of a payment card.
 
-Field          | Type                    | Description
--------------- | ----------------------- | -----------------
-brand          | [CardBrand](#cardbrand) | Indicates the entity responsible for issuing the card.
-lastFourDigits | String                  | Indicates how the card information was captured.
+Field             | Type                    | Description
+----------------- | ----------------------- | --------------------
+brand             | [CardBrand](#cardbrand) | Indicates the entity responsible for issuing the card.
+lastFourDigits    | String                  | Indicates how the card information was captured.
+expirationMonth   | integer                 | The month when the associated card expires, if available. Expiration month is always an integer between 1 and 12, inclusive.
+expirationYear    | integer                 | The 4-digit year when the associated card expires, if available.
+id                | String                  | The unique, Square-issued identifier for the card. Only set when the object represents a saved card on file.
+cardholderName    | String                  | The cardholder name. This value is present only if this object represents a customer’s card on file.
 
 #### Example JSON
 
 ```json
 {
   "brand": "VISA",
-  "lastFourDigits": "1111"
+  "lastFourDigits": "1111",
+  "expirationMonth": 10,
+  "expirationYear": 2019,
+  "id": "ccof:GrUQnrDgWnQIK6tp3GB",
+  "cardHolderName": "Tod Hu"
 }
 ```
 
@@ -605,6 +671,7 @@ flow.
 * `JCB` - Japan Credit Bureau credit card.
 * `CHINA_UNIONPAY` - China UnionPay credit card.
 * `SQUARE_GIFT_CARD` - [Square-issued gift card].
+* `EFTPOS` - A debit or cash-back transaction (Electronic Funds Transfer at Point Of Sale).
 * `OTHER_BRAND` - An unexpected card type.
 
 
@@ -635,13 +702,17 @@ Methods used to provide payment during a successful checkout flow:
 
 ## Errors
 
-Error                                               | Cause                                                               | Returned by
---------------------------------------------------- | ------------------------------------------------------------------- | ---
-<a id="e1">`USAGE_ERROR`</a>                        | Reader SDK was used in an unexpected or unsupported way.            | all methods
-<a id="e2">`AUTHORIZE_NO_NETWORK`</a>               | Reader SDK could not connect to the network.                        | [authorizeAsync](#authorizeasync)
-<a id="e3">`CHECKOUT_CANCELED`</a>                  | The user canceled the checkout flow.                                | [startCheckoutAsync](#startcheckoutasync)
-<a id="e4">`CHECKOUT_SDK_NOT_AUTHORIZED`</a>        | The checkout flow started but Reader SDK was not authorized.        | [startCheckoutAsync](#startcheckoutasync)
-<a id="e5">`READER_SETTINGS_SDK_NOT_AUTHORIZED`</a> | The Reader settings flow started but Reader SDK was not authorized. | [startReaderSettingsAsync](#startreadersettingsasync)
+Error                                                    | Cause                                                               | Returned by
+-------------------------------------------------------- | ------------------------------------------------------------------- | ---
+<a id="e1">`USAGE_ERROR`</a>                             | Reader SDK was used in an unexpected or unsupported way.            | all methods
+<a id="e2">`AUTHORIZE_NO_NETWORK`</a>                    | Reader SDK could not connect to the network.                        | [authorizeAsync](#authorizeasync)
+<a id="e3">`CHECKOUT_CANCELED`</a>                       | The user canceled the checkout flow.                                | [startCheckoutAsync](#startcheckoutasync)
+<a id="e4">`CHECKOUT_SDK_NOT_AUTHORIZED`</a>             | The checkout flow started but Reader SDK was not authorized.        | [startCheckoutAsync](#startcheckoutasync)
+<a id="e5">`READER_SETTINGS_SDK_NOT_AUTHORIZED`</a>      | The Reader settings flow started but Reader SDK was not authorized. | [startReaderSettingsAsync](#startreadersettingsasync)
+<a id="e6">`STORE_CUSTOMER_CARD_CANCELED`</a>            | The user canceled the store card flow.                              | [startStoreCardAsync](#startstorecardasync)
+<a id="e7">`STORE_CUSTOMER_CARD_INVALID_CUSTOMER_ID`</a> | The customer ID passed into the controller was invalid.             | [startStoreCardAsync](#startstorecardasync)
+<a id="e8">`STORE_CUSTOMER_CARD_SDK_NOT_AUTHORIZED`</a>  | The flow to store a customer card started but Reader SDK was not authorized. | [startStoreCardAsync](#startstorecardasync)
+<a id="e9">`STORE_CUSTOMER_CARD_NO_NETWORK`</a>          | Reader SDK could not connect to the network.                        | [startStoreCardAsync](#startstorecardasync)
 
 
 [//]: # "Link anchor definitions"

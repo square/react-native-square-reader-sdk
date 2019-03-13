@@ -23,8 +23,9 @@ limitations under the License.
 
 @implementation SQRDTender (RNReaderSDKAdditions)
 
-- (NSMutableDictionary *)jsonDictionary;
+- (NSDictionary *)jsonDictionary;
 {
+    // We use this "Ignore if null" principle for all returned dictionary
     NSMutableDictionary *jsTenderResult = [[NSMutableDictionary alloc] init];
     jsTenderResult[@"createdAt"] = [RNReaderSDKDateFormatter iso8601StringFromDate:self.createdAt];
     jsTenderResult[@"tipMoney"] = [self.tipMoney jsonDictionary];
@@ -46,7 +47,7 @@ limitations under the License.
             break;
     }
     jsTenderResult[@"type"] = jsTenderType;
-    return jsTenderResult;
+    return [jsTenderResult copy];
 }
 
 @end
