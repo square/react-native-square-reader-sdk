@@ -198,7 +198,7 @@ RCT_REMAP_METHOD(startCheckout,
 
 - (SQRDTipSettings *)_buildTipSettings:(NSDictionary *)tipSettingConfig
 {
-    SQRDTipSettings *tipSettings = [SQRDTipSettings alloc];
+    SQRDTipSettings *tipSettings = [[SQRDTipSettings alloc] init];
     if (tipSettingConfig[@"showCustomTipField"]) {
         tipSettings.showCustomTipField = [tipSettingConfig[@"showCustomTipField"] boolValue];
     }
@@ -208,7 +208,9 @@ RCT_REMAP_METHOD(startCheckout,
     if (tipSettingConfig[@"tipPercentages"]) {
         NSMutableArray *tipPercentages = [[NSMutableArray alloc] init];
         for (NSNumber *percentage in tipSettingConfig[@"tipPercentages"]) {
-            [tipPercentages addObject:percentage];
+            // Workaround - React native 0.58+ cannot convert integer array to a NSArray<NSNumber *> correctly
+            // so that we have to explicity convert the integer value
+            [tipPercentages addObject:@([percentage intValue])];
         }
         tipSettings.tipPercentages = tipPercentages;
     }
