@@ -1,5 +1,9 @@
 ## Changelog
 
+### v1.1.3 Mar 21, 2019
+
+* fix "tipPercentages" setting doesn't work with react-native 0.58.0+ on iOS.
+
 ### v1.1.2 Mar 13, 2019
 
 * add **store customer card** suport.
