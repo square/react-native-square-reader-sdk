@@ -1,5 +1,9 @@
 ## Changelog
 
+### v1.1.4 Mar 22, 2019
+
+* Add podspec to support cocoapods ios project.
+
 ### v1.1.3 Mar 21, 2019
 
 * fix "tipPercentages" setting doesn't work with react-native 0.58.0+ on iOS.
