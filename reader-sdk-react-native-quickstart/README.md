@@ -32,7 +32,7 @@ This quick start guide makes the following assumptions:
 Change to the quick start sample folder and install the plugin using `yarn`:
 
 ```bash
-cd /PATH/TO/LOCAL/reader-sdk-react-native-quickstart
+cd <ProjectDir>/reader-sdk-react-native-quickstart
 yarn
 ```
 
@@ -56,20 +56,18 @@ problems building the sample app.
 
 1. Change to the `ios` folder under `reader-sdk-react-native-quickstart`.
 2. Install ReaderSDK, replacing `YOUR_SQUARE_READER_APP_ID` and
-   `YOUR_SQUARE_READER_REPOSITORY_PASSWORD` with your Reader SDK credentials
-   and `READER_SDK_VERSION` with the Reader SDK version you are using. You can
-   find the minimum supported Reader SDK version for iOS in the [root README]
-   for this repo:
+   `YOUR_SQUARE_READER_REPOSITORY_PASSWORD` with your Reader SDK credentials.
+   You can find the minimum supported Reader SDK version for iOS in the
+   [root README]for this repo:
     ```bash
     ruby <(curl https://connect.squareup.com/readersdk-installer) install \
-    --version READER_SDK_VERSION                                          \
     --app-id YOUR_SQUARE_READER_APP_ID                                    \
     --repo-password YOUR_SQUARE_READER_REPOSITORY_PASSWORD
     ```
 3. Run the React Native project from the `reader-sdk-react-native-quickstart`
    project folder:
     ```bash
-    cd /PATH/TO/LOCAL/reader-sdk-react-native-quickstart
+    cd <ProjectDir>/reader-sdk-react-native-quickstart
     react-native run-ios
     ```
 4. Go to the **Reader SDK** settings page in your [Square Application Dashboard]
@@ -103,7 +101,7 @@ You can view the [transaction details in Square Dashboard].
 6. Run the React Native project from the `reader-sdk-react-native-quickstart`
    project folder:
     ```bash
-    cd /PATH/TO/LOCAL/reader-sdk-react-native-quickstart
+    cd <ProjectDir>/reader-sdk-react-native-quickstart
     $ react-native run-android
     ```
 7. Go to the **Reader SDK** settings page in your [Square Application Dashboard]

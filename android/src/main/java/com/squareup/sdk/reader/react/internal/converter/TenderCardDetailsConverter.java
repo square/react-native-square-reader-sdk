@@ -41,7 +41,9 @@ class TenderCardDetailsConverter {
                     entryMethodStringMap.put(method, "CONTACTLESS");
                     break;
                 default:
-                    throw new RuntimeException("Unexpected entry method: " + method.name());
+                    // UNKNOWN should never happen if the right Reader SDK version is loaded with plugin
+                    // But we choose not break plugin if the type isn't important
+                    entryMethodStringMap.put(method, "UNKNOWN");
             }
         }
 

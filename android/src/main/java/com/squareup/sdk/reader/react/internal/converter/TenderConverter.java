@@ -39,7 +39,9 @@ class TenderConverter {
                     tenderTypeMap.put(type, "other");
                     break;
                 default:
-                    throw new RuntimeException("Unexpected tender type: " + type.name());
+                    // unknown should never happen if the right Reader SDK version is loaded with plugin
+                    // But we choose not break plugin if the type isn't important
+                    tenderTypeMap.put(type, "unknown");
             }
         }
 

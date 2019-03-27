@@ -1,5 +1,9 @@
 ## Changelog
 
+### v1.2.0 Mar 28, 2019
+
+* Support Android Reader SDK 1.2.1.
+
 ### v1.1.4 Mar 22, 2019
 
 * Add podspec to support cocoapods ios project.
