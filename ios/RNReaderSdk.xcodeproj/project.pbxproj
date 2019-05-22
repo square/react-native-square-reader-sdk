@@ -294,7 +294,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/../../../ios/",
+					"$(PROJECT_DIR)/../../../ios/**",
 					"$(PROJECT_DIR)/../../../",
 					"$(PROJECT_DIR)/../reader-sdk-react-native-quickstart/ios/",
 				);
@@ -317,7 +317,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/../../../ios/",
+					"$(PROJECT_DIR)/../../../ios/**",
 					"$(PROJECT_DIR)/../../../",
 					"$(PROJECT_DIR)/../reader-sdk-react-native-quickstart/ios/",
 				);
