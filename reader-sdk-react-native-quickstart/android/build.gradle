@@ -50,5 +50,5 @@ ext {
     supportLibVersion = "28.0.0"
     // Override the reader sdk version with the this parameter
     // make sure the version is above min version 1.2.1
-    readerSdkVersion = "1.3.0"
+    readerSdkVersion = "[1.2.1, 2.0)"
 }
