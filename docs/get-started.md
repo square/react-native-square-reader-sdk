@@ -107,11 +107,24 @@ installing Reader SDK for Android, see the [Reader SDK Android Setup Guide] at
 
     ```gradle
     android {
+      // ...
       defaultConfig {
         minSdkVersion 21
-        targetSdkVersion 26
+        targetSdkVersion 28
         multiDexEnabled true
       }
+    }
+    ```
+1. Enable compileOptions `JavaVersion.VERSION_1_8`.
+
+    ```gradle
+    android {
+      // ...
+      compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+      }
+      // ...
     }
     ```
 1. Configure the Multidex options:
@@ -129,28 +142,38 @@ installing Reader SDK for Android, see the [Reader SDK Android Setup Guide] at
       // ...
     }
     ```
-1. Extend the Android Application class (`android.app.Application`) and add code
-   to Import and initialize Reader SDK:
+
+1. Configure the Multidex options:
+    ```gradle
+    android {
+      // ...
+      dexOptions {
+        // Ensures incremental builds remain fast
+        preDexLibraries true
+        // Required to build with Reader SDK
+        jumboMode true
+        // Required to build with Reader SDK
+        keepRuntimeAnnotatedClasses false
+      }
+      // ...
+    }
+    ```
+
+1. Open `MainApplication.java` and add code to Import and initialize Reader SDK:
     ```java
     import com.squareup.sdk.reader.ReaderSdk;
 
-    public class ExampleApplication extends Application {
+    public class MainApplication extends Application {
 
       @Override public void onCreate() {
         super.onCreate();
         ReaderSdk.initialize(this);
       }
-
-      @Override protected void attachBaseContext(Context base) {
-        super.attachBaseContext(base);
-        // Required if minSdkVersion < 21
-        MultiDex.install(this);
-      }
     }
     ```
 
 ---
-**Note:** Reader SDK is guaranteed to work with support library version 26.0.2. If you want to use a higher version of support library, you will need to update build.gradle to add the targeted version of the required libraries (e.g. design, support-v4, recyclerview-v7).
+**Note:** Reader SDK is guaranteed to work with support library version 28.0.0. If you want to use a higher version of support library, you will need to update build.gradle to add the targeted version of the required libraries (e.g. design, support-v4, recyclerview-v7).
 
 If you use a higher version of the support library, we recommend establishing a resolution strategy in build.gradle to ensure all support library dependencies are on the same version. For example:
 
@@ -163,8 +186,8 @@ configurations.all {
         && details.requested.name != 'multidex'
         && details.requested.name != 'multidex-instrumentation') {
         // Force the version that works for you.
-        // Square has tested ReaderSDK with 26.0.2
-        details.useVersion '26.0.2'
+        // Square has tested ReaderSDK with 28.0.0
+        details.useVersion '28.0.0'
       }
     }
   }

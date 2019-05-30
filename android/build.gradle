@@ -16,30 +16,31 @@ limitations under the License.
 
 buildscript {
     repositories {
-        maven {
-            url 'https://maven.google.com/'
-            name 'Google'
-        }
+        google()
         jcenter()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.android.tools.build:gradle:3.3.1'
     }
 }
 
 apply plugin: 'com.android.library'
 
-def DEFAULT_PLAY_SERVICES_BASE_VERSION = '12.0.1'
+def DEFAULT_PLAY_SERVICES_BASE_VERSION = '16.0.1'
 def READER_SDK_VERSION = '[1.2.1, 2.0)'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.3"
+    compileSdkVersion 28
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 
     defaultConfig {
         minSdkVersion 21
-        targetSdkVersion 26
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
