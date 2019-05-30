@@ -128,6 +128,7 @@ installing Reader SDK for Android, see the [Reader SDK Android Setup Guide] at
     }
     ```
 1. Configure the Multidex options:
+
     ```gradle
     android {
       // ...
@@ -142,23 +143,6 @@ installing Reader SDK for Android, see the [Reader SDK Android Setup Guide] at
       // ...
     }
     ```
-
-1. Configure the Multidex options:
-    ```gradle
-    android {
-      // ...
-      dexOptions {
-        // Ensures incremental builds remain fast
-        preDexLibraries true
-        // Required to build with Reader SDK
-        jumboMode true
-        // Required to build with Reader SDK
-        keepRuntimeAnnotatedClasses false
-      }
-      // ...
-    }
-    ```
-
 1. Open `MainApplication.java` and add code to Import and initialize Reader SDK:
     ```java
     import com.squareup.sdk.reader.ReaderSdk;
