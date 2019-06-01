@@ -23,11 +23,11 @@ In addition to the standard React Native directories, this repo includes:
 ### Android
 
 * minSdkVersion is API 21 (Lollipop 5.0) or higher.
-* Android SDK platform: API 26 (Oreo, 8.0).
+* Android SDK platform: API 28 (Pie, 9.0) or lower.
 * Android SDK build tools: 26.0.3
 * Android Gradle Plugin: 3.0.0 or greater.
-* Support library: 26.0.2
-* Google Play Services: 12.0.1
+* Support library: 28.0.0
+* Google Play Services: 16.0.1
 * Google APIs Intel x86 Atom_64 System Image
 
 ### iOS
@@ -39,7 +39,7 @@ In addition to the standard React Native directories, this repo includes:
 
 ## Reader SDK requirements and limitations
 
-* Reader SDK is only available for accounts based in the United States.
+* Reader SDK is **only** available for accounts based in the **United States**.
   Authorization requests for accounts based outside the United States return an
   error.
 * Reader SDK may not be used for unattended terminals. Using Reader SDK to
