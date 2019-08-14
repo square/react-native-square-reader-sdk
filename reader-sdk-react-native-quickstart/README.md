@@ -54,8 +54,13 @@ yarn
 See the [Troubleshooting guide](../docs/troubleshooting.md) if you run into
 problems building the sample app.
 
-1. Change to the `ios` folder under `reader-sdk-react-native-quickstart`.
-2. Install ReaderSDK, replacing `YOUR_SQUARE_READER_APP_ID` and
+1. Change to the `ios` folder under `reader-sdk-react-native-quickstart`.  
+
+2. Link your dependencies with Cocoa Pods:
+    ```
+    pod install
+    ```
+3. Install ReaderSDK, replacing `YOUR_SQUARE_READER_APP_ID` and
    `YOUR_SQUARE_READER_REPOSITORY_PASSWORD` with your Reader SDK credentials.
    You can find the minimum supported Reader SDK version for iOS in the
    [root README]for this repo:
@@ -64,18 +69,18 @@ problems building the sample app.
     --app-id YOUR_SQUARE_READER_APP_ID                                    \
     --repo-password YOUR_SQUARE_READER_REPOSITORY_PASSWORD
     ```
-3. Run the React Native project from the `reader-sdk-react-native-quickstart`
+4. Run the React Native project from the `reader-sdk-react-native-quickstart`
    project folder:
     ```bash
     cd <ProjectDir>/reader-sdk-react-native-quickstart
     react-native run-ios
     ```
-4. Go to the **Reader SDK** settings page in your [Square Application Dashboard]
+5. Go to the **Reader SDK** settings page in your [Square Application Dashboard]
    and generate a new mobile authorization code by clicking
    "Generate Mobile Auth Code".
-5. Copy the mobile authorization code string from the Square application
+6. Copy the mobile authorization code string from the Square application
    settings page.
-6. Tap "Enter Code Manually" in the sample app and paste the mobile
+7. Tap "Enter Code Manually" in the sample app and paste the mobile
    authorization code into the field provided.
 
 You can view the [transaction details in Square Dashboard].
