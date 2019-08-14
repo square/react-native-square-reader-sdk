@@ -12,16 +12,14 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-*/
+ */
 
 #import <UIKit/UIKit.h>
 
 #import "AppDelegate.h"
 
-int main(int argc, char *argv[])
-{
-    @autoreleasepool
-    {
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
-    }
+int main(int argc, char * argv[]) {
+  @autoreleasepool {
+    return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
+  }
 }

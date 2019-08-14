@@ -14,10 +14,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+#import <React/RCTBridgeDelegate.h>
 #import <UIKit/UIKit.h>
 
-
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, RCTBridgeDelegate>
 
 @property (nonatomic, strong) UIWindow *window;
 

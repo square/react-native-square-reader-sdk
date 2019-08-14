@@ -25,7 +25,7 @@ limitations under the License.
         <item name="android:alertDialogTheme">@style/Theme.AppCompat.Light.Dialog.Alert</item>
     </style>
 
-    <style name="SplashTheme" parent="AppTheme">
+     <style name="SplashTheme" parent="AppTheme">
         <item name="android:windowBackground">@drawable/launcher_screen</item>
     </style>
 </resources>

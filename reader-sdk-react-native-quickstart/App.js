@@ -19,6 +19,7 @@ import { FormattedProvider } from 'react-native-globalize';
 import {
   createStackNavigator,
   createSwitchNavigator,
+  createAppContainer,
 } from 'react-navigation';
 import ChooseAuthorizeScreen from './app/screens/ChooseAuthorizeScreen';
 import ManualAuthorizeScreen from './app/screens/ManualAuthorizeScreen';
@@ -58,9 +59,11 @@ const RootStack = createSwitchNavigator({
   initialRouteName: 'Splash',
 });
 
+const ContainedRootStack = createAppContainer(RootStack);
+
 const App = () => (
   <FormattedProvider locale="en">
-    <RootStack />
+    <ContainedRootStack />
   </FormattedProvider>
 );
 
