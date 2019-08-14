@@ -21,11 +21,6 @@ limitations under the License.
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowBackground">@drawable/window_background</item>
         <item name="android:alertDialogTheme">@style/Theme.AppCompat.Light.Dialog.Alert</item>
-    </style>
-
-     <style name="SplashTheme" parent="AppTheme">
-        <item name="android:windowBackground">@drawable/launcher_screen</item>
     </style>
 </resources>
