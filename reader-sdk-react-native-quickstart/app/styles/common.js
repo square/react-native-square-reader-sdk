@@ -19,38 +19,38 @@ import { StyleSheet } from 'react-native';
 export const backgroundColor = '#4087E1';
 
 export const defaultStyles = StyleSheet.create({
-  pageContainer: {
-    backgroundColor,
-    padding: 32,
-    flex: 1,
+  buttonContainer: {
     justifyContent: 'flex-end',
   },
-  logoContainer: {
-    flex: 1,
-    paddingTop: 64,
+  descriptionContainer: {
     alignItems: 'center',
+    flex: 1,
     justifyContent: 'flex-start',
   },
   logo: {
-    width: 48,
     height: 48,
+    width: 48,
   },
-  descriptionContainer: {
-    flex: 1,
+  logoContainer: {
     alignItems: 'center',
+    flex: 1,
     justifyContent: 'flex-start',
+    paddingTop: 64,
   },
-  title: {
-    color: 'white',
-    fontSize: 24,
-    fontWeight: 'bold',
+  pageContainer: {
+    backgroundColor,
+    flex: 1,
+    justifyContent: 'flex-end',
+    padding: 32,
   },
   subtitle: {
     color: 'rgba(255, 255, 255, 0.85)',
     fontSize: 18,
     textAlign: 'center',
   },
-  buttonContainer: {
-    justifyContent: 'flex-end',
+  title: {
+    color: 'white',
+    fontSize: 24,
+    fontWeight: 'bold',
   },
 });

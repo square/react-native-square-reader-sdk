@@ -27,12 +27,12 @@ const ProgressView = () => (
 );
 
 const styles = StyleSheet.create({
-  indicatorContainer: {
+  activityIndicator: {
+    alignItems: 'center',
     flex: 1,
   },
-  activityIndicator: {
+  indicatorContainer: {
     flex: 1,
-    alignItems: 'center',
   },
 });
 

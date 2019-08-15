@@ -82,9 +82,9 @@ SplashScreen.propTypes = {
 
 const styles = StyleSheet.create({
   container: {
+    alignItems: 'center',
     backgroundColor,
     flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
   },
 });

@@ -71,25 +71,25 @@ export default class ManualAuthorizeScreen extends Component {
 }
 
 const styles = StyleSheet.create({
+  buttonContainer: {
+    flex: 1,
+  },
   textContainer: {
-    height: '20%',
     alignItems: 'center',
+    height: '20%',
     justifyContent: 'center',
+  },
+  textInput: {
+    backgroundColor: '#53A6FF',
+    borderRadius: 8,
+    color: 'white',
+    fontSize: 20,
+    padding: 15,
   },
   titleLabel: {
     color: 'white',
     fontSize: 24,
     fontWeight: 'bold',
-  },
-  textInput: {
-    fontSize: 20,
-    borderRadius: 8,
-    padding: 15,
-    color: 'white',
-    backgroundColor: '#53A6FF',
-  },
-  buttonContainer: {
-    flex: 1,
   },
 });
 
