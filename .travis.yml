@@ -40,13 +40,14 @@ matrix:
       os: osx
       osx_image: xcode11
       node_js:
-        - 8
+        - 10.16.3
       cache:
         directories:
           - $HOME/.yarn-cache
       before_install:
         - curl -o- -L https://yarnpkg.com/install.sh | bash
         - export PATH="$HOME/.yarn/bin:$PATH"
+        - npm i -g npm@10.16.3
         - cd reader-sdk-react-native-quickstart
         - yarn
         - cd ios && ruby <(curl https://connect.squareup.com/readersdk-installer) install --app-id $SQUARE_READER_SDK_APPLICATION_ID --repo-password $SQUARE_READER_SDK_REPOSITORY_PASSWORD --version 1.1.1 > /dev/null
