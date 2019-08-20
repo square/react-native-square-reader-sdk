@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.public_header_files = 'ios/**/*.h'
   s.requires_arc = true
   s.frameworks   = 'SquareReaderSDK'
-  s.xcconfig     = { 'FRAMEWORK_SEARCH_PATHS' => '$(PROJECT_DIR)/../' }
+  s.xcconfig     = { 'FRAMEWORK_SEARCH_PATHS' => '$(PROJECT_DIR)/../**' }
 
   s.dependency "React"
 end
