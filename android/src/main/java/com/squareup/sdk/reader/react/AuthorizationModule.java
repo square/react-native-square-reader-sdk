@@ -72,6 +72,11 @@ class AuthorizationModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
+    public void isAuthorizationInProgress(Promise promise) {
+        promise.resolve(ReaderSdk.authorizationManager().getAuthorizationState().isAuthorizationInProgress());
+    }
+
+    @ReactMethod
     public void authorizedLocation(Promise promise) {
         if (ReaderSdk.authorizationManager().getAuthorizationState().isAuthorized()) {
             LocationConverter locationConverter = new LocationConverter();
