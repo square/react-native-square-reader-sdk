@@ -94,6 +94,17 @@ RCT_REMAP_METHOD(isAuthorized,
     });
 }
 
+RCT_REMAP_METHOD(isAuthorizationInProgress,
+                 isAuthorizationInProgressWithResolver
+                 : (RCTPromiseResolveBlock)resolve
+                 rejecter
+                 : (RCTPromiseRejectBlock)reject)
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        resolve(@(SQRDReaderSDK.sharedSDK.isAuthorizationInProgress));
+    });
+}
+
 RCT_REMAP_METHOD(authorizedLocation,
                  authorizedLocationWithResolver
                  : (RCTPromiseResolveBlock)resolve

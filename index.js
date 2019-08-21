@@ -31,6 +31,14 @@ export async function isAuthorizedAsync() {
   }
 }
 
+export async function isAuthorizationInProgressAsync() {
+  try {
+    return await RNReaderSDKAuthorization.isAuthorizationInProgress();
+  } catch (ex) {
+    throw createReaderSDKError(ex);
+  }
+}
+
 export async function canDeauthorizeAsync() {
   try {
     return await RNReaderSDKAuthorization.canDeauthorize();

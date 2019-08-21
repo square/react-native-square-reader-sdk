@@ -25,6 +25,7 @@ Method                                                    | Return Object       
 [deauthorizeAsync](#deauthorizeasync)                     | void                              | Deauthorizes Reader SDK.
 [getAuthorizedLocationAsync](#getauthorizedlocationasync) | [Location](#location)             | Returns the currently authorized location
 [isAuthorizedAsync](#isauthorizedasync)                   | boolean                           | Verifies Reader SDK is currently authorized for payment collection.
+[isAuthorizationInProgressAsync](#isAuthorizationInProgressAsync)                   | boolean                           | Verifies Reader SDK is currently authorizing.
 [startCheckoutAsync](#startcheckoutasync)                 | [CheckoutResult](#checkoutresult) | Begins the checkout workflow.
 [startReaderSettingsAsync](#startreadersettingsasync)     | void                              | Starts the Reader settings flow for connecting Square Reader
 
@@ -182,6 +183,31 @@ if (await isAuthorizedAsync()) {
 
 } else {
   Alert.alert('Unable to take payments', 'Reader SDK is not authorized.');
+}
+```
+
+
+---
+
+### isAuthorizationInProgressAsync
+
+Used to determine if Reader SDK is currently authorizing.
+
+* **On success**: returns `true` if the sdk is currently authorizing, `false` otherwise.
+* **On failure**: throws [`USAGE_ERROR`](#e1).
+
+
+#### Example usage
+
+```javascript
+import { isAuthorizationInProgressAsync } from 'react-native-square-reader-sdk';
+...
+if (await isAuthorizationInProgressAsync()) {
+
+  // The reader is currently authorizing, don't try to authorize again
+
+} else {
+  Alert.alert('Unable to authorize again', 'Reader SDK is already authorizing.');
 }
 ```
 
