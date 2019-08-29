@@ -7,6 +7,7 @@
     "lint": "eslint *.js **/*.js"
   },
   "dependencies": {
+    "handlebars": "^4.0.3",
     "prop-types": "^15.6.2",
     "react": "16.3.1",
     "react-native": "0.55.4",
@@ -14,8 +15,8 @@
     "react-native-device-info": "^0.21.5",
     "react-native-globalize": "^2.0.1",
     "react-native-permissions": "^1.1.1",
-    "react-navigation": "^2.6.2",
-    "react-native-square-reader-sdk": "file:../"
+    "react-native-square-reader-sdk": "file:../",
+    "react-navigation": "^2.6.2"
   },
   "devDependencies": {
     "babel-eslint": "^9.0.0",
