@@ -51,4 +51,4 @@ matrix:
         - yarn
         - cd ios && ruby <(curl https://connect.squareup.com/readersdk-installer) install --app-id $SQUARE_READER_SDK_APPLICATION_ID --repo-password $SQUARE_READER_SDK_REPOSITORY_PASSWORD --version 1.1.1 > /dev/null
       script:
-        - xcodebuild -workspace RNReaderSDKSample.xcworkspace -configuration Debug -scheme RNReaderSDKSample -destination id=5E2CB2FB-94CC-4DDD-A33F-B11B1771C431 -derivedDataPath build/RNReaderSDKSample"
+        - xcodebuild -workspace RNReaderSDKSample.xcworkspace -configuration Debug -scheme RNReaderSDKSample -destination id=5E2CB2FB-94CC-4DDD-A33F-B11B1771C431 -derivedDataPath build/RNReaderSDKSample
