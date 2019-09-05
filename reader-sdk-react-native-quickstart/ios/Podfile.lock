@@ -56,7 +56,13 @@ PODS:
     - React-cxxreact (= 0.60.5)
     - React-jsi (= 0.60.5)
   - React-jsinspector (0.60.5)
-  - react-native-camera-kit (8.0.1):
+  - react-native-camera (3.3.2):
+    - React
+    - react-native-camera/RCT (= 3.3.2)
+    - react-native-camera/RN (= 3.3.2)
+  - react-native-camera/RCT (3.3.2):
+    - React
+  - react-native-camera/RN (3.3.2):
     - React
   - React-RCTActionSheet (0.60.5):
     - React-Core (= 0.60.5)
@@ -102,7 +108,7 @@ DEPENDENCIES:
   - React-jsi (from `../node_modules/react-native/ReactCommon/jsi`)
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
-  - react-native-camera-kit (from `../node_modules/react-native-camera-kit`)
+  - react-native-camera (from `../node_modules/react-native-camera`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
   - React-RCTAnimation (from `../node_modules/react-native/Libraries/NativeAnimation`)
   - React-RCTBlob (from `../node_modules/react-native/Libraries/Blob`)
@@ -144,8 +150,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsiexecutor"
   React-jsinspector:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
-  react-native-camera-kit:
-    :path: "../node_modules/react-native-camera-kit"
+  react-native-camera:
+    :path: "../node_modules/react-native-camera"
   React-RCTActionSheet:
     :path: "../node_modules/react-native/Libraries/ActionSheetIOS"
   React-RCTAnimation:
@@ -189,7 +195,7 @@ SPEC CHECKSUMS:
   React-jsi: 4d8c9efb6312a9725b18d6fc818ffc103f60fec2
   React-jsiexecutor: 90ad2f9db09513fc763bc757fdc3c4ff8bde2a30
   React-jsinspector: e08662d1bf5b129a3d556eb9ea343a3f40353ae4
-  react-native-camera-kit: 0fd60d27f81926822495cf66542ae57e383016f7
+  react-native-camera: 3f7ba7242caaa4b0bcf963504407b3c857e79f34
   React-RCTActionSheet: b0f1ea83f4bf75fb966eae9bfc47b78c8d3efd90
   React-RCTAnimation: 359ba1b5690b1e87cc173558a78e82d35919333e
   React-RCTBlob: 5e2b55f76e9a1c7ae52b826923502ddc3238df24
@@ -206,6 +212,6 @@ SPEC CHECKSUMS:
   RNReaderSDK: 95f08d9afa4d77c4e44ed70898678c11cf2edce6
   yoga: 312528f5bbbba37b4dcea5ef00e8b4033fdd9411
 
-PODFILE CHECKSUM: 1c5fa451748fc40791b51796955c163266a2114e
+PODFILE CHECKSUM: f22cfe722b71470b783e4b22290bee42bac22693
 
 COCOAPODS: 1.7.5

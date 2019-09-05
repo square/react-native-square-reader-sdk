@@ -54,6 +54,7 @@ allprojects {
             password SQUARE_READER_SDK_REPOSITORY_PASSWORD
             }
         }
+        maven { url "https://jitpack.io" }
 
         google()
         jcenter()
