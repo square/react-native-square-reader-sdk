@@ -23,7 +23,6 @@ matrix:
           - tools
           - platform-tools
           - build-tools-28.0.3
-          - android-26
           - android-28
           - extra-google-google_play_services
       install:
@@ -33,6 +32,7 @@ matrix:
         - cd reader-sdk-react-native-quickstart
         - yarn
       script:
+        - node ./node_modules/jetifier/index.js
         - cd android
         - ./gradlew clean build -PSQUARE_READER_SDK_APPLICATION_ID=$SQUARE_READER_SDK_APPLICATION_ID -PSQUARE_READER_SDK_REPOSITORY_PASSWORD=$SQUARE_READER_SDK_REPOSITORY_PASSWORD -x :rncamerakit:lint
 
