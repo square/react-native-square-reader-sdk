@@ -34,7 +34,7 @@ matrix:
       script:
         - node ./node_modules/jetifier/index.js
         - cd android
-        - ./gradlew clean build -PSQUARE_READER_SDK_APPLICATION_ID=$SQUARE_READER_SDK_APPLICATION_ID -PSQUARE_READER_SDK_REPOSITORY_PASSWORD=$SQUARE_READER_SDK_REPOSITORY_PASSWORD -x :rncamerakit:lint
+        - ./gradlew clean build -PSQUARE_READER_SDK_APPLICATION_ID=$SQUARE_READER_SDK_APPLICATION_ID -PSQUARE_READER_SDK_REPOSITORY_PASSWORD=$SQUARE_READER_SDK_REPOSITORY_PASSWORD
 
     - language: objective-c
       os: osx
