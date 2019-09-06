@@ -7,7 +7,7 @@ matrix:
 
     - language: android
       sudo: false
-      jdk: oraclejdk8
+      jdk: openjdk8
       os:
         - linux
       before_cache:
