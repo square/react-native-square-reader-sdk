@@ -133,8 +133,6 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules
-    implementation project(":rncamerakit")
-    implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
     
     if (enableHermes) {
       def hermesPath = "../../node_modules/hermesvm/android/";
