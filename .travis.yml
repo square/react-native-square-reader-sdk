@@ -7,7 +7,7 @@ matrix:
 
     - language: android
       sudo: false
-      jdk: oraclejdk8
+      jdk: openjdk8
       os:
         - linux
       before_cache:
@@ -23,7 +23,6 @@ matrix:
           - tools
           - platform-tools
           - build-tools-28.0.3
-          - android-26
           - android-28
           - extra-google-google_play_services
       install:
@@ -33,13 +32,15 @@ matrix:
         - cd reader-sdk-react-native-quickstart
         - yarn
       script:
+        - node ./node_modules/jetifier/index.js
         - cd android
-        - ./gradlew clean build -PSQUARE_READER_SDK_APPLICATION_ID=$SQUARE_READER_SDK_APPLICATION_ID -PSQUARE_READER_SDK_REPOSITORY_PASSWORD=$SQUARE_READER_SDK_REPOSITORY_PASSWORD -x :rncamerakit:lint
+        - ./gradlew clean build -PSQUARE_READER_SDK_APPLICATION_ID=$SQUARE_READER_SDK_APPLICATION_ID -PSQUARE_READER_SDK_REPOSITORY_PASSWORD=$SQUARE_READER_SDK_REPOSITORY_PASSWORD -x :react-native-camera-kit:lint
 
     - language: objective-c
       os: osx
-      osx_image: xcode9.4
-      node_js: 8
+      osx_image: xcode11
+      node_js:
+        - 10.16.3
       cache:
         directories:
           - $HOME/.yarn-cache
@@ -50,4 +51,4 @@ matrix:
         - yarn
         - cd ios && ruby <(curl https://connect.squareup.com/readersdk-installer) install --app-id $SQUARE_READER_SDK_APPLICATION_ID --repo-password $SQUARE_READER_SDK_REPOSITORY_PASSWORD --version 1.1.1 > /dev/null
       script:
-        - xcodebuild clean build -project RNReaderSDKSample.xcodeproj -scheme RNReaderSDKSample -destination "platform=iOS Simulator,OS=11.1,name=iPhone 8" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO -quiet
+        - xcodebuild -workspace RNReaderSDKSample.xcworkspace -configuration Debug -scheme RNReaderSDKSample -destination "platform=iOS Simulator,OS=12.2,name=iPhone X" -derivedDataPath build/RNReaderSDKSample -quiet

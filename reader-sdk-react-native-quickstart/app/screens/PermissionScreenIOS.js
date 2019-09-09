@@ -32,7 +32,7 @@ export default class PermissionScreenIOS extends Component {
     locationbuttonHandler: null,
   }
 
-  async componentWillMount() {
+  async componentDidMount() {
     this.checkPermissionsAndNavigateAsync();
   }
 

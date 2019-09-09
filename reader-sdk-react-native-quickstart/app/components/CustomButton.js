@@ -52,11 +52,22 @@ CustomButton.propTypes = {
 const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
-    height: 64,
-    marginTop: 15,
     borderRadius: 8,
+    height: 64,
     justifyContent: 'center',
+    marginTop: 15,
 
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 20,
+    fontWeight: '600',
+  },
+  disabledButton: {
+    borderColor: 'rgba(255, 255, 255, 0.6)',
+  },
+  disabledButtonText: {
+    color: 'rgba(255, 255, 255, 0.6)',
   },
   primaryButton: {
     backgroundColor: '#3972B2',
@@ -64,17 +75,6 @@ const styles = StyleSheet.create({
   secondaryButton: {
     borderColor: 'white',
     borderWidth: 1,
-  },
-  disabledButton: {
-    borderColor: 'rgba(255, 255, 255, 0.6)',
-  },
-  buttonText: {
-    color: 'white',
-    fontSize: 20,
-    fontWeight: '600',
-  },
-  disabledButtonText: {
-    color: 'rgba(255, 255, 255, 0.6)',
   },
 });
 

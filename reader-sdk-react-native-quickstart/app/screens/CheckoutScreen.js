@@ -37,7 +37,7 @@ import SquareLogo from '../components/SquareLogo';
 import { defaultStyles } from '../styles/common';
 
 class CheckoutScreen extends Component {
-  async componentWillMount() {
+  async componentDidMount() {
     try {
       const authorizedLocation = await getAuthorizedLocationAsync();
       this.setState({ locationName: authorizedLocation.name });

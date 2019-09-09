@@ -39,7 +39,6 @@ yarn-error.log
 # BUCK
 buck-out/
 \.buckd/
-*.keystore
 
 # fastlane
 #
@@ -60,3 +59,6 @@ android/.settings/org.eclipse.buildship.core.prefs
 android/app/.classpath
 android/app/.project
 android/app/.settings/org.eclipse.buildship.core.prefs
+
+# CocoaPods
+ios/Pods/
