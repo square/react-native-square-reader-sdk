@@ -1,5 +1,8 @@
 # React Native plugin for Reader SDK
 
+[![Build Status](https://travis-ci.com/square/react-native-square-reader-sdk.svg?branch=master)](https://travis-ci.com/square/react-native-square-reader-sdk)
+[![npm version](https://badge.fury.io/js/react-native-square-reader-sdk.svg)](https://badge.fury.io/js/react-native-square-reader-sdk)
+
 This repo contains a React Native plugin for Square [Reader SDK]. Reader SDK for
 React Native supports the following native Reader SDK versions:
 
