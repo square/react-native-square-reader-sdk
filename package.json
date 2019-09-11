@@ -4,8 +4,8 @@
   "description": "A React Native plugin for Square Reader SDK",
   "homepage": "https://github.com/square/react-native-square-reader-sdk",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/square/react-native-square-reader-sdk.git"
+    "type": "git",
+    "url": "https://github.com/square/react-native-square-reader-sdk.git"
   },
   "main": "index.js",
   "scripts": {
