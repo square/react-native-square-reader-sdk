@@ -62,6 +62,7 @@ class CheckoutScreen extends Component {
       skipReceipt: false,
       collectSignature: true,
       allowSplitTender: false,
+      delayCapture: false,
       note: 'Hello 💳 💰 World!',
       tipSettings: {
         showCustomTipField: true,

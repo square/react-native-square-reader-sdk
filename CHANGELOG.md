@@ -1,5 +1,9 @@
 ## Changelog
 
+### v1.2.3 September 12, 2019
+
+* Add delay capture support
+
 ### v1.2.2 September 10, 2019
 
 * Update to be compatible with Android Reader SDK 1.3.1, and now supports AndroidX
