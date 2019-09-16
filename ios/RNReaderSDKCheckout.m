@@ -87,6 +87,9 @@ RCT_REMAP_METHOD(startCheckout,
         if (jsParams[@"allowSplitTender"]) {
             checkoutParams.allowSplitTender = [jsParams[@"allowSplitTender"] boolValue];
         }
+        if (jsParams[@"delayCapture"]) {
+            checkoutParams.delayCapture = [jsParams[@"delayCapture"] boolValue];
+        }
         if (jsParams[@"tipSettings"]) {
             SQRDTipSettings *tipSettings = [self _buildTipSettings:jsParams[@"tipSettings"]];
             checkoutParams.tipSettings = tipSettings;
@@ -150,6 +153,10 @@ RCT_REMAP_METHOD(startCheckout,
     }
     if (jsCheckoutParameters[@"allowSplitTender"] && ![jsCheckoutParameters[@"allowSplitTender"] isKindOfClass:[NSNumber class]]) {
         *errorMsg = @"'allowSplitTender' is not a boolean";
+        return NO;
+    }
+    if (jsCheckoutParameters[@"delayCapture"] && ![jsCheckoutParameters[@"delayCapture"] isKindOfClass:[NSNumber class]]) {
+        *errorMsg = @"'delayCapture' is not a boolean";
         return NO;
     }
     if (jsCheckoutParameters[@"note"] && ![jsCheckoutParameters[@"note"] isKindOfClass:[NSString class]]) {

@@ -125,6 +125,9 @@ class CheckoutModule extends ReactContextBaseJavaModule {
         if (jsCheckoutParameters.hasKey("allowSplitTender")) {
             checkoutParamsBuilder.allowSplitTender(jsCheckoutParameters.getBoolean("allowSplitTender"));
         }
+        if (jsCheckoutParameters.hasKey("delayCapture")) {
+            checkoutParamsBuilder.delayCapture(jsCheckoutParameters.getBoolean("delayCapture"));
+        }
         if (jsCheckoutParameters.hasKey("tipSettings")) {
             TipSettings tipSettings = buildTipSettings(jsCheckoutParameters.getMap("tipSettings"));
             checkoutParamsBuilder.tipSettings(tipSettings);
@@ -166,6 +169,9 @@ class CheckoutModule extends ReactContextBaseJavaModule {
             return false;
         } else if (jsCheckoutParams.hasKey("allowSplitTender") && jsCheckoutParams.getType("allowSplitTender") != ReadableType.Boolean) {
             paramError.append("'allowSplitTender' is not a boolean");
+            return false;
+        } else if (jsCheckoutParams.hasKey("delayCapture") && jsCheckoutParams.getType("delayCapture") != ReadableType.Boolean) {
+            paramError.append("'delayCapture' is not a boolean");
             return false;
         } else if (jsCheckoutParams.hasKey("note") && jsCheckoutParams.getType("note") != ReadableType.String) {
             paramError.append("'note' is not a string");

@@ -454,6 +454,7 @@ amountMoney            | [Money](#money)                                   | **R
 skipReceipt            | boolean                                           | Indicates that the digital receipt options screen should not be displayed during checkout. Default: `false`
 collectSignature       | boolean                                           | Indicates that signature collection is required during checkout. When false, the signature screen will never be displayed; when true, it will always be used. Default: `false`
 allowSplitTender       | boolean                                           | Indicates that multiple payment methods are allowed. Default: `false`
+delayCapture           | boolean                                           | When `true`, if checkout completes successfully, the SDK will only authorize,but not capture any card payments. You can then use the Square Connect CaptureTransaction endpoint to capture the card payments at a later time. Setting `delayCapture` to `true` will skip the receipt, tipping, and signature screens, and the following parameters will be ignored: tipSettings, skipReceipt, collectSignature. Default: `false`. By default, the SDK will immediately capture all card payments.
 note                   | String                                            | A note to display on digital receipts and in the [Square Dashboard]. Default: `undefined` (empty note)
 tipSettings            | [TipSettings](#tipsettings)                       | Settings that configure the tipping behavior of the checkout flow. Default: `undefined` (Tip screen disabled)
 additionalPaymentTypes | [AdditionalPaymentType](#additionalpaymenttype)[] | Valid payment methods for checkout (in addition to payments via Square Readers). Default: `undefined` (No additional payment method)
@@ -469,6 +470,7 @@ additionalPaymentTypes | [AdditionalPaymentType](#additionalpaymenttype)[] | Val
   "skipReceipt": false,
   "collectSignature": true,
   "allowSplitTender": false,
+  "delayCapture": false,
   "note": "Payment for dogsitting",
   "tipSettings": {
     "showCustomTipField": "false",

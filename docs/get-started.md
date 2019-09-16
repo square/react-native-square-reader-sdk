@@ -329,6 +329,7 @@ const checkoutParams = {
   skipReceipt: false,
   collectSignature: true,
   allowSplitTender: false,
+  delayCapture: false,
   note: 'ReaderSDKSample Transaction',
   tipSettings: {
     showCustomTipField: true,
