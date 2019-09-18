@@ -9,7 +9,8 @@
   },
   "main": "index.js",
   "scripts": {
-    "lint": "eslint ./ --ext .js"
+    "lint": "eslint ./ --ext .js",
+    "test": "jest"
   },
   "keywords": [
     "react-native",
@@ -30,6 +31,18 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.11.1",
-    "eslint-plugin-react-native": "^3.2.1"
+    "eslint-plugin-react-native": "^3.2.1",
+    "jest": "^24.9.0",
+    "react": "^16.9.0",
+    "react-native": "^0.60.5"
+  },
+  "jest": {
+    "preset": "react-native",
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
+    },
+    "modulePathIgnorePatterns": [
+      "reader-sdk-react-native-quickstart"
+    ]
   }
 }
