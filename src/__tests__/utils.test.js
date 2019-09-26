@@ -43,6 +43,13 @@ describe('Test ValidateCheckoutParameters', () => {
     expect(ValidateCheckoutParameters(checkoutParams)).toBeUndefined();
   });
 
+  it('throws if checkoutParams is null', () => {
+    checkoutParams = null;
+    expect(() => {
+      ValidateCheckoutParameters(checkoutParams);
+    }).toThrow("'checkoutParams' is undefined or null");
+  });
+
   it('throws if amountMoney is null', () => {
     checkoutParams.amountMoney = null;
     expect(() => {

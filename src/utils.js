@@ -26,6 +26,10 @@ export default function ValidateCheckoutParameters(checkoutParams) {
   paramError.debugCode = 'rn_checkout_invalid_parameter';
   paramError.message = 'Something went wrong. Please contact the developer of this application and provide them with this error code: rn_checkout_invalid_parameter';
   paramError.debugMessage = 'Invalid parameter found in checkout parameters. ';
+  if (checkoutParams === undefined || checkoutParams === null) {
+    paramError.debugMessage += "'checkoutParams' is undefined or null";
+    throw new Error(JSON.stringify(paramError));
+  }
   if (!hasNonNullProperty(checkoutParams, 'amountMoney') || typeof checkoutParams.amountMoney !== 'object') {
     paramError.debugMessage += "'amountMoney' is missing or not an object";
     throw new Error(JSON.stringify(paramError));
