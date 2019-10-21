@@ -1,5 +1,10 @@
 ## Changelog
 
+### v1.3.0 Oct 22, 2019
+
+* Update Square Reader SDK minimum supported version to 1.3.3 in order to support iOS 13
+* Now requires Xcode 10.2+
+
 ### v1.2.3 September 12, 2019
 
 * Add delay capture support
