@@ -2,7 +2,7 @@
 
 ### v1.3.1 November 5, 2019
 
-* Removed last mention of android.support syntax on favort of androidx syntax
+* Removed last mention of android.support syntax
 
 ### v1.3.0 Oct 22, 2019
 

@@ -15,7 +15,6 @@ limitations under the License.
 */
 package com.squareup.sdk.reader.react.internal;
 
-import androidx.annotation.NonNull;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -28,7 +27,7 @@ public class DateFormatUtils {
         }
     };
 
-    public static String formatISO8601UTC(@NonNull Date date) {
+    public static String formatISO8601UTC(Date date) {
         return ISO_8601.get().format(date);
     }
 }
