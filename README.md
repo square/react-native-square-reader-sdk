@@ -37,7 +37,7 @@ In addition to the standard React Native directories, this repo includes:
 
 * Xcode version: 10.2 or greater.
 * iOS Base SDK: 11.1 or greater.
-* Deployment target: iOS 11.0 or greater.
+* Deployment target: iOS 11.1 or greater.
 
 
 ## Reader SDK requirements and limitations
