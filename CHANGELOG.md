@@ -1,5 +1,9 @@
 ## Changelog
 
+### v1.3.1 November 5, 2019
+
+* Removed last mention of android.support syntax
+
 ### v1.3.0 Oct 22, 2019
 
 * Update Square Reader SDK minimum supported version to 1.3.3 in order to support iOS 13
