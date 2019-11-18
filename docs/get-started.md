@@ -230,6 +230,9 @@ installing Reader SDK for iOS, see the [Reader SDK iOS Setup Guide] at
    * `NSMicrophoneUsageDescription` : "This app integrates with Square for card
      processing. To swipe magnetic cards via the headphone jack, Square requires
      access to the microphone."
+   * `NSBluetoothAlwaysUsageDescription` : "This app integrates with Square
+     for card processing. Square uses Bluetooth to connect your device to
+     compatible hardware."
    * `NSBluetoothPeripheralUsageDescription` : This app integrates with Square
      for card processing. Square uses Bluetooth to connect your device to
      compatible hardware.
