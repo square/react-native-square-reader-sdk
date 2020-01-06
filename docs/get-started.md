@@ -344,7 +344,7 @@ try {
   // checkout finished successfully and checkoutResult is available
 } catch(ex) {
   switch(ex.code) {
-    case CheckoutErrorCanceled:
+    case CheckoutErrorCancelled:
       // Handle canceled transaction here
       break;
     case CheckoutErrorSdkNotAuthorized:
