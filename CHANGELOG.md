@@ -1,5 +1,9 @@
 ## Changelog
 
+### v1.3.2 January 8, 2020
+
+* Bumped Nested handlebars dependency from 4.2.0 to 4.5.3
+
 ### v1.3.1 November 5, 2019
 
 * Removed last mention of android.support syntax
