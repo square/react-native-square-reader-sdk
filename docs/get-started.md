@@ -314,7 +314,7 @@ checkout, you must close the modal before calling `startCheckoutAsync`.
 ```javascript
 import {
   startCheckoutAsync,
-  CheckoutErrorCancelled,
+  CheckoutErrorCanceled,
   CheckoutErrorSdkNotAuthorized,
   UsageError,
 } from 'react-native-square-reader-sdk';
@@ -344,7 +344,7 @@ try {
   // checkout finished successfully and checkoutResult is available
 } catch(ex) {
   switch(ex.code) {
-    case CheckoutErrorCancelled:
+    case CheckoutErrorCanceled:
       // Handle canceled transaction here
       break;
     case CheckoutErrorSdkNotAuthorized:
