@@ -73,8 +73,7 @@ react-native link react-native-square-reader-sdk
 To use the React Native plugin on Android devices, you need to install Reader
 SDK for Android so it is available to the React Native library as a resource.
 The key installation steps are outlined below. For more information on
-installing Reader SDK for Android, see the [Reader SDK Android Setup Guide] at
-[docs.connect.squareup.com].
+installing Reader SDK for Android, see [Reader SDK Android Setup Guide].
 
 1. Change to the Android folder (`android`) at the root of your React Native
    project.
@@ -183,8 +182,7 @@ configurations.all {
 To use the React Native plugin on iOS devices, you need to install Reader
 SDK for iOS so it is available to the React Native library as a resource.
 The key installation steps are outlined below. For more information on
-installing Reader SDK for iOS, see the [Reader SDK iOS Setup Guide] at
-[docs.connect.squareup.com].
+installing Reader SDK for iOS, see [Reader SDK iOS Setup Guide].
 
 **TIP**: You can find the minimum supported Reader SDK version for iOS in the
 [root README] for this repo.
@@ -382,7 +380,7 @@ generate mobile authorization tokens for production use.
 You can save cards on file with the Reader SDK Flutter plugin to create a
 seamless purchase experience for returning customers and enable recurring
 payments with Square APIs. It is important to note that while Reader SDK can
-save card information, you must work with the Connect Transactions API to
+save card information, you must work with the Square Payments API to
 [charge a card on file].
 
 The Reader SDK card on file workflow creates a customer card for an **existing**
@@ -504,19 +502,18 @@ if (await canDeauthorizeAsync()) {
 
 
 [//]: # "Link anchor definitions"
-[docs.connect.squareup.com]: https://docs.connect.squareup.com
-[Mobile Authorization API]: https://docs.connect.squareup.com/payments/readersdk/mobile-authz-guide
-[Reader SDK]: https://docs.connect.squareup.com/payments/readersdk/overview
+[Mobile Authorization API]: https://developer.squareup.com/docs/mobile-authz/build-with-mobile-authz
+[Reader SDK]: https://developer.squareup.com/docs/reader-sdk/what-it-does
 [Square Dashboard]: https://squareup.com/dashboard/
-[update policy for Reader SDK]: https://docs.connect.squareup.com/payments/readersdk/overview#readersdkupdatepolicy
-[Testing Mobile Apps]: https://docs.connect.squareup.com/testing/mobile
+[update policy for Reader SDK]: https://developer.squareup.com/docs/reader-sdk/what-it-does#readersdkupdatepolicy
+[Testing Mobile Apps]: https://developer.squareup.com/docs/testing/mobile
 [squareup.com/activate]: https://squareup.com/activate
 [Building Projects with Native Code]: https://facebook.github.io/react-native/docs/getting-started.html
 [Square Application Dashboard]: https://connect.squareup.com/apps/
-[Reader SDK Android Setup Guide]: https://docs.connect.squareup.com/payments/readersdk/setup-android
-[Reader SDK iOS Setup Guide]: https://docs.connect.squareup.com/payments/readersdk/setup-ios
+[Reader SDK Android Setup Guide]: https://developer.squareup.com/docs/reader-sdk/build-on-android
+[Reader SDK iOS Setup Guide]: https://developer.squareup.com/docs/reader-sdk/build-on-ios
 [root README]: ../README.md
 [yarnpkg.com]: https://yarnpkg.com/lang/en/docs/install/
 [React Native Getting Started]: https://facebook.github.io/react-native/docs/getting-started.html
-[Customer profile]: https://docs.connect.squareup.com/more-apis/customers/setup
-[charge a card on file]: https://docs.connect.squareup.com/payments/transactions/cookbook/charge-cards-on-file
+[Customer profile]: https://developer.squareup.com/docs/customers-api/build-with-customers
+[charge a card on file]: https://developer.squareup.com/docs/payments-api/take-payments#take-a-payment-using-a-card-on-file
