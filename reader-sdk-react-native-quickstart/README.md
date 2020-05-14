@@ -121,7 +121,7 @@ You can view the [transaction details in Square Dashboard].
 
 
 [//]: # "Link anchor definitions"
-[Reader SDK Overview]: https://docs.connect.squareup.com/payments/readersdk/overview
+[Reader SDK Overview]: https://developer.squareup.com/docs/reader-sdk/what-it-does
 [squareup.com/activate]: https://squareup.com/activate
 [Square Application Dashboard]: https://connect.squareup.com/apps/
 [React Native Getting Started]: https://facebook.github.io/react-native/docs/getting-started.html

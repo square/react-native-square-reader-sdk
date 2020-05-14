@@ -2,7 +2,7 @@
 
 This technical reference documents methods available in the React Native
 wrapper for Reader SDK. For detailed documentation on Reader SDK, please see
-[docs.connect.squareup.com].
+[Reader SDK].
 
 ---
 
@@ -744,10 +744,9 @@ Error                                                    | Cause                
 
 
 [//]: # "Link anchor definitions"
-[docs.connect.squareup.com]: https://docs.connect.squareup.com
-[Mobile Authorization API]: https://docs.connect.squareup.com/payments/readersdk/mobile-authz-guide
-[Reader SDK]: https://docs.connect.squareup.com/payments/readersdk/overview
+[Mobile Authorization API]: https://developer.squareup.com/docs/mobile-authz/build-with-mobile-authz
+[Reader SDK]: https://developer.squareup.com/docs/reader-sdk/what-it-does
 [ISO 4217 format]: https://www.iban.com/currency-codes.html
 [Square Dashboard]: https://squareup.com/dashboard/
-[Transactions API]: https://docs.connect.squareup.com/payments/transactions/overview
+[Transactions API]: https://developer.squareup.com/docs/transactions-api/what-it-does
 [Square-issued gift card]: https://squareup.com/us/en/software/gift-cards

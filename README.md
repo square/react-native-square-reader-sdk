@@ -54,7 +54,7 @@ In addition to the standard React Native directories, this repo includes:
   configured in Reader SDK. Tipping on printed receipts is not supported at this
   time.
 * Reader SDK cannot issue refunds. Refunds can be issued programmatically using
-  the Transactions API or manually in the [Square Dashboard].
+  the Refunds API or manually in the [Square Dashboard].
 * Reader SDK is not supported in the Square sandbox. See [Testing Mobile Apps]
   for testing recommendations.
 * Your version of Reader SDK must adhere to the Square SDK update policy. To
@@ -83,11 +83,11 @@ limitations under the License.
 
 
 [//]: # "Link anchor definitions"
-[Mobile Authorization API]: https://docs.connect.squareup.com/payments/readersdk/mobile-authz-guide
-[Reader SDK]: https://docs.connect.squareup.com/payments/readersdk/overview
+[Mobile Authorization API]: https://developer.squareup.com/docs/mobile-authz/build-with-mobile-authz
+[Reader SDK]: https://developer.squareup.com/docs/reader-sdk/what-it-does
 [Square Dashboard]: https://squareup.com/dashboard/
-[update policy for Reader SDK]: https://docs.connect.squareup.com/payments/readersdk/overview#readersdkupdatepolicy
-[Testing Mobile Apps]: https://docs.connect.squareup.com/testing/mobile
+[update policy for Reader SDK]: https://developer.squareup.com/docs/reader-sdk/what-it-does#readersdkupdatepolicy
+[Testing Mobile Apps]: https://developer.squareup.com/docs/testing/mobile
 [getting started guide]: https://github.com/square/react-native-square-reader-sdk/tree/master/docs/get-started.md
 [technical reference]: https://github.com/square/react-native-square-reader-sdk/tree/master/docs/reference.md
 [troubleshooting guide]: https://github.com/square/react-native-square-reader-sdk/tree/master/docs/troubleshooting.md
