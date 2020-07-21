@@ -1,54 +1,70 @@
 matrix:
   include:
-    - language: node_js
-      node_js: 8
-      script:
-        - yarn && yarn lint && yarn test && cd reader-sdk-react-native-quickstart && yarn && yarn lint && cd ..
-
-    - language: android
-      sudo: false
-      jdk: openjdk8
-      os:
-        - linux
-      before_cache:
-        - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-        - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
-      cache:
-        directories:
-          - $HOME/.yarn-cache
-          - $HOME/.gradle/caches/
-          - $HOME/.gradle/wrapper/
-      android:
-        components:
-          - tools
-          - platform-tools
-          - build-tools-28.0.3
-          - android-28
-          - extra-google-google_play_services
-      install:
-        - nvm install 8
-        - curl -o- -L https://yarnpkg.com/install.sh | bash
-        - export PATH="$HOME/.yarn/bin:$PATH"
-        - cd reader-sdk-react-native-quickstart
-        - yarn
-      script:
-        - node ./node_modules/jetifier/index.js
-        - cd android
-        - ./gradlew clean build -PSQUARE_READER_SDK_APPLICATION_ID=$SQUARE_READER_SDK_APPLICATION_ID -PSQUARE_READER_SDK_REPOSITORY_PASSWORD=$SQUARE_READER_SDK_REPOSITORY_PASSWORD -x :react-native-camera-kit:lint
-
-    - language: objective-c
-      os: osx
-      osx_image: xcode11.1
-      node_js:
-        - 10.16.3
-      cache:
-        directories:
-          - $HOME/.yarn-cache
-      before_install:
-        - curl -o- -L https://yarnpkg.com/install.sh | bash
-        - export PATH="$HOME/.yarn/bin:$PATH"
-        - cd reader-sdk-react-native-quickstart
-        - yarn
-        - cd ios && ruby <(curl https://connect.squareup.com/readersdk-installer) install --app-id $SQUARE_READER_SDK_APPLICATION_ID --repo-password $SQUARE_READER_SDK_REPOSITORY_PASSWORD --version 1.3.3 > /dev/null
-      script:
-        - xcodebuild -workspace RNReaderSDKSample.xcworkspace -configuration Debug -scheme RNReaderSDKSample -destination "platform=iOS Simulator,OS=13.1,name=iPhone 11" -derivedDataPath build/RNReaderSDKSample -quiet
+  - language: node_js
+    node_js: 8
+    script:
+    - yarn && yarn lint && yarn test && cd reader-sdk-react-native-quickstart && yarn
+      && yarn lint && cd ..
+  - language: android
+    sudo: false
+    jdk: openjdk8
+    os:
+    - linux
+    before_cache:
+    - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+    - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+    cache:
+      directories:
+      - "$HOME/.yarn-cache"
+      - "$HOME/.gradle/caches/"
+      - "$HOME/.gradle/wrapper/"
+    android:
+      components:
+      - tools
+      - platform-tools
+      - build-tools-28.0.3
+      - android-28
+      - extra-google-google_play_services
+    install:
+    - nvm install 8
+    - curl -o- -L https://yarnpkg.com/install.sh | bash
+    - export PATH="$HOME/.yarn/bin:$PATH"
+    - cd reader-sdk-react-native-quickstart
+    - yarn
+    script:
+    - node ./node_modules/jetifier/index.js
+    - cd android
+    - "./gradlew clean build -PSQUARE_READER_SDK_APPLICATION_ID=$SQUARE_READER_SDK_APPLICATION_ID
+      -PSQUARE_READER_SDK_REPOSITORY_PASSWORD=$SQUARE_READER_SDK_REPOSITORY_PASSWORD
+      -x :react-native-camera-kit:lint"
+  - language: objective-c
+    os: osx
+    osx_image: xcode11.1
+    node_js:
+    - 10.16.3
+    cache:
+      directories:
+      - "$HOME/.yarn-cache"
+    before_install:
+    - curl -o- -L https://yarnpkg.com/install.sh | bash
+    - export PATH="$HOME/.yarn/bin:$PATH"
+    - cd reader-sdk-react-native-quickstart
+    - yarn
+    - cd ios && ruby <(curl https://connect.squareup.com/readersdk-installer) install
+      --app-id $SQUARE_READER_SDK_APPLICATION_ID --repo-password $SQUARE_READER_SDK_REPOSITORY_PASSWORD
+      --version 1.3.3 > /dev/null
+    script:
+    - xcodebuild -workspace RNReaderSDKSample.xcworkspace -configuration Debug -scheme
+      RNReaderSDKSample -destination "platform=iOS Simulator,OS=13.1,name=iPhone 11"
+      -derivedDataPath build/RNReaderSDKSample -quiet
+notifications:
+  slack:
+    secure: hPcT0JyIhfvK7M1zGYTNi5WudsDgEkAEFFOEOFC0CbNFdG4Hl2fFQ3JB6DrjoMe5tuSb5JkqMcxrU2D5GxWrGsbRulTrc8a53UqtDe+oKAcrnke57pZ1zMXHBQOkdncaC+PC1UEoo3sd/fJUSCWdjbGPg6qw24nXWTST74o8KvBdJLu5Yz51pIrDpTaScEPLej/iI2cMZD/F23lrpU+4eQTPx65quec8XnOeSlZMbuTACEEe7N4EHFNwyzmQzrgqat1lVp4YCTfOCsKOzzQe5uip2sWZ6nD/Yj+JZ0mZm78ioig3u8nHYWDLDpiEJH8wTJPGGn9o/yN63yOdjHnWQ2XrWPyIJXV897Yd31JqQxTYwQM7hBwHaySEZitWrDZarmkzLn3ZV38m224e6JG7f+FU+mXr/Kfmjj7mVSeCeooZEMJ5397HZonK+a+LlSMEAoADxM+JgPnnDxhe7uDJCpkWiKo4+pMAGSYS3QJRs+ZPiH7DluffR7x+/xAz5Cu4Z+gpFn+SPmEhLZ9b/RCoi6e+52Y+LmrFfAUguZdriRgTpUGQ773kuXrngUwEfu1IhHBbs2MH5NaEdwlmkT4jWWkX4Vc0tTt+osRSZieu5f6Lt+Ab65moq2s9Aao68tfGIiCEF7ik2x7vC/PbFnL/G80ajolXeIvpBbd+Ven92RQ=
+    on_success: change
+    template:
+        - "@oncall"
+        - "Build <%{build_url}|#%{build_number}> (<%{compare_url}|%{commit}>) of %{repository_slug}@%{branch} in PR <%{pull_request_url}|#%{pull_request_number}> by %{author} %{result} in %{duration}"
+  email:
+    recipients:
+      - devs-apex-alerts+travis@squareup.com
+    on_success: change
