@@ -13,7 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-
+import 'react-native-gesture-handler';
 import React from 'react';
 import { FormattedProvider } from 'react-native-globalize';
 import {
@@ -21,6 +21,8 @@ import {
   createSwitchNavigator,
   createAppContainer,
 } from 'react-navigation';
+import { NavigationContainer } from '@react-navigation/native';
+
 import ChooseAuthorizeScreen from './app/screens/ChooseAuthorizeScreen';
 import ManualAuthorizeScreen from './app/screens/ManualAuthorizeScreen';
 import CheckoutScreen from './app/screens/CheckoutScreen';
