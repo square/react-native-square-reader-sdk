@@ -20,7 +20,7 @@
     "react-native-camera-kit": "teslamotors/react-native-camera-kit",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-globalize": "^4.5.1",
-    "react-native-permissions": "^3.0.3",
+    "react-native-permissions": "^1.2.0",
     "react-native-screens": "^3.1.0",
     "react-native-square-reader-sdk": "file:../",
     "react-navigation": "^3.11.1"
