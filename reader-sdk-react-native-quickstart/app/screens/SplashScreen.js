@@ -38,6 +38,7 @@ export default class SplashScreen extends Component {
         toValue: -(Dimensions.get('window').height / 2 - 120), // Calculate the position of icon after tanslate
         easing: Easing.bezier(0.25, 0.1, 0.25, 1),
         duration: 1500,
+        useNativeDriver: true,
       },
     ).start();
 

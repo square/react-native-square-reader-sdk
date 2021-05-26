@@ -13,14 +13,15 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-
+import 'react-native-gesture-handler';
 import React from 'react';
-import { FormattedProvider } from 'react-native-globalize';
+import { GlobalizeProvider, loadCldr } from 'react-native-globalize';
 import {
   createStackNavigator,
   createSwitchNavigator,
   createAppContainer,
 } from 'react-navigation';
+
 import ChooseAuthorizeScreen from './app/screens/ChooseAuthorizeScreen';
 import ManualAuthorizeScreen from './app/screens/ManualAuthorizeScreen';
 import CheckoutScreen from './app/screens/CheckoutScreen';
@@ -58,13 +59,16 @@ const RootStack = createSwitchNavigator({
 }, {
   initialRouteName: 'Splash',
 });
-
+loadCldr(
+  // Load the locales you actually need
+  require('react-native-globalize/locale-data/en'),
+);
 const ContainedRootStack = createAppContainer(RootStack);
 
 const App = () => (
-  <FormattedProvider locale="en">
+  <GlobalizeProvider locale="en">
     <ContainedRootStack />
-  </FormattedProvider>
+  </GlobalizeProvider>
 );
 
 export default App;

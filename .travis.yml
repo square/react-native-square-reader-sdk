@@ -1,7 +1,7 @@
 matrix:
   include:
   - language: node_js
-    node_js: 8
+    node_js: 14
     script:
     - yarn && yarn lint && yarn test && cd reader-sdk-react-native-quickstart && yarn
       && yarn lint && cd ..
@@ -26,7 +26,7 @@ matrix:
       - android-28
       - extra-google-google_play_services
     install:
-    - nvm install 8
+    - nvm install 14
     - curl -o- -L https://yarnpkg.com/install.sh | bash
     - export PATH="$HOME/.yarn/bin:$PATH"
     - cd reader-sdk-react-native-quickstart
