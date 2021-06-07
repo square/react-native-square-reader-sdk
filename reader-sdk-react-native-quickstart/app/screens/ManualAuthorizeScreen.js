@@ -44,7 +44,7 @@ export default class ManualAuthorizeScreen extends Component {
         <View style={styles.buttonContainer}>
           <TextInput
             style={styles.textInput}
-            onChangeText={authCode => this.setState({ authCode })}
+            onChangeText={(authCode) => this.setState({ authCode })}
             value={this.state.authCode}
             autoFocus
             placeholder="Authorization code"
@@ -54,15 +54,13 @@ export default class ManualAuthorizeScreen extends Component {
           />
           <CustomButton
             title="Authorize"
-            onPress={() => this.onLogin()
-            }
+            onPress={() => this.onLogin()}
             primary
             disabled={!this.state.authCode}
           />
           <CustomButton
             title="Cancel"
-            onPress={() => goBack()
-            }
+            onPress={() => goBack()}
           />
         </View>
       </View>

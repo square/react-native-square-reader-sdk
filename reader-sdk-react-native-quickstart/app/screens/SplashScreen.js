@@ -27,8 +27,11 @@ import SquareLogo from '../components/SquareLogo';
 import { backgroundColor } from '../styles/common';
 
 export default class SplashScreen extends Component {
-  state = {
-    logoTranslateY: new Animated.Value(0),
+  constructor(props) {
+    super(props);
+    this.state = {
+      logoTranslateY: new Animated.Value(0),
+    };
   }
 
   componentDidMount() {

@@ -23,13 +23,16 @@ import { defaultStyles } from '../styles/common';
 import SquareLogo from '../components/SquareLogo';
 
 export default class PermissionScreenIOS extends Component {
-  state = {
-    micPermissionButtonLabel: '',
-    micButtonEnabled: true,
-    micButtonHandler: null,
-    locationPermissionButtonLabel: '',
-    locationButtonEnabled: true,
-    locationbuttonHandler: null,
+  constructor(props) {
+    super(props);
+    this.state = {
+      micPermissionButtonLabel: '',
+      micButtonEnabled: true,
+      micButtonHandler: null,
+      locationPermissionButtonLabel: '',
+      locationButtonEnabled: true,
+      locationbuttonHandler: null,
+    };
   }
 
   async componentDidMount() {
@@ -75,7 +78,6 @@ export default class PermissionScreenIOS extends Component {
       return true;
     }
   }
-
 
   updateMicrophoneState(state) {
     switch (state) {

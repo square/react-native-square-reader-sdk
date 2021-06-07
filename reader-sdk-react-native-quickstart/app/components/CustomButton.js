@@ -18,7 +18,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, TouchableOpacity, Text } from 'react-native';
 
-const CustomButton = props => (
+const CustomButton = (props) => (
   <TouchableOpacity
     style={props.disabled
       ? [styles.button, props.primary

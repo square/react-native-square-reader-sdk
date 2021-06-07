@@ -63,6 +63,7 @@ loadCldr(
   // Load the locales you actually need
   require('react-native-globalize/locale-data/en'),
 );
+
 const ContainedRootStack = createAppContainer(RootStack);
 
 const App = () => (
