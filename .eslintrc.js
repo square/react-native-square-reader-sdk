@@ -1,5 +1,6 @@
 module.exports = {
   parser: 'babel-eslint',
+  root: true,
   extends: [
     'airbnb',
     'plugin:react-native/all',
