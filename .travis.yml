@@ -51,7 +51,7 @@ matrix:
     - export PATH="$HOME/.yarn/bin:$PATH"
     - cd reader-sdk-react-native-quickstart
     - yarn
-    - cd ios && rm -r -fo SquareReaderSDK.framework && ruby <(curl https://connect.squareup.com/readersdk-installer) install
+    - cd ios && rm -r ./SquareReaderSDK.framework && ruby <(curl https://connect.squareup.com/readersdk-installer) install
       --app-id $SQUARE_READER_SDK_APPLICATION_ID --repo-password $SQUARE_READER_SDK_REPOSITORY_PASSWORD
       > /dev/null
     script:
