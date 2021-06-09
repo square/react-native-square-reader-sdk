@@ -51,9 +51,9 @@ matrix:
     - export PATH="$HOME/.yarn/bin:$PATH"
     - cd reader-sdk-react-native-quickstart
     - yarn
-    - cd ios && rm -r ./SquareReaderSDK.framework && ruby <(curl https://connect.squareup.com/readersdk-installer) install
+    - cd ios && ruby <(curl https://connect.squareup.com/readersdk-installer) install
       --app-id $SQUARE_READER_SDK_APPLICATION_ID --repo-password $SQUARE_READER_SDK_REPOSITORY_PASSWORD
-      > /dev/null
+       --version 1.4.9 > /dev/null
     script:
     - xcodebuild -workspace RNReaderSDKSample.xcworkspace -configuration Debug -scheme
       RNReaderSDKSample -destination "platform=iOS Simulator,OS=13.1,name=iPhone 11"
