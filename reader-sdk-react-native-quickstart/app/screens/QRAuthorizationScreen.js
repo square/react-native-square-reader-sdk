@@ -20,8 +20,11 @@ import { CameraKitCameraScreen } from 'react-native-camera-kit';
 import { backgroundColor } from '../styles/common';
 
 export default class QRAuthorizationScreen extends Component {
-  state = {
-    receivedCode: false,
+  constructor(props) {
+    super(props);
+    this.state = {
+      receivedCode: false,
+    };
   }
 
   async onSuccess(e) {
@@ -39,7 +42,7 @@ export default class QRAuthorizationScreen extends Component {
         showFrame
         colorForScannerFrame={backgroundColor}
         scanBarcode
-        onReadCode={e => this.onSuccess(e)}
+        onReadCode={(e) => this.onSuccess(e)}
         hideControls={false}
         heightForScannerFrame={300}
         cameraOptions={{

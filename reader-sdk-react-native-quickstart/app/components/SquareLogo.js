@@ -20,7 +20,7 @@ import PropTypes from 'prop-types';
 
 const iconImage = require('./img/ic_jewel.png');
 
-const SquareLogo = props => (
+const SquareLogo = (props) => (
   <Animated.Image
     style={[{ width: props.width || 48, height: props.height || 48 }, props.style]}
     source={iconImage}

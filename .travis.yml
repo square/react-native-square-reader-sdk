@@ -1,7 +1,7 @@
 matrix:
   include:
   - language: node_js
-    node_js: 8
+    node_js: 14
     script:
     - yarn && yarn lint && yarn test && cd reader-sdk-react-native-quickstart && yarn
       && yarn lint && cd ..
@@ -22,11 +22,11 @@ matrix:
       components:
       - tools
       - platform-tools
-      - build-tools-28.0.3
-      - android-28
+      - build-tools-29.0.3
+      - android-29
       - extra-google-google_play_services
     install:
-    - nvm install 8
+    - nvm install 14
     - curl -o- -L https://yarnpkg.com/install.sh | bash
     - export PATH="$HOME/.yarn/bin:$PATH"
     - cd reader-sdk-react-native-quickstart
@@ -41,18 +41,20 @@ matrix:
     os: osx
     osx_image: xcode11.1
     node_js:
-    - 10.16.3
+    - 14
     cache:
       directories:
       - "$HOME/.yarn-cache"
     before_install:
+    - gem install cocoapods
+    - nvm install 14
     - curl -o- -L https://yarnpkg.com/install.sh | bash
     - export PATH="$HOME/.yarn/bin:$PATH"
     - cd reader-sdk-react-native-quickstart
     - yarn
     - cd ios && ruby <(curl https://connect.squareup.com/readersdk-installer) install
       --app-id $SQUARE_READER_SDK_APPLICATION_ID --repo-password $SQUARE_READER_SDK_REPOSITORY_PASSWORD
-      --version 1.3.3 > /dev/null
+       --version 1.4.9 > /dev/null
     script:
     - xcodebuild -workspace RNReaderSDKSample.xcworkspace -configuration Debug -scheme
       RNReaderSDKSample -destination "platform=iOS Simulator,OS=13.1,name=iPhone 11"

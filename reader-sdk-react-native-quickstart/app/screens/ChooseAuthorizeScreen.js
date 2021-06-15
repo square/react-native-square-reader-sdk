@@ -52,11 +52,11 @@ export default class ChooseAuthorizeScreen extends Component {
         <View style={defaultStyles.descriptionContainer}>
           <Text style={defaultStyles.title}>Authorize Reader SDK.</Text>
           <Text style={defaultStyles.subtitle}>
-Generate an authorization code
+            Generate an authorization code
             {'\n'}
-in the Reader SDK tab
+            in the Reader SDK tab
             {'\n'}
-of the Developer Portal.
+            of the Developer Portal.
           </Text>
         </View>
         <View style={defaultStyles.buttonContainer}>
