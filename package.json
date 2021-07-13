@@ -1,6 +1,6 @@
 {
   "name": "react-native-square-reader-sdk",
-  "version": "1.3.1",
+  "version": "1.4.0",
   "description": "A React Native plugin for Square Reader SDK",
   "homepage": "https://github.com/square/react-native-square-reader-sdk",
   "repository": {
