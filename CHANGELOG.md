@@ -1,5 +1,10 @@
 ## Changelog
 
+### v1.4.0 July 13, 2021
+
+* Upgrade React Native version to 64.1
+* Bump the minimum Reader SDK version support to 1.4.9 for iOS and 1.4.4 for Android
+
 ### v1.3.1 January 8, 2020
 
 * Bumped Nested handlebars dependency from 4.2.0 to 4.5.3
