@@ -35,6 +35,8 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>This application integrates with Square for card processing. Square uses Bluetooth to connect your device to compatible hardware.</string>
 	<key>NSBluetoothPeripheralUsageDescription	</key>
 	<string>This app integrates with Square for card processing. Square uses Bluetooth to connect your device to compatible hardware.
 </string>
@@ -42,7 +44,7 @@
 	<string>This app integrates with Square for card processing. Upload your account logo, feature photo and product images with the photos stored on your mobile device.
 </string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-		<string>This app integrates with Square for card processing. To protect buyers and sellers, Square requires your location to process payments.</string>
+	<string>This app integrates with Square for card processing. To protect buyers and sellers, Square requires your location to process payments.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>This app integrates with Square for card processing. To swipe magnetic cards via the headphone jack, Square requires access to the microphone.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
