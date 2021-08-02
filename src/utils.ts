@@ -14,6 +14,8 @@
  limitations under the License.
 */
 
+import ErrorDetails from "./models/ErrorDetails";
+
 function hasNonNullProperty(obj, property) {
   if (Object.prototype.hasOwnProperty.call(obj, property) && typeof obj[property] !== 'undefined' && obj[property] !== null) {
     return true;
@@ -22,7 +24,7 @@ function hasNonNullProperty(obj, property) {
 }
 
 export default function ValidateCheckoutParameters(checkoutParams) {
-  const paramError = {};
+  const paramError:ErrorDetails = {};
   paramError.debugCode = 'rn_checkout_invalid_parameter';
   paramError.message = 'Something went wrong. Please contact the developer of this application and provide them with this error code: rn_checkout_invalid_parameter';
   paramError.debugMessage = 'Invalid parameter found in checkout parameters. ';
