@@ -2,9 +2,7 @@ import AmountMoney from "./AmountMoney";
 import TipSettings from "./TipSettings";
 
 interface CheckoutParams {
-    brand?: string;
-
-    expirationMonth?: number;
+    amountMoney: AmountMoney;
 
     expirationYear?: number;
 
@@ -13,10 +11,6 @@ interface CheckoutParams {
     postalCode?: string;
 
     prepaidType?: string;
-
-    type?: string;
-
-    amountMoney?: AmountMoney;
 
     skipReceipt?: boolean;
 

@@ -16,7 +16,7 @@
 import CheckoutParams from '../models/CheckoutParams';
 import ValidateCheckoutParameters from '../utils';
 
-let checkoutParams:CheckoutParams = {};
+let checkoutParams:CheckoutParams;
 
 describe('Test ValidateCheckoutParameters', () => {
   beforeEach(() => {
