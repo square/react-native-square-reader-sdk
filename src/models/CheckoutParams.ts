@@ -4,12 +4,6 @@ import TipSettings from "./TipSettings";
 interface CheckoutParams {
     amountMoney: AmountMoney;
 
-    expirationYear?: number;
-
-    lastFourDigits?: string;
-
-    postalCode?: string;
-
     prepaidType?: string;
 
     skipReceipt?: boolean;
