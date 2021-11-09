@@ -128,3 +128,6 @@ You can view the [transaction details in Square Dashboard].
 [yarnpkg.com]: https://yarnpkg.com/lang/en/docs/install/
 [root README]: ../README.md
 [transaction details in Square Dashboard]: https://squareup.com/dashboard/sales/transactions
+
+## Feedback
+Leave a feedback for this sample app [here](https://delighted.com/t/DT6msOcY)!
