@@ -130,4 +130,4 @@ You can view the [transaction details in Square Dashboard].
 [transaction details in Square Dashboard]: https://squareup.com/dashboard/sales/transactions
 
 ## Feedback
-Leave a feedback for this sample app [here](https://delighted.com/t/DT6msOcY)!
+Rate this sample app [here](https://delighted.com/t/Z1xmKSqy)!
