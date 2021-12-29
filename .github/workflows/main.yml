@@ -34,7 +34,8 @@ jobs:
           cd reader-sdk-react-native-quickstart && yarn   
           node ./node_modules/jetifier/index.js
           cd android
-          ./gradlew clean build    
+          ./gradlew clean build -PSQUARE_READER_SDK_APPLICATION_ID=$SQUARE_READER_SDK_APPLICATION_ID
+           -PSQUARE_READER_SDK_REPOSITORY_PASSWORD=$SQUARE_READER_SDK_REPOSITORY_PASSWORD    
 
   build-ios:
     needs: install-and-test
