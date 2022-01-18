@@ -1,8 +1,5 @@
 name: react-native-square-reader-sdk
 on: [push]
-with:
-    SQUARE_READER_SDK_APPLICATION_ID: ${{secrets.SQUARE_READER_SDK_APPLICATION_ID}}
-    SQUARE_READER_SDK_REPOSITORY_PASSWORD: ${{secrets.SQUARE_READER_SDK_REPOSITORY_PASSWORD}}
 env:
     SQUARE_READER_SDK_APPLICATION_ID: ${{secrets.SQUARE_READER_SDK_APPLICATION_ID}}
     SQUARE_READER_SDK_REPOSITORY_PASSWORD: ${{secrets.SQUARE_READER_SDK_REPOSITORY_PASSWORD}}
@@ -36,6 +33,9 @@ jobs:
             ${{ runner.os }}-gradle-caches-                
       - name: Install npm dependencies  
         uses: actions/checkout@v2
+        with:
+          SQUARE_READER_SDK_APPLICATION_ID: ${{secrets.SQUARE_READER_SDK_APPLICATION_ID}}
+          SQUARE_READER_SDK_REPOSITORY_PASSWORD: ${{secrets.SQUARE_READER_SDK_REPOSITORY_PASSWORD}}
       - run: |
           cd reader-sdk-react-native-quickstart && yarn   
           node ./node_modules/jetifier/index.js
