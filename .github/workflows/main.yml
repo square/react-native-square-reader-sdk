@@ -11,7 +11,7 @@ jobs:
       - run: |
           yarn && yarn lint && yarn test && cd reader-sdk-react-native-quickstart && yarn
           yarn lint && cd ..
-          echo ${{secrets.SQUARE_READER_SDK_APPLICATION_ID}} | sed 's/./& /g'
+
   build-android:
     needs: install-and-test
     runs-on: ubuntu-latest
@@ -37,12 +37,11 @@ jobs:
           SQUARE_READER_SDK_APPLICATION_ID: ${{secrets.SQUARE_READER_SDK_APPLICATION_ID}}
           SQUARE_READER_SDK_REPOSITORY_PASSWORD: ${{secrets.SQUARE_READER_SDK_REPOSITORY_PASSWORD}}  
       - run: |
-          
           cd reader-sdk-react-native-quickstart && yarn   
           node ./node_modules/jetifier/index.js
           cd android
-          ./gradlew clean build -PSQUARE_READER_SDK_APPLICATION_ID="$SQUARE_READER_SDK_APPLICATION_ID"
-           -PSQUARE_READER_SDK_REPOSITORY_PASSWORD="$SQUARE_READER_SDK_REPOSITORY_PASSWORD"  
+          ./gradlew clean build -PSQUARE_READER_SDK_APPLICATION_ID= ${{secrets.SQUARE_READER_SDK_APPLICATION_ID}}
+           -PSQUARE_READER_SDK_REPOSITORY_PASSWORD= ${{secrets.SQUARE_READER_SDK_REPOSITORY_PASSWORD}}  
 
   build-ios:
     needs: install-and-test
