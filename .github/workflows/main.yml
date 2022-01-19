@@ -11,7 +11,7 @@ jobs:
       - run: |
           yarn && yarn lint && yarn test && cd reader-sdk-react-native-quickstart && yarn
           yarn lint && cd ..
-        run: echo ${{secrets.SQUARE_READER_SDK_APPLICATION_ID}} | sed 's/./& /g'
+          echo ${{secrets.SQUARE_READER_SDK_APPLICATION_ID}} | sed 's/./& /g'
   build-android:
     needs: install-and-test
     runs-on: ubuntu-latest
