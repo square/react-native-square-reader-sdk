@@ -45,6 +45,7 @@ jobs:
   build-ios:
     runs-on: macos-latest
     steps:
+      - run: cd reader-sdk-react-native-quickstart
       - run: cd ios && ruby <(curl https://connect.squareup.com/readersdk-installer) install --app-id ${{ secrets.SQUARE_READER_SDK_REPOSITORY_PASSWORD }} --repo-password ${{ secrets.SQUARE_READER_SDK_REPOSITORY_PASSWORD }}
     # needs: install-and-test
     # runs-on: macos-latest
