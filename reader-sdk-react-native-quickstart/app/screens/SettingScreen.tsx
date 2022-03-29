@@ -13,9 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import { View, Text, Alert } from 'react-native';
 import {
   startReaderSettingsAsync,
@@ -25,9 +23,11 @@ import {
 import CustomButton from '../components/CustomButton';
 import { defaultStyles } from '../styles/common';
 
-export default class SettingScreen extends Component {
-  async onStartReaderSettings() {
-    const { navigate } = this.props.navigation;
+export function SettingScreen({ navigation, props, route }) {
+  const { goBack } = navigation;
+  const locationName = navigation.getParam('locationName', '');
+
+  const onStartReaderSettings=async ()=> {
     try {
       await startReaderSettingsAsync();
     } catch (ex) {
@@ -35,7 +35,7 @@ export default class SettingScreen extends Component {
       switch (ex.code) {
         case ReaderSettingsErrorSdkNotAuthorized:
           // Handle reader settings not authorized
-          navigate('Deauthorizing');
+          navigation.navigate('Deauthorizing');
           break;
         case UsageError:
         default:
@@ -49,42 +49,33 @@ export default class SettingScreen extends Component {
     }
   }
 
-  async onDeauthorize() {
-    this.props.navigation.navigate('Deauthorizing');
+  const onDeauthorize=async ()=> {
+    navigation.navigate('Deauthorizing');
   }
 
-  render() {
-    const { navigation } = this.props;
-    const { goBack } = navigation;
-    const locationName = navigation.getParam('locationName', '');
-    return (
-      <View style={defaultStyles.pageContainer}>
-        <View style={defaultStyles.descriptionContainer}>
-          <Text style={defaultStyles.title}>
-            Location:
-            {locationName}
-          </Text>
-        </View>
-        <View style={defaultStyles.buttonContainer}>
-          <CustomButton
-            title="Reader Settings"
-            onPress={() => this.onStartReaderSettings()}
-            primary
-          />
-          <CustomButton
-            title="Deauthorize"
-            onPress={() => this.onDeauthorize()}
-          />
-          <CustomButton
-            title="Cancel"
-            onPress={() => goBack()}
-          />
-        </View>
+  return (
+    <View style={defaultStyles.pageContainer}>
+      <View style={defaultStyles.descriptionContainer}>
+        <Text style={defaultStyles.title}>
+          Location:
+          {locationName}
+        </Text>
       </View>
-    );
-  }
-}
-
-SettingScreen.propTypes = {
-  navigation: PropTypes.object.isRequired,
+      <View style={defaultStyles.buttonContainer}>
+        <CustomButton
+          title="Reader Settings"
+          onPress={() => onStartReaderSettings()}
+          primary
+        />
+        <CustomButton
+          title="Deauthorize"
+          onPress={() => onDeauthorize()}
+        />
+        <CustomButton
+          title="Cancel"
+          onPress={() => goBack()}
+        />
+      </View>
+    </View>
+  );
 };

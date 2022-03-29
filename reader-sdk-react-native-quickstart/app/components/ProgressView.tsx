@@ -14,17 +14,19 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import React from 'react';
+import React, { FC } from 'react';
 import { StyleSheet, View, ActivityIndicator } from 'react-native';
 import { defaultStyles } from '../styles/common';
 
-const ProgressView = () => (
-  <View style={defaultStyles.pageContainer}>
-    <View style={styles.indicatorContainer}>
-      <ActivityIndicator style={styles.activityIndicator} size="large" color="#ffffff" />
+const ProgressView: FC = () => {
+  return (
+    <View style={defaultStyles.pageContainer}>
+      <View style={styles.indicatorContainer}>
+        <ActivityIndicator style={styles.activityIndicator} size="large" color="#ffffff" />
+      </View>
     </View>
-  </View>
-);
+  );
+}
 
 const styles = StyleSheet.create({
   activityIndicator: {

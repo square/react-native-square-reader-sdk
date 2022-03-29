@@ -13,20 +13,18 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect} from 'react';
 import { Alert } from 'react-native';
 import { deauthorizeAsync, canDeauthorizeAsync } from 'react-native-square-reader-sdk';
 import ProgressView from '../components/ProgressView';
 
-export default class DeauthorizingScreen extends Component {
-  componentDidMount() {
+export function DeauthorizingScreen({ navigation, props, route }) {
+  useEffect(()=>{
     window.setTimeout(async () => {
       if (await canDeauthorizeAsync()) {
         try {
           await deauthorizeAsync();
-          this.props.navigation.navigate('Splash');
+          navigation.navigate('Splash');
         } catch (ex) {
           let errorMessage = ex.message;
           if (__DEV__) {
@@ -37,18 +35,13 @@ export default class DeauthorizingScreen extends Component {
         }
       } else {
         Alert.alert('Unable to deauthorize', 'You cannot deauthorize right now.');
-        this.props.navigation.goBack();
+        navigation.goBack();
       }
     }, 1000);
-  }
+  });
 
-  render() {
-    return (
-      <ProgressView />
-    );
-  }
-}
-
-DeauthorizingScreen.propTypes = {
-  navigation: PropTypes.object.isRequired,
+  return (
+    <ProgressView />
+  );
 };
+

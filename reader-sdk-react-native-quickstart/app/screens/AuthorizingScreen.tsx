@@ -13,20 +13,16 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { Alert } from 'react-native';
-import PropTypes from 'prop-types';
 import { authorizeAsync, AuthorizeErrorNoNetwork, UsageError } from 'react-native-square-reader-sdk';
 import ProgressView from '../components/ProgressView';
 
-export default class AuthorizingScreen extends Component {
-  componentDidMount() {
-    const { navigation } = this.props;
-    this.authorize(navigation);
-  }
-
-  async authorize(navigation) {
+export function AuthorizingScreen({ navigation, props, route }) {
+  useEffect(()=>{
+    authorize();
+  });
+  const authorize=async()=> {
     const authCode = navigation.getParam('authCode', '');
     if (!authCode) {
       Alert.alert('Error: empty auth code');
@@ -35,7 +31,7 @@ export default class AuthorizingScreen extends Component {
     }
     try {
       await authorizeAsync(authCode);
-      this.props.navigation.navigate('Checkout');
+      navigation.navigate('Checkout');
     } catch (ex) {
       let errorMessage = ex.message;
       switch (ex.code) {
@@ -45,7 +41,7 @@ export default class AuthorizingScreen extends Component {
             'Network error',
             ex.message,
             [
-              { text: 'Retry', onPress: () => this.authorize(navigation) },
+              { text: 'Retry', onPress: () => authorize() },
               { text: 'Cancel', onPress: () => navigation.navigate('Authorize'), style: 'cancel' },
             ],
           );
@@ -66,13 +62,9 @@ export default class AuthorizingScreen extends Component {
     }
   }
 
-  render() {
-    return (
-      <ProgressView />
-    );
-  }
-}
-
-AuthorizingScreen.propTypes = {
-  navigation: PropTypes.object.isRequired,
+  return (
+    <ProgressView />
+  );
 };
+
+

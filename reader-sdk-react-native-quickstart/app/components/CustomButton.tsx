@@ -14,39 +14,37 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, {FC} from 'react';
 import { StyleSheet, TouchableOpacity, Text } from 'react-native';
 
-const CustomButton = (props) => (
-  <TouchableOpacity
-    style={props.disabled
-      ? [styles.button, props.primary
-        ? styles.primaryButton : styles.secondaryButton, styles.disabledButton]
-      : [styles.button, props.primary
-        ? styles.primaryButton : styles.secondaryButton]}
-    onPress={props.onPress}
-    disabled={props.disabled}
-  >
-    <Text style={props.disabled
-      ? [styles.buttonText, styles.disabledButtonText]
-      : styles.buttonText}
-    >
-      {props.title}
-    </Text>
-  </TouchableOpacity>
-);
-
-CustomButton.defaultProps = {
-  disabled: false,
-  primary: false,
+class Props  {
+    title: string='';
+    onPress(){
+    }
+    //onPress: ()=>void;
+    disabled?: boolean=false;
+    primary?: boolean=false;
 };
 
-CustomButton.propTypes = {
-  title: PropTypes.string.isRequired,
-  onPress: PropTypes.func.isRequired,
-  disabled: PropTypes.bool,
-  primary: PropTypes.bool,
+const CustomButton: FC<Props> = (props) => {
+    return(
+        <TouchableOpacity
+            style={props.disabled
+            ? [styles.button, props.primary
+                ? styles.primaryButton : styles.secondaryButton, styles.disabledButton]
+            : [styles.button, props.primary
+                ? styles.primaryButton : styles.secondaryButton]}
+            onPress={props.onPress}
+            disabled={props.disabled}
+        >
+            <Text style={props.disabled
+            ? [styles.buttonText, styles.disabledButtonText]
+            : styles.buttonText}
+            >
+            {props.title}
+            </Text>
+        </TouchableOpacity>
+    );
 };
 
 const styles = StyleSheet.create({

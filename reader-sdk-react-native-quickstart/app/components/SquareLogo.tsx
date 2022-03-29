@@ -14,29 +14,36 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import React from 'react';
+import React, { FC } from 'react';
 import { Animated } from 'react-native';
-import PropTypes from 'prop-types';
 
 const iconImage = require('./img/ic_jewel.png');
 
-const SquareLogo = (props) => (
-  <Animated.Image
-    style={[{ width: props.width || 48, height: props.height || 48 }, props.style]}
-    source={iconImage}
-  />
-);
+const SquareLogo:FC<Props> = (props) =>{ 
+    return(
+        <Animated.Image
+            style={[{ width: props.width || 48, height: props.height || 48 }, props.style]}
+            source={iconImage}
+        />
+    );
+}
 
-SquareLogo.defaultProps = {
-  width: 48,
-  height: 48,
-  style: null,
-};
+class Props{
+  width?: number = 48;
+  height?: number = 48;
+  style?: any = null;
+}
 
-SquareLogo.propTypes = {
-  width: PropTypes.number,
-  height: PropTypes.number,
-  style: PropTypes.object,
-};
+// SquareLogo.defaultProps = {
+//   width: 48,
+//   height: 48,
+//   style: null,
+// };
+
+// SquareLogo.propTypes = {
+//   width: PropTypes.number,
+//   height: PropTypes.number,
+//   style: PropTypes.object,
+// };
 
 export default SquareLogo;

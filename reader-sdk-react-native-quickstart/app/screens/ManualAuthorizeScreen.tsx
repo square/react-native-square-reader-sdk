@@ -13,29 +13,19 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState} from 'react';
 import {
   StyleSheet, View, TextInput, Text,
 } from 'react-native';
 import CustomButton from '../components/CustomButton';
 import { defaultStyles } from '../styles/common';
 
-export default class ManualAuthorizeScreen extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      authCode: '',
-    };
+export function ManualAuthorizeScreen({ navigation, props, route }) {
+  const [authCode, setAuthCode] = useState('');
+  const onLogin=async ()=> {
+    navigation.navigate('Authorizing', authCode);
   }
-
-  async onLogin() {
-    this.props.navigation.navigate('Authorizing', { authCode: this.state.authCode });
-  }
-
-  render() {
-    const { goBack } = this.props.navigation;
+  const { goBack } = navigation;
     return (
       <View style={defaultStyles.pageContainer}>
         <View style={styles.textContainer}>
@@ -44,8 +34,8 @@ export default class ManualAuthorizeScreen extends Component {
         <View style={styles.buttonContainer}>
           <TextInput
             style={styles.textInput}
-            onChangeText={(authCode) => this.setState({ authCode })}
-            value={this.state.authCode}
+            onChangeText={(authCode) => setAuthCode(authCode )}
+            value={authCode}
             autoFocus
             placeholder="Authorization code"
             placeholderTextColor="rgba(255, 255, 255, 0.85)"
@@ -54,9 +44,9 @@ export default class ManualAuthorizeScreen extends Component {
           />
           <CustomButton
             title="Authorize"
-            onPress={() => this.onLogin()}
+            onPress={() => onLogin()}
             primary
-            disabled={!this.state.authCode}
+            disabled={!authCode}
           />
           <CustomButton
             title="Cancel"
@@ -65,8 +55,7 @@ export default class ManualAuthorizeScreen extends Component {
         </View>
       </View>
     );
-  }
-}
+};
 
 const styles = StyleSheet.create({
   buttonContainer: {
@@ -91,6 +80,3 @@ const styles = StyleSheet.create({
   },
 });
 
-ManualAuthorizeScreen.propTypes = {
-  navigation: PropTypes.object.isRequired,
-};
