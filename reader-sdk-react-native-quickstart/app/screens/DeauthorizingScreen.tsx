@@ -1,5 +1,5 @@
 /*
-Copyright 2018 Square Inc.
+Copyright 2022 Square Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -13,19 +13,23 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, { useEffect} from 'react';
-import { Alert } from 'react-native';
-import { deauthorizeAsync, canDeauthorizeAsync } from 'react-native-square-reader-sdk';
+import React, {useEffect} from 'react';
+import {Alert} from 'react-native';
+import {
+  deauthorizeAsync,
+  canDeauthorizeAsync,
+} from 'react-native-square-reader-sdk';
 import ProgressView from '../components/ProgressView';
 
-export function DeauthorizingScreen({ navigation, props, route }) {
-  useEffect(()=>{
+export default function DeauthorizingScreen({navigation}) {
+  // USEEFFECT ACTION
+  useEffect(() => {
     window.setTimeout(async () => {
       if (await canDeauthorizeAsync()) {
         try {
           await deauthorizeAsync();
-          navigation.navigate('Splash');
-        } catch (ex) {
+          navigation.navigate('Authorize');
+        } catch (ex: any) {
           let errorMessage = ex.message;
           if (__DEV__) {
             errorMessage += `\n\nDebug Message: ${ex.debugMessage}`;
@@ -34,14 +38,14 @@ export function DeauthorizingScreen({ navigation, props, route }) {
           Alert.alert('Error', errorMessage);
         }
       } else {
-        Alert.alert('Unable to deauthorize', 'You cannot deauthorize right now.');
+        Alert.alert(
+          'Unable to deauthorize',
+          'You cannot deauthorize right now.',
+        );
         navigation.goBack();
       }
     }, 1000);
   });
 
-  return (
-    <ProgressView />
-  );
-};
-
+  return <ProgressView />;
+}

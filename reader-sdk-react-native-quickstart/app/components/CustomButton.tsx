@@ -1,5 +1,5 @@
 /*
-Copyright 2018 Square Inc.
+Copyright 2022 Square Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -15,36 +15,42 @@ limitations under the License.
 */
 
 import React, {FC} from 'react';
-import { StyleSheet, TouchableOpacity, Text } from 'react-native';
+import {StyleSheet, TouchableOpacity, Text} from 'react-native';
 
-class Props  {
-    title: string='';
-    onPress(){
-    }
-    //onPress: ()=>void;
-    disabled?: boolean=false;
-    primary?: boolean=false;
-};
+class Props {
+  title: string;
+  onPress() {}
+  disabled?: boolean = false;
+  primary?: boolean = false;
+}
 
-const CustomButton: FC<Props> = (props) => {
-    return(
-        <TouchableOpacity
-            style={props.disabled
-            ? [styles.button, props.primary
-                ? styles.primaryButton : styles.secondaryButton, styles.disabledButton]
-            : [styles.button, props.primary
-                ? styles.primaryButton : styles.secondaryButton]}
-            onPress={props.onPress}
-            disabled={props.disabled}
-        >
-            <Text style={props.disabled
+const CustomButton: FC<Props> = props => {
+  return (
+    <TouchableOpacity
+      style={
+        props.disabled
+          ? [
+              styles.button,
+              props.primary ? styles.primaryButton : styles.secondaryButton,
+              styles.disabledButton,
+            ]
+          : [
+              styles.button,
+              props.primary ? styles.primaryButton : styles.secondaryButton,
+            ]
+      }
+      onPress={props.onPress}
+      disabled={props.disabled}>
+      <Text
+        style={
+          props.disabled
             ? [styles.buttonText, styles.disabledButtonText]
-            : styles.buttonText}
-            >
-            {props.title}
-            </Text>
-        </TouchableOpacity>
-    );
+            : styles.buttonText
+        }>
+        {props.title}
+      </Text>
+    </TouchableOpacity>
+  );
 };
 
 const styles = StyleSheet.create({
@@ -54,7 +60,6 @@ const styles = StyleSheet.create({
     height: 64,
     justifyContent: 'center',
     marginTop: 15,
-
   },
   buttonText: {
     color: 'white',

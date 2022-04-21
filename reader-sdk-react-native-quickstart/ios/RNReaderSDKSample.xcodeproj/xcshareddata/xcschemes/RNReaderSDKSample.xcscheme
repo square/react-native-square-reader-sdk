@@ -60,6 +60,8 @@
             ReferencedContainer = "container:RNReaderSDKSample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <AdditionalOptions>
+      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

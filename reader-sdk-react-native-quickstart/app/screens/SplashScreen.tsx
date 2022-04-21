@@ -1,5 +1,5 @@
 /*
-Copyright 2018 Square Inc.
+Copyright 2022 Square Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -13,112 +13,67 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import {
-  StyleSheet, View, Platform, Alert, Animated, Easing, Dimensions,
+  StyleSheet,
+  View,
+  Platform,
+  Alert,
+  Animated,
+  Easing,
+  Dimensions,
 } from 'react-native';
-import { PERMISSIONS, checkMultiple, RESULTS } from 'react-native-permissions';
-import {
-  isAuthorizedAsync,
-} from 'react-native-square-reader-sdk';
+import Permissions, {PERMISSIONS, RESULTS} from 'react-native-permissions';
+import {isAuthorizedAsync} from 'react-native-square-reader-sdk';
 import SquareLogo from '../components/SquareLogo';
-import { backgroundColor } from '../styles/common';
+import {backgroundColor} from '../styles/common';
 
-export function SplashScreen({ navigation, props, route }) {
-  const [logoTranslateY, setLogoTranslateY] = useState(new Animated.Value(0));
-  
+export default function SplashScreen({navigation}) {
+  const [logoTranslateY] = useState(new Animated.Value(0));
+
+  // USEFFECT METHOD
   useEffect(() => {
-    Animated.timing(
-      logoTranslateY,
-      {
-        toValue: -(Dimensions.get('window').height / 2 - 120), // Calculate the position of icon after tanslate
-        easing: Easing.bezier(0.25, 0.1, 0.25, 1),
-        duration: 1500,
-        useNativeDriver: true,
-      },
-    ).start();
+    Animated.timing(logoTranslateY, {
+      toValue: -(Dimensions.get('window').height / 2 - 120), // Calculate the position of icon after tanslate
+      easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+      duration: 1500,
+      useNativeDriver: true,
+    }).start();
 
     window.setTimeout(async () => {
       try {
-        const permissions = await checkMultiple([PERMISSIONS.IOS.MICROPHONE, PERMISSIONS.IOS.LOCATION_WHEN_IN_USE]);
-
-        if (Platform.OS === 'ios' // Android doesn't need to handle permission explicitly
-            && (permissions['ios.permission.MICROPHONE'] !== RESULTS.GRANTED
-              || permissions['ios.permission.LOCATION_WHEN_IN_USE'] !== RESULTS.GRANTED)) {
+        const permissions = await Permissions.checkMultiple([
+          PERMISSIONS.IOS.MICROPHONE,
+          PERMISSIONS.IOS.LOCATION_WHEN_IN_USE,
+        ]);
+        if (
+          Platform.OS === 'ios' && // Android doesn't need to handle permission explicitly
+          (permissions['ios.permission.MICROPHONE'] !== RESULTS.GRANTED ||
+            permissions['ios.permission.LOCATION_WHEN_IN_USE'] !==
+              RESULTS.GRANTED)
+        ) {
           navigation.navigate('PermissionSettings');
           return;
         }
-
         const isAuthorized = await isAuthorizedAsync();
         if (!isAuthorized) {
           navigation.navigate('Auth');
           return;
         }
-
         // Permission has been granted (for iOS only) and readerSDK has been authorized
         navigation.navigate('Checkout');
-      } catch (ex) {
+      } catch (ex: any) {
         Alert.alert('Navigation Error', ex.message);
       }
     }, 1600);
-
   });
+
   return (
     <View style={styles.container}>
-      <SquareLogo style={{ transform: [{ translateY: logoTranslateY }] }} />
+      <SquareLogo style={{transform: [{translateY: logoTranslateY}]}} />
     </View>
   );
 }
-
-
-// const SplashScreen:FC=()=>{
-//   const [logoTranslateY, setLogoTranslateY] = useState(new Animated.Value(0));
-//   useEffect(() => {
-//     Animated.timing(
-//       logoTranslateY,
-//       {
-//         toValue: -(Dimensions.get('window').height / 2 - 120), // Calculate the position of icon after tanslate
-//         easing: Easing.bezier(0.25, 0.1, 0.25, 1),
-//         duration: 1500,
-//         useNativeDriver: true,
-//       },
-//     ).start();
-
-//     window.setTimeout(async () => {
-//       try {
-//         //const navigation=useNavigation();
-//         const permissions = await checkMultiple([PERMISSIONS.IOS.MICROPHONE, PERMISSIONS.IOS.LOCATION_WHEN_IN_USE]);
-
-//         if (Platform.OS === 'ios' // Android doesn't need to handle permission explicitly
-//             && (permissions['ios.permission.MICROPHONE'] !== RESULTS.GRANTED
-//               || permissions['ios.permission.LOCATION_WHEN_IN_USE'] !== RESULTS.GRANTED)) {
-//           navigation.navigate('PermissionSettings');
-//           return;
-//         }
-
-//         const isAuthorized = await isAuthorizedAsync();
-//         if (!isAuthorized) {
-//           navigation.navigate('Auth');
-//           return;
-//         }
-
-//         // Permission has been granted (for iOS only) and readerSDK has been authorized
-//         navigation.navigate('Checkout');
-//       } catch (ex) {
-//         Alert.alert('Navigation Error', ex.message);
-//       }
-//     }, 1600);
-
-//   });
-//   return (
-//     <View style={styles.container}>
-//       <SquareLogo style={{ transform: [{ translateY: logoTranslateY }] }} />
-//     </View>
-//   );
-// }
-
-// export default SplashScreen ;
 
 const styles = StyleSheet.create({
   container: {

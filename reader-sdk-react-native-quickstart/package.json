@@ -1,6 +1,6 @@
 {
   "name": "reader-sdk-react-native-quickstart",
-  "version": "0.0.1",
+  "version": "2.0.0",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
@@ -13,7 +13,6 @@
     "@react-navigation/native": "^6.0.8",
     "@react-navigation/native-stack": "^6.5.0",
     "@react-navigation/stack": "^6.1.1",
-    "react-native-square-reader-sdk": "file:../",
     "react": "17.0.2",
     "react-native": "0.67.2",
     "react-native-camera-kit": "^12.0.0",
@@ -21,7 +20,8 @@
     "react-native-globalize": "^4.5.1",
     "react-native-permissions": "^3.3.1",
     "react-native-safe-area-context": "^3.4.1",
-    "react-native-screens": "^3.12.0"
+    "react-native-screens": "^3.12.0",
+    "react-native-square-reader-sdk": "file:../"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

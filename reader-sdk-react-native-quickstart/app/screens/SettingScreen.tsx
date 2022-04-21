@@ -1,5 +1,5 @@
 /*
-Copyright 2018 Square Inc.
+Copyright 2022 Square Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,28 +14,30 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 import React from 'react';
-import { View, Text, Alert } from 'react-native';
+import {View, Text, Alert} from 'react-native';
 import {
   startReaderSettingsAsync,
   ReaderSettingsErrorSdkNotAuthorized,
   UsageError,
 } from 'react-native-square-reader-sdk';
 import CustomButton from '../components/CustomButton';
-import { defaultStyles } from '../styles/common';
+import {defaultStyles} from '../styles/common';
 
-export function SettingScreen({ navigation, props, route }) {
-  const { goBack } = navigation;
-  const locationName = navigation.getParam('locationName', '');
+export function SettingScreen({navigation, route}) {
+  const {goBack} = navigation;
+  const locationName = route.params.locationName;
 
-  const onStartReaderSettings=async ()=> {
+  // ONSTART READER SETTING
+  const onStartReaderSettings = async () => {
+    const {navigate} = navigation.navigate;
     try {
       await startReaderSettingsAsync();
-    } catch (ex) {
+    } catch (ex: any) {
       let errorMessage = ex.message;
       switch (ex.code) {
         case ReaderSettingsErrorSdkNotAuthorized:
           // Handle reader settings not authorized
-          navigation.navigate('Deauthorizing');
+          navigate('Deauthorizing');
           break;
         case UsageError:
         default:
@@ -47,11 +49,12 @@ export function SettingScreen({ navigation, props, route }) {
           break;
       }
     }
-  }
+  };
 
-  const onDeauthorize=async ()=> {
+  // NAVIGATION TO DEAUTHORIZING SCREEN
+  const onDeauthorize = async () => {
     navigation.navigate('Deauthorizing');
-  }
+  };
 
   return (
     <View style={defaultStyles.pageContainer}>
@@ -67,15 +70,9 @@ export function SettingScreen({ navigation, props, route }) {
           onPress={() => onStartReaderSettings()}
           primary
         />
-        <CustomButton
-          title="Deauthorize"
-          onPress={() => onDeauthorize()}
-        />
-        <CustomButton
-          title="Cancel"
-          onPress={() => goBack()}
-        />
+        <CustomButton title="Deauthorize" onPress={() => onDeauthorize()} />
+        <CustomButton title="Cancel" onPress={() => goBack()} />
       </View>
     </View>
   );
-};
+}

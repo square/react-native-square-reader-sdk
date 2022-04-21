@@ -1,5 +1,5 @@
 /*
-Copyright 2018 Square Inc.
+Copyright 2022 Square Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -13,38 +13,68 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-
 import React from 'react';
-import { View, Text, Alert, Platform } from 'react-native';
-import {check, PERMISSIONS, RESULTS, request} from 'react-native-permissions';
+import {View, Text, Alert, Platform} from 'react-native';
+import RNPermissions, {
+  openSettings,
+  PERMISSIONS,
+  RESULTS,
+} from 'react-native-permissions';
 import CustomButton from '../components/CustomButton';
 import SquareLogo from '../components/SquareLogo';
-import { defaultStyles } from '../styles/common';
+import {defaultStyles} from '../styles/common';
 
-export function ChooseAuthorizeScreen({ navigation, props, route }) {
-  const goToQRAuthorize=async () =>{
+export function ChooseAuthorizeScreen({navigation}) {
+  // CHECK PERMISSION AND SCAN QRCODE
+  const goToQRAuthorize = async () => {
     try {
       let cameraPermission;
-      if(Platform.OS === 'ios')
-      { 
-        cameraPermission = await check(PERMISSIONS.IOS.CAMERA);
+      if (Platform.OS === 'ios') {
+        cameraPermission = await RNPermissions.check(PERMISSIONS.IOS.CAMERA);
+      } else {
+        cameraPermission = await RNPermissions.check(
+          PERMISSIONS.ANDROID.CAMERA,
+        );
       }
-      else
-      {
-        cameraPermission = await check(PERMISSIONS.ANDROID.CAMERA);
-      }
+
+      console.log(cameraPermission);
 
       if (cameraPermission === RESULTS.GRANTED) {
         navigation.navigate('QRAuthorize');
       } else if (cameraPermission === RESULTS.DENIED) {
         let userResponse;
-        if(Platform.OS === 'ios')
-        { 
-          userResponse = await request(PERMISSIONS.ANDROID.CAMERA);
+        if (Platform.OS === 'ios') {
+          userResponse = await RNPermissions.request(PERMISSIONS.IOS.CAMERA);
+        } else {
+          userResponse = await RNPermissions.request(
+            PERMISSIONS.ANDROID.CAMERA,
+          );
         }
-        else
-        {
-          userResponse = await request(PERMISSIONS.ANDROID.CAMERA);
+        if (userResponse === RESULTS.GRANTED) {
+          navigation.navigate('QRAuthorize');
+        }
+      } else if (cameraPermission === RESULTS.UNAVAILABLE) {
+        let userResponse;
+        if (Platform.OS === 'ios') {
+          userResponse = await RNPermissions.request(
+            PERMISSIONS.IOS.MICROPHONE,
+          );
+        } else {
+          userResponse = await RNPermissions.request(
+            PERMISSIONS.ANDROID.CAMERA,
+          );
+        }
+        if (userResponse === RESULTS.GRANTED) {
+          navigation.navigate('QRAuthorize');
+        }
+      } else if (cameraPermission === RESULTS.BLOCKED) {
+        let userResponse;
+        if (Platform.OS === 'ios') {
+          userResponse = await openSettings();
+        } else {
+          userResponse = await RNPermissions.request(
+            PERMISSIONS.ANDROID.CAMERA,
+          );
         }
         if (userResponse === RESULTS.GRANTED) {
           navigation.navigate('QRAuthorize');
@@ -52,10 +82,11 @@ export function ChooseAuthorizeScreen({ navigation, props, route }) {
       } else {
         Alert.alert('Please enable camera permission in settings.');
       }
-    } catch (ex) {
+    } catch (ex: any) {
       Alert.alert('Permission Error', ex.message);
     }
   };
+
   return (
     <View style={defaultStyles.pageContainer}>
       <View style={defaultStyles.logoContainer}>
@@ -84,4 +115,4 @@ export function ChooseAuthorizeScreen({ navigation, props, route }) {
       </View>
     </View>
   );
-};
+}

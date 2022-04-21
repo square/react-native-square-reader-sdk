@@ -1,5 +1,5 @@
 /*
-Copyright 2018 Square Inc.
+Copyright 2022 Square Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,12 +14,14 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
-  View, Text, Alert, Platform,
+  View,
+  Text,
+  Alert,
+  Platform,
   ActionSheetIOS, // eslint-disable-line react-native/split-platform-components
 } from 'react-native';
-import { withGlobalize } from 'react-native-globalize';
 
 import {
   startCheckoutAsync,
@@ -28,22 +30,23 @@ import {
   CheckoutErrorCanceled,
   CheckoutErrorSdkNotAuthorized,
   ReaderSettingsErrorSdkNotAuthorized,
-  UsageError
+  UsageError,
 } from 'react-native-square-reader-sdk';
 
 import CustomButton from '../components/CustomButton';
 import SquareLogo from '../components/SquareLogo';
 import { defaultStyles } from '../styles/common';
 
-export function CheckoutScreen({ navigation, props, route }) {
-  const [locationName, setLocationName]=useState('');
+export default function CheckoutScreen({ navigation }) {
+  const [locationName, setLocationName] = useState('');
 
+  // USEEFFCT METHOD FOR GET AND SET LOCATION DETAILS
   useEffect(() => {
-    (async function() {
+    (async function () {
       try {
         const authorizedLocation = await getAuthorizedLocationAsync();
         setLocationName(authorizedLocation.name);
-      } catch (ex) {
+      } catch (ex: any) {
         if (__DEV__) {
           Alert.alert(ex.debugCode, ex.debugMessage);
         } else {
@@ -52,48 +55,54 @@ export function CheckoutScreen({ navigation, props, route }) {
       }
     })();
   }, []);
-  
-  const onSettings=()=> {
+
+  // ON SETTING CLICK
+  const onSettings = () => {
     if (Platform.OS !== 'ios') {
       navigation.navigate('Setting', { locationName: locationName });
     } else {
-      ActionSheetIOS.showActionSheetWithOptions({
-        options: ['Reader Settings', 'Deauthorize', 'Cancel'],
-        destructiveButtonIndex: 1,
-        cancelButtonIndex: 2,
-        title: `Location: ${locationName}`,
-      },
-      async (buttonIndex) => {
-        if (buttonIndex === 0) {
-          // Handle reader settings
-          try {
-            await startReaderSettingsAsync();
-          } catch (ex) {
-            let errorMessage = ex.message;
-            switch (ex.code) {
-              case ReaderSettingsErrorSdkNotAuthorized:
-                // Handle reader settings not authorized
-                navigation.navigate('Deauthorizing');
-                break;
-              case UsageError:
-              default:
-                if (__DEV__) {
-                  errorMessage += `\n\nDebug Message: ${ex.debugMessage}`;
-                  console.log(`${ex.code}:${ex.debugCode}:${ex.debugMessage}`);
-                }
-                Alert.alert('Error', errorMessage);
-                break;
+      ActionSheetIOS.showActionSheetWithOptions(
+        {
+          options: ['Reader Settings', 'Deauthorize', 'Cancel'],
+          destructiveButtonIndex: 1,
+          cancelButtonIndex: 2,
+          title: `Location: ${locationName}`,
+        },
+        async buttonIndex => {
+          if (buttonIndex === 0) {
+            // Handle reader settings
+            try {
+              await startReaderSettingsAsync();
+            } catch (ex: any) {
+              let errorMessage = ex.message;
+              switch (ex.code) {
+                case ReaderSettingsErrorSdkNotAuthorized:
+                  // Handle reader settings not authorized
+                  navigation.navigate('Deauthorizing');
+                  break;
+                case UsageError:
+                default:
+                  if (__DEV__) {
+                    errorMessage += `\n\nDebug Message: ${ex.debugMessage}`;
+                    console.log(
+                      `${ex.code}:${ex.debugCode}:${ex.debugMessage}`,
+                    );
+                  }
+                  Alert.alert('Error', errorMessage);
+                  break;
+              }
             }
+          } else if (buttonIndex === 1) {
+            // Handle Deauthorize
+            navigation.navigate('Deauthorizing');
           }
-        } else if (buttonIndex === 1) {
-          // Handle Deauthorize
-          navigation.navigate('Deauthorizing');
-        }
-      });
+        },
+      );
     }
-  }
-  
-  const onCheckout=async()=> {
+  };
+
+  // ON CHECKOUT CLICK
+  const onCheckout = async () => {
     // A checkout parameter is required for this checkout method
     const checkoutParams = {
       amountMoney: {
@@ -116,15 +125,7 @@ export function CheckoutScreen({ navigation, props, route }) {
 
     try {
       const checkoutResult = await startCheckoutAsync(checkoutParams);
-      // Consume checkout result from here
-      // const currencyFormatter = this.props.globalize.getCurrencyFormatter(
-      //   checkoutResult.totalMoney.currencyCode,
-      //   { minimumFractionDigits: 0, maximumFractionDigits: 2 },
-      // );
-      // const formattedCurrency = currencyFormatter(checkoutResult.totalMoney.amount / 100);
-      // Alert.alert(`${formattedCurrency} Successfully Charged`, 'See the debugger console for transaction details. You can refund transactions from your Square Dashboard.');
-      // console.log(JSON.stringify(checkoutResult));
-    } catch (ex) {
+    } catch (ex: any) {
       let errorMessage = ex.message;
       switch (ex.code) {
         case CheckoutErrorCanceled:
@@ -144,7 +145,7 @@ export function CheckoutScreen({ navigation, props, route }) {
           break;
       }
     }
-  }
+  };
 
   return (
     <View style={defaultStyles.pageContainer}>
@@ -160,18 +161,8 @@ export function CheckoutScreen({ navigation, props, route }) {
           onPress={() => onCheckout()}
           primary
         />
-        <CustomButton
-          title="Settings"
-          onPress={() => onSettings()}
-        />
+        <CustomButton title="Settings" onPress={() => onSettings()} />
       </View>
     </View>
   );
-};
-
-// CheckoutScreen.propTypes = {
-//   globalize: PropTypes.object.isRequired,
-//   navigation: PropTypes.object.isRequired,
-// };
-
-// export default withGlobalize(CheckoutScreen);
+}

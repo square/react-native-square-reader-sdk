@@ -1,5 +1,5 @@
 /*
-Copyright 2018 Square Inc.
+Copyright 2022 Square Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,33 +14,38 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 import React, {useState} from 'react';
-import { View } from 'react-native';
-import { CameraScreen } from 'react-native-camera-kit';
-import { backgroundColor } from '../styles/common';
+import {CameraScreen} from 'react-native-camera-kit';
+import {backgroundColor} from '../styles/common';
 
-export function QRAuthorizationScreen({ navigation, props, route }) {
+export function QRAuthorizationScreen({navigation}) {
   const [receivedCode, setReceivedCode] = useState(false);
-  const onSuccess=async (e) =>{
-    if (receivedCode) return;
+
+  // ONSUCCES OF QRSCANNER
+  const onSuccess = async (e: any) => {
+    if (receivedCode) {
+      return;
+    }
     setReceivedCode(true);
-    navigation.navigate('Authorizing', { authCode: e.nativeEvent.codeStringValue });
-  }
-    return (
-      // <CameraScreen
-      //   actions={{ leftButtonText: 'Cancel' }}
-      //   onBottomButtonPressed={() => navigation.goBack()}
-      //   showFrame
-      //   colorForScannerFrame={backgroundColor}
-      //   scanBarcode
-      //   onReadCode={(e) => onSuccess(e)}
-      //   hideControls={false}
-      //   heightForScannerFrame={300}
-      //   cameraOptions={{
-      //     flashMode: 'auto',
-      //     focusMode: 'on',
-      //     zoomMode: 'off',
-      //   }}
-      // />
-      <View/>
-    );
-};
+    navigation.navigate('Authorizing', {
+      authCode: e.nativeEvent.codeStringValue,
+    });
+  };
+
+  return (
+    <CameraScreen
+      actions={{leftButtonText: 'Cancel'}}
+      onBottomButtonPressed={() => navigation.goBack()}
+      showFrame
+      colorForScannerFrame={backgroundColor}
+      scanBarcode
+      onReadCode={e => onSuccess(e)}
+      hideControls={false}
+      heightForScannerFrame={300}
+      cameraOptions={{
+        flashMode: 'auto',
+        focusMode: 'on',
+        zoomMode: 'off',
+      }}
+    />
+  );
+}

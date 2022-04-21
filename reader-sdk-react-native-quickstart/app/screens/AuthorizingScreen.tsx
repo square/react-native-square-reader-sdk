@@ -1,5 +1,5 @@
 /*
-Copyright 2018 Square Inc.
+Copyright 2022 Square Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -13,17 +13,24 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, { useEffect } from 'react';
-import { Alert } from 'react-native';
-import { authorizeAsync, AuthorizeErrorNoNetwork, UsageError } from 'react-native-square-reader-sdk';
+import React, {useEffect} from 'react';
+import {Alert} from 'react-native';
+import {
+  authorizeAsync,
+  AuthorizeErrorNoNetwork,
+  UsageError,
+} from 'react-native-square-reader-sdk';
 import ProgressView from '../components/ProgressView';
 
-export function AuthorizingScreen({ navigation, props, route }) {
-  useEffect(()=>{
+export default function AuthorizingScreen({navigation, route}) {
+  // GET AUTHORIZE CODE
+  useEffect(() => {
     authorize();
   });
-  const authorize=async()=> {
-    const authCode = navigation.getParam('authCode', '');
+
+  // CHECK AUTHENTICATION CODE
+  const authorize = async () => {
+    const authCode = route.params.authCode;
     if (!authCode) {
       Alert.alert('Error: empty auth code');
       navigation.goBack();
@@ -32,19 +39,20 @@ export function AuthorizingScreen({ navigation, props, route }) {
     try {
       await authorizeAsync(authCode);
       navigation.navigate('Checkout');
-    } catch (ex) {
+    } catch (ex: any) {
       let errorMessage = ex.message;
+      // SWITCHCASE FOR ERROR CONDITIONS
       switch (ex.code) {
         case AuthorizeErrorNoNetwork:
           // Remind connecting to network and retry
-          Alert.alert(
-            'Network error',
-            ex.message,
-            [
-              { text: 'Retry', onPress: () => authorize() },
-              { text: 'Cancel', onPress: () => navigation.navigate('Authorize'), style: 'cancel' },
-            ],
-          );
+          Alert.alert('Network error', ex.message, [
+            {text: 'Retry', onPress: () => authorize()},
+            {
+              text: 'Cancel',
+              onPress: () => navigation.navigate('Authorize'),
+              style: 'cancel',
+            },
+          ]);
           break;
         case UsageError:
           if (__DEV__) {
@@ -60,11 +68,8 @@ export function AuthorizingScreen({ navigation, props, route }) {
           break;
       }
     }
-  }
+  };
 
-  return (
-    <ProgressView />
-  );
-};
-
-
+  // MAIN VIEW DESIGN
+  return <ProgressView />;
+}
