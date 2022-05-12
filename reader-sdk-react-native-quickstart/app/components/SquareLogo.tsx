@@ -1,5 +1,5 @@
 /*
-Copyright 2018 Square Inc.
+Copyright 2022 Square Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,29 +14,24 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import React from 'react';
-import { Animated } from 'react-native';
-import PropTypes from 'prop-types';
+import React, {FC} from 'react';
+import {Animated} from 'react-native';
 
 const iconImage = require('./img/ic_jewel.png');
 
-const SquareLogo = (props) => (
-  <Animated.Image
-    style={[{ width: props.width || 48, height: props.height || 48 }, props.style]}
-    source={iconImage}
-  />
-);
-
-SquareLogo.defaultProps = {
-  width: 48,
-  height: 48,
-  style: null,
+const SquareLogo: FC<Props> = props => {
+  return (
+    <Animated.Image
+      style={[{width: props.width, height: props.height}, props.style]}
+      source={iconImage}
+    />
+  );
 };
 
-SquareLogo.propTypes = {
-  width: PropTypes.number,
-  height: PropTypes.number,
-  style: PropTypes.object,
-};
+class Props {
+  width?: number = 48;
+  height?: number = 48;
+  style?: any = null;
+}
 
 export default SquareLogo;
