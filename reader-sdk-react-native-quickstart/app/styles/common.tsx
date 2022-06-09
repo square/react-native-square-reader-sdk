@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 
 export const backgroundColor = '#4087E1';
 
@@ -41,7 +41,7 @@ export const defaultStyles = StyleSheet.create({
     backgroundColor,
     flex: 1,
     justifyContent: 'flex-end',
-    padding: 32,
+    padding: 20,
   },
   subtitle: {
     color: 'rgba(255, 255, 255, 0.85)',
@@ -53,4 +53,10 @@ export const defaultStyles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
   },
+  logoStyle: {
+    width: 100, height: 100
+  },
+  settingIconStyle: {
+    width: 24, height: 24, alignSelf: 'flex-end', tintColor: 'white'
+  }
 });

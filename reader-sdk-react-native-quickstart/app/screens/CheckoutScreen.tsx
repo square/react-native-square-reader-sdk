@@ -20,8 +20,10 @@ import {
   Text,
   Alert,
   Platform,
+  Image,
   ActionSheetIOS, // eslint-disable-line react-native/split-platform-components
 } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import {
   startCheckoutAsync,
@@ -36,6 +38,7 @@ import {
 import CustomButton from '../components/CustomButton';
 import SquareLogo from '../components/SquareLogo';
 import { defaultStyles } from '../styles/common';
+const iconImage = require('../components/img/setting.png');
 
 export default function CheckoutScreen({ navigation }) {
   const [locationName, setLocationName] = useState('');
@@ -149,8 +152,14 @@ export default function CheckoutScreen({ navigation }) {
 
   return (
     <View style={defaultStyles.pageContainer}>
+      <TouchableOpacity onPress={() => onSettings()}>
+        <Image
+          style={defaultStyles.settingIconStyle}
+          source={iconImage}
+        />
+      </TouchableOpacity>
       <View style={defaultStyles.logoContainer}>
-        <SquareLogo />
+        <SquareLogo style={defaultStyles.logoStyle} />
       </View>
       <View style={defaultStyles.descriptionContainer}>
         <Text style={defaultStyles.title}>Take a payment.</Text>
@@ -161,7 +170,7 @@ export default function CheckoutScreen({ navigation }) {
           onPress={() => onCheckout()}
           primary
         />
-        <CustomButton title="Settings" onPress={() => onSettings()} />
+        {/* <CustomButton title="Settings" onPress={() => onSettings()} /> */}
       </View>
     </View>
   );
