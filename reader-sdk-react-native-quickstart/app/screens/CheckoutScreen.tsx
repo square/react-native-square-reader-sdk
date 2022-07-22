@@ -170,7 +170,6 @@ export default function CheckoutScreen({ navigation }) {
           onPress={() => onCheckout()}
           primary
         />
-        {/* <CustomButton title="Settings" onPress={() => onSettings()} /> */}
       </View>
     </View>
   );
