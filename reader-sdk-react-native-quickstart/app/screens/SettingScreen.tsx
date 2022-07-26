@@ -14,22 +14,22 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 import React from 'react';
-import {View, Text, Alert} from 'react-native';
+import { View, Text, Alert } from 'react-native';
 import {
   startReaderSettingsAsync,
   ReaderSettingsErrorSdkNotAuthorized,
   UsageError,
 } from 'react-native-square-reader-sdk';
 import CustomButton from '../components/CustomButton';
-import {defaultStyles} from '../styles/common';
+import { defaultStyles } from '../styles/common';
 
-export function SettingScreen({navigation, route}) {
-  const {goBack} = navigation;
+export function SettingScreen({ navigation, route }) {
+  const { goBack } = navigation;
   const locationName = route.params.locationName;
 
   // ONSTART READER SETTING
   const onStartReaderSettings = async () => {
-    const {navigate} = navigation.navigate;
+    const { navigate } = navigation.navigate;
     try {
       await startReaderSettingsAsync();
     } catch (ex: any) {
@@ -51,6 +51,27 @@ export function SettingScreen({navigation, route}) {
     }
   };
 
+  const showConfirmDialog = () => {
+    return Alert.alert(
+      "Alert",
+      "Are you sure you want to Deauthorize Token?",
+      [
+        // The "Yes" button
+        {
+          text: "Yes",
+          onPress: () => {
+            onDeauthorize()
+          },
+        },
+        // The "No" button
+        // Does nothing but dismiss the dialog when tapped
+        {
+          text: "No",
+        },
+      ]
+    );
+  };
+
   // NAVIGATION TO DEAUTHORIZING SCREEN
   const onDeauthorize = async () => {
     navigation.navigate('Deauthorizing');
@@ -70,7 +91,7 @@ export function SettingScreen({navigation, route}) {
           onPress={() => onStartReaderSettings()}
           primary
         />
-        <CustomButton title="Deauthorize" onPress={() => onDeauthorize()} />
+        <CustomButton title="Deauthorize" onPress={() => showConfirmDialog()} />
         <CustomButton title="Cancel" onPress={() => goBack()} />
       </View>
     </View>
