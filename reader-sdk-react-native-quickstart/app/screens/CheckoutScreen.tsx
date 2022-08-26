@@ -20,6 +20,8 @@ import {
   Text,
   Alert,
   Platform,
+  Image,
+  TouchableOpacity,
   ActionSheetIOS, // eslint-disable-line react-native/split-platform-components
 } from 'react-native';
 
