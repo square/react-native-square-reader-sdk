@@ -21,9 +21,9 @@ import {
   Alert,
   Platform,
   Image,
+  TouchableOpacity,
   ActionSheetIOS, // eslint-disable-line react-native/split-platform-components
 } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import {
   startCheckoutAsync,
