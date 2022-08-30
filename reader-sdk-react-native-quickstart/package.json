@@ -14,7 +14,7 @@
     "@react-navigation/native-stack": "^6.5.0",
     "@react-navigation/stack": "^6.1.1",
     "react": "17.0.2",
-    "react-native": "0.67.2",
+    "react-native": "0.69.5",
     "react-native-camera-kit": "^12.0.0",
     "react-native-gesture-handler": "^2.3.2",
     "react-native-globalize": "^4.5.1",
