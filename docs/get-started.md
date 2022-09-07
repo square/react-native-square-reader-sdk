@@ -108,8 +108,8 @@ installing Reader SDK for Android, see [Reader SDK Android Setup Guide].
     android {
       // ...
       defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 28
+        minSdkVersion 24
+        targetSdkVersion 30
         multiDexEnabled true
       }
     }
