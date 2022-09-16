@@ -64,16 +64,21 @@ class MainApplication : Application(), ReactApplication {
          * @param reactInstanceManager
          */
         private fun initializeFlipper(
-                context: Context, reactInstanceManager: ReactInstanceManager) {
+            context: Context, reactInstanceManager: ReactInstanceManager
+        ) {
             if (BuildConfig.DEBUG) {
                 try {
                     /*
-         We use reflection here to pick up the class that initializes Flipper,
-        since Flipper library is not available in release mode
-        */
+                    We use reflection here to pick up the class that initializes Flipper,
+                   since Flipper library is not available in release mode
+                   */
                     val aClass = Class.forName("com.rnreadersdksample.ReactNativeFlipper")
-                    aClass.getMethod("initializeFlipper", Context::class.java, ReactInstanceManager::class.java)
-                            .invoke(null, context, reactInstanceManager)
+                    aClass.getMethod(
+                        "initializeFlipper",
+                        Context::class.java,
+                        ReactInstanceManager::class.java
+                    )
+                        .invoke(null, context, reactInstanceManager)
                 } catch (e: ClassNotFoundException) {
                     e.printStackTrace()
                 } catch (e: NoSuchMethodException) {

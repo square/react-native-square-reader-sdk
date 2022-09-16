@@ -239,7 +239,7 @@ installing Reader SDK for iOS, see [Reader SDK iOS Setup Guide].
       processing. Upload your account logo, feature photo and product images
       with the photos stored on your mobile device.
 
-1. Update the `application:didFinishLaunchingWithOptions:` method in your app
+1. Update the `func application` method in your app
    delegate to initialize Reader SDK:
     ```Swift
     import Foundation
