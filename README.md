@@ -6,8 +6,8 @@
 This repo contains a React Native plugin for Square [Reader SDK]. Reader SDK for
 React Native supports the following native Reader SDK versions:
 
-  * iOS: 1.4.9 and above
-  * Android: 1.4.4 and above
+  * iOS: 1.6.1 and above
+  * Android: 1.6.1 and above
 
 >This plugin loads latest version of native Reader SDK by default according to [update policy for Reader SDK].
 
@@ -25,9 +25,9 @@ In addition to the standard React Native directories, this repo includes:
 
 ### Android
 
-* minSdkVersion is API 21 (Lollipop 5.0) or higher.
-* Android SDK platform: API 28 (Pie, 9.0) or lower.
-* Android SDK build tools: 26.0.3
+* minSdkVersion is API 24 or higher.
+* Android SDK platform: API 30.
+* Android SDK build tools: 28.0.3
 * Android Gradle Plugin: 3.0.0 or greater.
 * Support library: 28.0.0
 * Google Play Services: 16.0.1

@@ -21,14 +21,14 @@ buildscript {
     }
 
     dependencies {
-        classpath("com.android.tools.build:gradle:4.2.0")
+        classpath("com.android.tools.build:gradle:4.2.2")
     }
 }
 
 apply plugin: 'com.android.library'
 
 def DEFAULT_PLAY_SERVICES_BASE_VERSION = '16.0.1'
-def READER_SDK_VERSION = '[1.4.4, 2.0)'
+def READER_SDK_VERSION = '[1.6.1, 2.0)'
 
 android {
     compileSdkVersion 30
@@ -39,7 +39,7 @@ android {
     }
 
     defaultConfig {
-        minSdkVersion 21
+        minSdkVersion 24
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"

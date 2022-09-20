@@ -1,10 +1,3 @@
-//
-//  File.swift
-//  RNReaderSDKSample
-//
-//  Created by Bharat Cholera on 01/07/22.
-//  Copyright © 2022 Facebook. All rights reserved.
-//
 
 import Foundation
 import SquareReaderSDK

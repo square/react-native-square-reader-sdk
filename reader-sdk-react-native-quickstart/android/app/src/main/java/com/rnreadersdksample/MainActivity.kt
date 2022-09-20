@@ -10,24 +10,21 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-package com.rnreadersdksample;
+package com.rnreadersdksample
 
-import com.facebook.react.ReactActivity;
-import android.os.Bundle;
+import com.facebook.react.ReactActivity
+import android.os.Bundle
 
-public class MainActivity extends ReactActivity {
+class MainActivity : ReactActivity() {
+    /**
+     * Returns the name of the main component registered from JavaScript. This is used to schedule
+     * rendering of the component.
+     */
+    override fun getMainComponentName(): String? {
+        return "RNReaderSDKSample"
+    }
 
-  /**
-   * Returns the name of the main component registered from JavaScript. This is used to schedule
-   * rendering of the component.
-   */
-  @Override
-  protected String getMainComponentName() {
-    return "RNReaderSDKSample";
-  }
-
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(null);
-  }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(null)
+    }
 }

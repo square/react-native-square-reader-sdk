@@ -108,8 +108,8 @@ installing Reader SDK for Android, see [Reader SDK Android Setup Guide].
     android {
       // ...
       defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 28
+        minSdkVersion 24
+        targetSdkVersion 30
         multiDexEnabled true
       }
     }
@@ -142,17 +142,18 @@ installing Reader SDK for Android, see [Reader SDK Android Setup Guide].
       // ...
     }
     ```
-1. Open `MainApplication.java` and add code to Import and initialize Reader SDK:
-    ```java
+1. Open `MainApplication.kt` and add code to Import and initialize Reader SDK:
+    ```kotlin
     import com.squareup.sdk.reader.ReaderSdk;
 
-    public class MainApplication extends Application {
+    class MainApplication : Application(), ReactApplication {
 
-      @Override public void onCreate() {
-        super.onCreate();
-        ReaderSdk.initialize(this);
+    override fun onCreate() {
+        super.onCreate()
+        ReaderSdk.initialize(this)
       }
     }
+
     ```
 
 ---
@@ -237,28 +238,26 @@ installing Reader SDK for iOS, see [Reader SDK iOS Setup Guide].
    * `NSPhotoLibraryUsageDescription` : This app integrates with Square for card
       processing. Upload your account logo, feature photo and product images
       with the photos stored on your mobile device.
-1. Update the `application:didFinishLaunchingWithOptions:` method in your app
+
+1. Update the `func application` method in your app
    delegate to initialize Reader SDK:
-    ```
-    #import "AppDelegate.h"
+    ```Swift
+    import Foundation
+    import SquareReaderSDK
 
-    #import <React/RCTBundleURLProvider.h>
-    #import <React/RCTRootView.h>
+    @UIApplicationMain
+    class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    @import SquareReaderSDK;
-
-    @implementation AppDelegate
-
-    (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool
     {
+    
+    //...
 
-    // ...
-
-    [SQRDReaderSDK initializeWithApplicationLaunchOptions:launchOptions];
-    return YES;
+     SQRDReaderSDK.initialize(applicationLaunchOptions: launchOptions)
+     return true
     }
+   }
 
-    @end
     ```
 
 You will also need to add code to your React Native project to request device and

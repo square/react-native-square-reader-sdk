@@ -1,5 +1,11 @@
 ## Changelog
 
+### v1.4.1 Sept 06, 2022
+
+* Bump the minimum Reader SDK version support to 1.6.1 for iOS and 1.6.1 for Android
+* Update react-native-quickstart UI 
+* Support CompileSDK and targetSDK 30+ on Android
+
 ### v1.4.0 July 13, 2021
 
 * Upgrade React Native version to 64.1
