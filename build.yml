@@ -28,15 +28,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-caches-                
       - name: Install npm dependencies  
-        uses: actions/checkout@v2
-        with:
-          SQUARE_READER_SDK_APPLICATION_ID: ${{secrets.SQUARE_READER_SDK_APPLICATION_ID}}
-          SQUARE_READER_SDK_REPOSITORY_PASSWORD: ${{secrets.SQUARE_READER_SDK_REPOSITORY_PASSWORD}}
-        env:
-          SQUARE_READER_SDK_APPLICATION_ID: ${{secrets.SQUARE_READER_SDK_APPLICATION_ID}}
-          SQUARE_READER_SDK_REPOSITORY_PASSWORD: ${{secrets.SQUARE_READER_SDK_REPOSITORY_PASSWORD}}  
+      - uses: actions/checkout@v2
       - run: |
           cd reader-sdk-react-native-quickstart && yarn
+          cd android
+          ./gradlew assembleDebug 
   build-ios:
     needs: install-and-test
     runs-on: macos-latest
