@@ -424,7 +424,7 @@ Contains details related to a `cash` tender used in a successful checkout flow.
 Field            | Type            | Description
 ---------------- | --------------- | -----------------
 buyerTenderMoney | [Money](#money) | The total payment amount provided as `cash` during checkout.
-changBackMoney   | [Money](#money) | The total change provided as `cash` during checkout.
+changeBackMoney   | [Money](#money) | The total change provided as `cash` during checkout.
 
 #### Example JSON
 
@@ -434,7 +434,7 @@ changBackMoney   | [Money](#money) | The total change provided as `cash` during 
     "currencyCode": "USD",
     "amount": 110
   },
-  "changBackMoney": {
+  "changeBackMoney": {
     "currencyCode": "USD",
     "amount": 10
   }
@@ -638,7 +638,7 @@ type        | [TenderType](#tendertype)   | The method used to make payment.
       "currencyCode": "USD",
       "amount": 2000
     },
-    "changBackMoney": {
+    "changeBackMoney": {
       "currencyCode": "USD",
       "amount": 500
     }
