@@ -73,7 +73,7 @@ export default function ValidateCheckoutParameters(checkoutParams:CheckoutParams
     throw new Error(JSON.stringify(paramError));
   }
 
-  if (hasNonNullProperty(checkoutParams.tipSettings, 'tipSettings')) {
+  if (hasNonNullProperty(checkoutParams, 'tipSettings')) {
     // check tipSettings
     const tipSettings:TipSettings = checkoutParams.tipSettings;
     if (hasNonNullProperty(tipSettings, 'showCustomTipField') && typeof tipSettings.showCustomTipField !== 'boolean') {
