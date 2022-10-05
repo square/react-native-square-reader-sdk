@@ -8,6 +8,7 @@
     "url": "https://github.com/square/react-native-square-reader-sdk.git"
   },
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "lint": "eslint ./ --ext .js",
     "test": "jest"
