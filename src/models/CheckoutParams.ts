@@ -16,7 +16,7 @@ interface CheckoutParams {
 
     note?: string;
     
-    tipSettings?:TipSettings;
+    tipSettings:TipSettings;
 
     additionalPaymentTypes?: string[];
 }

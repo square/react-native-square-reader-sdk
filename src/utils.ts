@@ -73,9 +73,9 @@ export default function ValidateCheckoutParameters(checkoutParams:CheckoutParams
     throw new Error(JSON.stringify(paramError));
   }
 
-  if (hasNonNullProperty(checkoutParams.tipSettings, 'tipSettings')) {
+  if (hasNonNullProperty(checkoutParams, 'tipSettings')) {
     // check tipSettings
-    const tipSettings:TipSettings = checkoutParams.tipSettings;
+    const {tipSettings} = checkoutParams;
     if (hasNonNullProperty(tipSettings, 'showCustomTipField') && typeof tipSettings.showCustomTipField !== 'boolean') {
       paramError.debugMessage += "'showCustomTipField' is not a boolean";
       throw new Error(JSON.stringify(paramError));
