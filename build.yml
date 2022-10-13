@@ -31,8 +31,7 @@ jobs:
       - uses: actions/checkout@v2
       - run: |
           cd reader-sdk-react-native-quickstart && yarn
-          cd android
-          ./gradlew assembleDebug 
+          cd android && ./gradlew assembleDebug 
   build-ios:
     needs: install-and-test
     runs-on: macos-latest
