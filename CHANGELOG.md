@@ -1,5 +1,10 @@
 ## Changelog
 
+### v1.4.2 Nov 02, 2022
+
+* Fix the crach issue when tipSetting is undefined
+* Fix the AmountMoney required/optional fields
+
 ### v1.4.1 Sept 06, 2022
 
 * Bump the minimum Reader SDK version support to 1.6.1 for iOS and 1.6.1 for Android

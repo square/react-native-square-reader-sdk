@@ -1,7 +1,6 @@
 interface AmountMoney {
-    amount?: number;
+    amount: number;
     
-    currencyCode: string;
-      
+    currencyCode?: string;   
 }
 export default AmountMoney;
