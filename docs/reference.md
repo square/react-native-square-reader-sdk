@@ -575,7 +575,7 @@ locationId                    | String          | A unique ID for the location a
 
 ---
 
-### Money
+### AmountMoney
 
 Captures information about the amount tendered during a transaction. **Monetary
 amounts are specified, in the smallest denomination of the currency indicated**.
@@ -587,8 +587,8 @@ Field        | Type    | Description
 amount       | integer | **REQUIRED** The amount of money, in the smallest denomination of the indicated currency.
 currencyCode | string  | The type of currency, in [ISO 4217 format]. For example, the currency code for US dollars is USD.
 
-All `Money` objects require an `amount` and `currencyCode` but `currenyCode` is
-optional for the Reader SDK React Native plugin because `Money` objects will use
+All `AmountMoney` objects require an `amount` and `currencyCode` but `currenyCode` is
+optional for the Reader SDK React Native plugin because `AmountMoney` objects will use
 the currency code of the currently authorized location by default.
 
 #### Example JSON
