@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:      
       - name: Cache Gradle Wrapper
-        uses: actions/cache@v3
+        uses: actions/cache@v2
         with:
           path: ~/.gradle/wrapper
           key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
