@@ -11,18 +11,34 @@ jobs:
       - run: |
           yarn && yarn lint && yarn test && cd reader-sdk-react-native-quickstart && yarn
           yarn lint && cd ..
-  build-android:
+   build-android:
     needs: install-and-test
     runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    - name: set up JDK 11
-      uses: actions/setup-java@v3
-      with:
-        java-version: '11'
-        distribution: 'temurin'
-    - name: Build with Gradle
-      run: ./gradlew build    
+    steps:      
+      - name: Cache Gradle Wrapper
+        uses: actions/cache@v3
+        with:
+          path: ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
+      - name: Cache Gradle Dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-caches-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-caches-                
+      - name: Install npm dependencies  
+        uses: actions/checkout@v3
+        with:
+          SQUARE_READER_SDK_APPLICATION_ID: ${{secrets.SQUARE_READER_SDK_APPLICATION_ID}}
+          SQUARE_READER_SDK_REPOSITORY_PASSWORD: ${{secrets.SQUARE_READER_SDK_REPOSITORY_PASSWORD}}
+        env:
+          SQUARE_READER_SDK_APPLICATION_ID: ${{secrets.SQUARE_READER_SDK_APPLICATION_ID}}
+          SQUARE_READER_SDK_REPOSITORY_PASSWORD: ${{secrets.SQUARE_READER_SDK_REPOSITORY_PASSWORD}}  
+      - run: |
+          cd reader-sdk-react-native-quickstart && yarn  
+          cd android
+          ./gradlew clean build -PSQUARE_READER_SDK_APPLICATION_ID ${{ secrets.SQUARE_READER_SDK_APPLICATION_ID }} -PSQUARE_READER_SDK_REPOSITORY_PASSWORD ${{ secrets.SQUARE_READER_SDK_REPOSITORY_PASSWORD }} 
   build-ios:
     needs: install-and-test
     runs-on: macos-latest
