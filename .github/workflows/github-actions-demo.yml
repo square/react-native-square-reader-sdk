@@ -37,5 +37,5 @@ jobs:
           SQUARE_READER_SDK_REPOSITORY_PASSWORD: ${{secrets.SQUARE_READER_SDK_REPOSITORY_PASSWORD}}
       - run: |
           cd reader-sdk-react-native-quickstart && yarn
-          cd android && ./gradlew bundleRelease --no-daemon
+          -PSQUARE_READER_SDK_APPLICATION_ID ${{ secrets.SQUARE_READER_SDK_APPLICATION_ID }} -PSQUARE_READER_SDK_REPOSITORY_PASSWORD ${{ secrets.SQUARE_READER_SDK_REPOSITORY_PASSWORD }}
           
