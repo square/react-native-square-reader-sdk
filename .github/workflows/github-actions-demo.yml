@@ -39,4 +39,4 @@ jobs:
           cd reader-sdk-react-native-quickstart && yarn
           cd android
           ./gradlew clean
-          ./gradlew build -PSQUARE_READER_SDK_APPLICATION_ID ${{ secrets.SQUARE_READER_SDK_APPLICATION_ID }} -PSQUARE_READER_SDK_REPOSITORY_PASSWORD ${{ secrets.SQUARE_READER_SDK_REPOSITORY_PASSWORD }}
+          ./gradlew build --stacktrace --debug -PSQUARE_READER_SDK_APPLICATION_ID ${{ secrets.SQUARE_READER_SDK_APPLICATION_ID }} -PSQUARE_READER_SDK_REPOSITORY_PASSWORD ${{ secrets.SQUARE_READER_SDK_REPOSITORY_PASSWORD }}
