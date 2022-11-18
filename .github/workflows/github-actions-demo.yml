@@ -38,5 +38,3 @@ jobs:
       - run: |
           cd reader-sdk-react-native-quickstart && yarn
           cd android
-          ./gradlew clean 
-          ./gradlew build
