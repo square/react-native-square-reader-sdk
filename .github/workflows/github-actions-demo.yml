@@ -13,7 +13,6 @@ jobs:
           yarn && yarn lint && yarn test && cd reader-sdk-react-native-quickstart && yarn
           yarn lint && cd ..
   build-ios:
-    needs: install-and-test
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
