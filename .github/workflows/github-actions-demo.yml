@@ -26,7 +26,7 @@ jobs:
           SQUARE_READER_SDK_APPLICATION_ID: ${{secrets.SQUARE_READER_SDK_APPLICATION_ID}}
           SQUARE_READER_SDK_REPOSITORY_PASSWORD: ${{secrets.SQUARE_READER_SDK_REPOSITORY_PASSWORD}}
       - run: |
-          gem install cocoapods
+          sudo arch -x86_64 gem install ffi 
           cd reader-sdk-react-native-quickstart
           yarn
           cd ios && arch -x86_64 pod install
