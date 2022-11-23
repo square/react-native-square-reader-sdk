@@ -24,22 +24,9 @@ const {
   RNReaderSDKStoreCustomerCard,
 } = NativeModules;
 
-function createReaderSDKError(ex) {
-  try {
-    const errorDetails = JSON.parse(ex.message);
-    ex.message = errorDetails.message; // eslint-disable-line no-param-reassign
-    ex.debugCode = errorDetails.debugCode; // eslint-disable-line no-param-reassign
-    ex.debugMessage = errorDetails.debugMessage; // eslint-disable-line no-param-reassign
-  } catch (parseEx) {
-    ex.parseEx = parseEx; // eslint-disable-line no-param-reassign
-  }
-  return ex;
-}
-
 export async function authorizeAsync(authCode) {
   try {
-    const value = await RNReaderSDKAuthorization.authorize(authCode);
-    return value;
+    return await RNReaderSDKAuthorization.authorize(authCode);
   } catch (ex) {
     throw createReaderSDKError(ex);
   }
@@ -55,8 +42,7 @@ export async function deauthorizeAsync() {
 
 export async function isAuthorizedAsync() {
   try {
-    const value = await RNReaderSDKAuthorization.isAuthorized();
-    return value;
+    return await RNReaderSDKAuthorization.isAuthorized();
   } catch (ex) {
     throw createReaderSDKError(ex);
   }
@@ -64,8 +50,7 @@ export async function isAuthorizedAsync() {
 
 export async function isAuthorizationInProgressAsync() {
   try {
-    const value = await RNReaderSDKAuthorization.isAuthorizationInProgress();
-    return value;
+    return await RNReaderSDKAuthorization.isAuthorizationInProgress();
   } catch (ex) {
     throw createReaderSDKError(ex);
   }
@@ -73,8 +58,7 @@ export async function isAuthorizationInProgressAsync() {
 
 export async function canDeauthorizeAsync() {
   try {
-    const value = await RNReaderSDKAuthorization.canDeauthorize();
-    return value;
+    return await RNReaderSDKAuthorization.canDeauthorize();
   } catch (ex) {
     throw createReaderSDKError(ex);
   }
@@ -82,8 +66,7 @@ export async function canDeauthorizeAsync() {
 
 export async function getAuthorizedLocationAsync() {
   try {
-    const value = await RNReaderSDKAuthorization.authorizedLocation();
-    return value;
+    return await RNReaderSDKAuthorization.authorizedLocation();
   } catch (ex) {
     throw createReaderSDKError(ex);
   }
@@ -92,8 +75,7 @@ export async function getAuthorizedLocationAsync() {
 export async function startCheckoutAsync(checkoutParams) {
   try {
     ValidateCheckoutParameters(checkoutParams);
-    const value = await RNReaderSDKCheckout.startCheckout(checkoutParams);
-    return value;
+    return await RNReaderSDKCheckout.startCheckout(checkoutParams);
   } catch (ex) {
     throw createReaderSDKError(ex);
   }
@@ -109,8 +91,7 @@ export async function startReaderSettingsAsync() {
 
 export async function startStoreCardAsync(customerId) {
   try {
-    const value = await RNReaderSDKStoreCustomerCard.startStoreCard(customerId);
-    return value;
+    return await RNReaderSDKStoreCustomerCard.startStoreCard(customerId);
   } catch (ex) {
     throw createReaderSDKError(ex);
   }
@@ -133,3 +114,16 @@ export const StoreCustomerCardCancelled = 'STORE_CUSTOMER_CARD_CANCELED';
 export const StoreCustomerCardInvalidCustomerId = 'STORE_CUSTOMER_CARD_INVALID_CUSTOMER_ID';
 export const StoreCustomerCardSdkNotAuthorized = 'STORE_CUSTOMER_CARD_SDK_NOT_AUTHORIZED';
 export const StoreCustomerCardNoNetwork = 'STORE_CUSTOMER_CARD_NO_NETWORK';
+
+function createReaderSDKError(ex) {
+  try {
+    const errorDetails = JSON.parse(ex.message);
+    ex.message = errorDetails.message; // eslint-disable-line no-param-reassign
+    ex.debugCode = errorDetails.debugCode; // eslint-disable-line no-param-reassign
+    ex.debugMessage = errorDetails.debugMessage; // eslint-disable-line no-param-reassign
+  } catch (parseEx) {
+    ex.parseEx = parseEx; // eslint-disable-line no-param-reassign
+  }
+
+  return ex;
+}
