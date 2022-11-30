@@ -2,6 +2,9 @@ name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push]
 jobs:
+  env:
+    SQUARE_READER_SDK_APPLICATION_ID: ${{secrets.SQUARE_SDK_APPLICATION_ID}}
+    SQUARE_READER_SDK_REPOSITORY_PASSWORD: ${{secrets.SQUARE_SDK_REPOSITORY_PASSWORD}}
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
@@ -59,9 +62,6 @@ jobs:
       - name: Install npm dependencies
         uses: actions/checkout@v2
         with:
-          SQUARE_READER_SDK_APPLICATION_ID: ${{secrets.SQUARE_SDK_APPLICATION_ID}}
-          SQUARE_READER_SDK_REPOSITORY_PASSWORD: ${{secrets.SQUARE_SDK_REPOSITORY_PASSWORD}}
-        env:
           SQUARE_READER_SDK_APPLICATION_ID: ${{secrets.SQUARE_SDK_APPLICATION_ID}}
           SQUARE_READER_SDK_REPOSITORY_PASSWORD: ${{secrets.SQUARE_SDK_REPOSITORY_PASSWORD}}
       - run: |
