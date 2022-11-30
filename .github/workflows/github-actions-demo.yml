@@ -67,6 +67,6 @@ jobs:
       - run: |
           cd reader-sdk-react-native-quickstart && yarn  
           cd android
-          -PSQUARE_READER_SDK_APPLICATION_ID: ${{secrets.SQUARE_SDK_APPLICATION_ID}}
-          -PSQUARE_READER_SDK_REPOSITORY_PASSWORD: ${{secrets.SQUARE_SDK_REPOSITORY_PASSWORD}}
+          SQUARE_READER_SDK_APPLICATION_ID: ${{secrets.SQUARE_SDK_APPLICATION_ID}}
+          SQUARE_READER_SDK_REPOSITORY_PASSWORD: ${{secrets.SQUARE_SDK_REPOSITORY_PASSWORD}}
           -x :react-native-camera-kit:lint
