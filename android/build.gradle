@@ -68,7 +68,7 @@ repositories {
 }
 
 dependencies {
-    def readerSdkVersion = rootProject.hasProperty('readerSdkVersion') ? rootProject.readerSdkVersion : READER_SDK_VERSION
+    def readerSdkVersion = '[1.6.1, 2.0)'
     def playServicesBaseVersion = rootProject.hasProperty('googlePlayServiceVersion') ? rootProject.googlePlayServiceVersion : DEFAULT_PLAY_SERVICES_BASE_VERSION
     implementation 'com.facebook.react:react-native:+'
     implementation "com.google.android.gms:play-services-base:$playServicesBaseVersion"
