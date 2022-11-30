@@ -28,6 +28,7 @@ buildscript {
         minSdkVersion = 24
         compileSdkVersion = 31
         targetSdkVersion = 31
+        readerSdkVersion = "[1.6.1, 2.0)"
         ndkVersion = "21.4.7075529"
         kotlin_version = '1.4.10'
     }
