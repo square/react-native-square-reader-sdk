@@ -17,14 +17,14 @@ buildscript {
         afterEvaluate {project ->
             if (project.hasProperty("android")) {
                 android {
-                    compileSdkVersion 31
-                    buildToolsVersion "30.0.3"
+                    compileSdkVersion 32
+                    buildToolsVersion "32.0.0"
                 }
             }
         }
     }
     ext {
-        buildToolsVersion = "32.0.3"
+        buildToolsVersion = "32.0.0"
         minSdkVersion = 24
         compileSdkVersion = 32
         targetSdkVersion = 32
