@@ -151,6 +151,9 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+         configurations.all {
+            resolutionStrategy { force 'androidx.work:work-runtime:2.6.0' }
+        }
     }
     splits {
         abi {
