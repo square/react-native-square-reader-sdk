@@ -146,14 +146,14 @@ android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     defaultConfig {
+        configurations.all {
+            resolutionStrategy { force 'androidx.core:core-ktx:1.6.0' }
+        }
         applicationId "com.rnreadersdksample"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
-         configurations.all {
-            resolutionStrategy { force 'androidx.work:work-runtime:2.6.0' }
-        }
     }
     splits {
         abi {
@@ -217,6 +217,7 @@ dependencies {
     implementation "com.facebook.react:react-native:+"  // From node_modules
     // Old version
     implementation "androidx.multidex:multidex:2.0.1"
+    implementation "androidx.compose.foundation:foundation:1.2.1"
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
         exclude group:'com.facebook.fbjni'

@@ -24,10 +24,10 @@ buildscript {
         }
     }
     ext {
-        buildToolsVersion = "33.0.3"
+        buildToolsVersion = "32.0.3"
         minSdkVersion = 24
-        compileSdkVersion = 33
-        targetSdkVersion = 33
+        compileSdkVersion = 32
+        targetSdkVersion = 32
         readerSdkVersion = "[1.6.1, 2.0)"
         ndkVersion = "21.4.7075529"
         kotlin_version = '1.4.10'
