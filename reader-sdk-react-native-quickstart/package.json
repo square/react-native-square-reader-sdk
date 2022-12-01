@@ -18,7 +18,7 @@
     "react-native-camera-kit": "^13.0.0",
     "react-native-gesture-handler": "^2.3.2",
     "react-native-globalize": "^4.5.1",
-    "react-native-permissions": "^3.3.1",
+    "react-native-permissions": "^3.6.1",
     "react-native-safe-area-context": "^3.4.1",
     "react-native-screens": "^3.12.0",
     "react-native-square-reader-sdk": "file:../"

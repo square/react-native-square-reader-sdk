@@ -5750,7 +5750,7 @@ react-native-globalize@^4.5.1:
     hoist-non-react-statics "^3.3.2"
     jsonpack "^1.1.5"
 
-react-native-permissions@^3.3.1:
+react-native-permissions@^3.6.1:
   version "3.6.1"
   resolved "https://registry.yarnpkg.com/react-native-permissions/-/react-native-permissions-3.6.1.tgz#73adcc1cef8cd57a9ef167b4507405f4ff5749c4"
   integrity sha512-fzPpPQXeD34inUccqtoResSwYubfrwUguP4qrVUUv8+KSMjYSaHGoS5HaIJLZHlN9gO+TvLJZ2L5ZljTsb6qnQ==
