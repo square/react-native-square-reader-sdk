@@ -64,8 +64,8 @@ jobs:
       - name: Build
         working-directory: ./reader-sdk-react-native-quickstart/android
         env:
-          SQUARE_READER_SDK_APPLICATION_ID: ${{secrets.SQUARE_SDK_APPLICATION_ID}}
-          SQUARE_READER_SDK_REPOSITORY_PASSWORD: ${{secrets.SQUARE_SDK_REPOSITORY_PASSWORD}}
+          SQUARE_READER_SDK_APPLICATION_ID: ${{secrets.SQUARE_READER_SDK_APPLICATION_ID}}
+          SQUARE_READER_SDK_REPOSITORY_PASSWORD: ${{secrets.SQUARE_READER_SDK_REPOSITORY_PASSWORD}}
           TEST_VALUE: abc
         run: |
           echo "Application Id: $SQUARE_READER_SDK_APPLICATION_ID"
