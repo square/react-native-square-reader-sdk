@@ -56,11 +56,12 @@ jobs:
           SQUARE_READER_SDK_APPLICATION_ID: ${{secrets.SQUARE_READER_SDK_APPLICATION_ID}}
           SQUARE_READER_SDK_REPOSITORY_PASSWORD: ${{secrets.SQUARE_READER_SDK_REPOSITORY_PASSWORD}}
       - run: |
+          echo "Application Id: $SQUARE_READER_SDK_APPLICATION_ID"
           sudo arch -x86_64 gem install ffi
           cd reader-sdk-react-native-quickstart
           yarn
           cd ios && arch -x86_64 pod install
-          ruby <(curl https://connect.squareup.com/readersdk-installer) install --app-id $SQUARE_READER_SDK_APPLICATION_ID --repo-password $SQUARE_READER_SDK_REPOSITORY_PASSWORD
+
       # - name: Build iOS (debug)
       #   run: "xcodebuild \
       #     -workspace reader-sdk-react-native-quickstart/ios/RNReaderSDKSample.xcworkspace \
