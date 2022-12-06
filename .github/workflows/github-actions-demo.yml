@@ -59,8 +59,6 @@ jobs:
           SQUARE_READER_SDK_REPOSITORY_PASSWORD: ${{secrets.SQUARE_READER_SDK_REPOSITORY_PASSWORD}}
           TEST_VALUE: abc
       - run: |
-          echo "Application Id: $SQUARE_READER_SDK_APPLICATION_ID"
-          echo "Application Id: $TEST_VALUE"
           ruby <(curl https://connect.squareup.com/readersdk-installer) install --app-id $SQUARE_READER_SDK_APPLICATION_ID --repo-password $SQUARE_READER_SDK_REPOSITORY_PASSWORD
       # - name: Build iOS (debug)
       #   run: "xcodebuild \
