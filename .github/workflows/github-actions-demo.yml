@@ -47,18 +47,19 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js
-        uses: actions/setup-node@v3
-      - name: Install npm dependencies
-        working-directory: ./reader-sdk-react-native-quickstart
-        run: yarn
-      - name: Build
-        working-directory: ./reader-sdk-react-native-quickstart/ios
-        run: arch -x86_64 pod install
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+          SQUARE_READER_SDK_APPLICATION_ID: ${{secrets.SQUARE_READER_SDK_APPLICATION_ID}}
+          SQUARE_READER_SDK_REPOSITORY_PASSWORD: ${{secrets.SQUARE_READER_SDK_REPOSITORY_PASSWORD}}
         env:
           SQUARE_READER_SDK_APPLICATION_ID: ${{secrets.SQUARE_READER_SDK_APPLICATION_ID}}
           SQUARE_READER_SDK_REPOSITORY_PASSWORD: ${{secrets.SQUARE_READER_SDK_REPOSITORY_PASSWORD}}
-          TEST_VALUE: abc
       - run: |
+          sudo arch -x86_64 gem install ffi
+          cd reader-sdk-react-native-quickstart
+          yarn
+          cd ios && arch -x86_64 pod install
           ruby <(curl https://connect.squareup.com/readersdk-installer) install --app-id $SQUARE_READER_SDK_APPLICATION_ID --repo-password $SQUARE_READER_SDK_REPOSITORY_PASSWORD
       # - name: Build iOS (debug)
       #   run: "xcodebuild \
