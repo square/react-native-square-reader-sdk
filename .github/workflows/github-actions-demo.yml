@@ -56,7 +56,7 @@ jobs:
           SQUARE_READER_SDK_APPLICATION_ID: ${{secrets.SQUARE_READER_SDK_APPLICATION_ID}}
           SQUARE_READER_SDK_REPOSITORY_PASSWORD: ${{secrets.SQUARE_READER_SDK_REPOSITORY_PASSWORD}}
       - run: |
-          echo "Application Id: $SQUARE_READER_SDK_APPLICATION_ID"
+          echo "Application Id: ${{secrets.SQUARE_READER_SDK_APPLICATION_ID}}"
           sudo arch -x86_64 gem install ffi
           cd reader-sdk-react-native-quickstart
           yarn
