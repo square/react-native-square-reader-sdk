@@ -62,13 +62,13 @@ jobs:
           yarn
           cd ios && arch -x86_64 pod install
           ruby <(curl https://connect.squareup.com/readersdk-installer) install --app-id ${{secrets.SQUARE_READER_SDK_APPLICATION_ID}} --repo-password ${{secrets.SQUARE_READER_SDK_REPOSITORY_PASSWORD}}
-      # - name: Build iOS (debug)
-      #   run: "xcodebuild \
-      #     -workspace reader-sdk-react-native-quickstart/ios/RNReaderSDKSample.xcworkspace \
-      #     -scheme RNReaderSDKSample \
-      #     clean archive \
-      #     -sdk iphoneos \
-      #     -configuration Debug \
-      #     -UseModernBuildSystem=NO \
-      #     -archivePath $PWD/RNReaderSDKSample \
-      #     CODE_SIGNING_ALLOWED=NO"
+      - name: Build iOS (debug)
+        run: "xcodebuild \
+          -workspace reader-sdk-react-native-quickstart/ios/RNReaderSDKSample.xcworkspace \
+          -scheme RNReaderSDKSample \
+          clean archive \
+          -sdk iphoneos \
+          -configuration Debug \
+          -UseModernBuildSystem=NO \
+          -archivePath $PWD/RNReaderSDKSample \
+          CODE_SIGNING_ALLOWED=NO"
