@@ -1,4 +1,4 @@
-name: React-native-square-reader-SDK
+name: react-native-square-reader-SDK
 on: [push]
 jobs:
   install-and-test:
