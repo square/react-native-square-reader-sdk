@@ -60,7 +60,7 @@ jobs:
           ruby <(curl https://connect.squareup.com/readersdk-installer) install --app-id ${{secrets.SQUARE_READER_SDK_APPLICATION_ID}} --repo-password ${{secrets.SQUARE_READER_SDK_REPOSITORY_PASSWORD}}
       - name: Build iOS (debug)
       - run: |
-          xcodebuild -workspace RNReaderSDKSample.xcworkspace -configuration
-          Debug -scheme RNReaderSDKSample -destination "platform=iOS
-          Simulator,OS=13.1,name=iPhone 11" -derivedDataPath
+          xcodebuild -workspace 
+          RNReaderSDKSample.xcworkspace -configuration
+          Debug -scheme RNReaderSDKSample -destination "platform=iOS Simulator,OS=13.1,name=iPhone 11" -derivedDataPath 
           build/RNReaderSDKSample -quiet
