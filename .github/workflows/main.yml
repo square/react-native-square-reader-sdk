@@ -63,5 +63,5 @@ jobs:
           -workspace reader-sdk-react-native-quickstart/ios/RNReaderSDKSample.xcworkspace
           -configuration Debug
           -scheme RNReaderSDKSample
-          -destination "platform=iOS Simulator,OS=16.0,name=iPhone 11,arch=x86_64"
+          -destination generic/platform=iOS
           -derivedDataPath build/RNReaderSDKSample -quiet
