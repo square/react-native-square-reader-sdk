@@ -288,13 +288,13 @@ PODS:
     - React-perflogger (= 0.67.2)
   - ReactNativeCameraKit (13.0.0):
     - React-Core
-  - RNGestureHandler (2.8.0):
+  - RNGestureHandler (2.6.0):
     - React-Core
   - RNPermissions (3.6.1):
     - React-Core
   - RNReaderSDK (1.1.4):
     - React
-  - RNScreens (3.18.2):
+  - RNScreens (3.17.0):
     - React-Core
     - React-RCTImage
   - Yoga (1.14.0)
@@ -470,12 +470,12 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: 2450b43df7ffe8e805a0b3dcb2abd4282f1f1836
   ReactCommon: d98c6c96b567f9b3a15f9fd4cc302c1eda8e3cf2
   ReactNativeCameraKit: 9d46a5d7dd544ca64aa9c03c150d2348faf437eb
-  RNGestureHandler: 62232ba8f562f7dea5ba1b3383494eb5bf97a4d3
+  RNGestureHandler: 920eb17f5b1e15dae6e5ed1904045f8f90e0b11e
   RNPermissions: dcdb7b99796bbeda6975a6e79ad519c41b251b1c
   RNReaderSDK: c432129543aa152968c6221f68a63aabb03786fe
-  RNScreens: 34cc502acf1b916c582c60003dc3089fa01dc66d
+  RNScreens: 0df01424e9e0ed7827200d6ed1087ddd06c493f9
   Yoga: 9b6696970c3289e8dea34b3eda93f23e61fb8121
 
-PODFILE CHECKSUM: e3d6cc7e34da8bbe30a7dce747e50027ad94d213
+PODFILE CHECKSUM: 1f4cf93cb57f1493f4e69eb84486d065c525d646
 
 COCOAPODS: 1.11.3
