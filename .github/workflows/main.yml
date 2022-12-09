@@ -61,5 +61,7 @@ jobs:
       - name: Build iOS
         run: xcodebuild 
         -workspace reader-sdk-react-native-quickstart/ios/RNReaderSDKSample.xcworkspace
+        -configuration Debug
         -scheme RNReaderSDKSample 
-        -destination 'platform=OS X,arch=x86_64' test
+        -destination "platform=OS X,arch=x86_64"
+        -derivedDataPath build/RNReaderSDKSample -quiet
