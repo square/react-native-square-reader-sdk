@@ -61,6 +61,6 @@ jobs:
       - name: Build iOS (debug)
         run: xcodebuild 
         -workspace reader-sdk-react-native-quickstart/ios/RNReaderSDKSample.xcworkspace 
-        -configuration Debug
+        -configuration "Debug"
         -scheme RNReaderSDKSample 
         -destination "generic/platform=iOS Simulator,name=iPhone 13"
