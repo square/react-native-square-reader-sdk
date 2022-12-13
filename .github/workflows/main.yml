@@ -41,17 +41,33 @@ jobs:
   build-ios:
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
       - name: Use Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v1.5
         with:
           node-version: 14.x
-      - run: |
-          gem install ffi
-          cd reader-sdk-react-native-quickstart
-          yarn
-          cd ios && pod install
-          ruby <(curl https://connect.squareup.com/readersdk-installer) install --app-id ${{secrets.SQUARE_READER_SDK_APPLICATION_ID}} --repo-password ${{secrets.SQUARE_READER_SDK_REPOSITORY_PASSWORD}}
-          xcodebuild -workspace RNReaderSDKSample.xcworkspace -configuration Debug -scheme RNReaderSDKSample -destination "platform=iOS Simulator,OS=13.1,name=iPhone 11"
+      - uses: actions/checkout@v3
+      # - name: Install ffi
+      #   working-directory: ./reader-sdk-react-native-quickstart
+      #   run: gem install ffi
+      - name: Install packages
+        working-directory: ./reader-sdk-react-native-quickstart
+        run: yarn
+      - name: Install Reader SDK
+        working-directory: ./reader-sdk-react-native-quickstart/ios
+        run: |
+          pod install
+          ruby <(curl https://connect.squareup.com/readersdk-installer) install --app-id ${{secrets.SQUARE_READER_SDK_APPLICATION_ID}} --repo-password ${{secrets.SQUARE_READER_SDK_REPOSITORY_PASSWORD}} > /dev/null
+      - use: mxcl/xcodebuild@v1
+        with:
+          working-directory: ./reader-sdk-react-native-quickstart/ios
+          action: build
+          platform: iOS Simulator
+          scheme: RNReaderSDKSample
+
+      # - name: Build iOS (debug)
+      #   run: xcodebuild -workspace RNReaderSDKSample.xcworkspace -configuration Debug -scheme RNReaderSDKSample -destination "platform=iOS Simulator,OS=16.0,name=iPhone 14"
       # - name: Build iOS (debug)
       #   run: xcodebuild -workspace “reader-sdk-react-native-quickstart/ios/RNReaderSDKSample.xcworkspace” -scheme "RNReaderSDKSample" -configuration "Debug" -sdk "iphonesimulator" -destination "generic/platform=iOS Simulator" SYMROOT=./builds clean build
