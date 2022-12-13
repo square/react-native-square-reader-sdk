@@ -63,4 +63,4 @@ jobs:
           -workspace reader-sdk-react-native-quickstart/ios/RNReaderSDKSample.xcworkspace
           -configuration Debug
           -scheme RNReaderSDKSample
-          -destination "platform=iOS Simulator,name=iPad Pro (9.7 inch),OS=10.3"
+          -destination "platform=iOS Simulator,name=iPhone 11,OS=16.0"
