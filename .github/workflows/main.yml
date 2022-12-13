@@ -59,10 +59,9 @@ jobs:
           cd ios && arch -x86_64 pod install
           ruby <(curl https://connect.squareup.com/readersdk-installer) install --app-id ${{secrets.SQUARE_READER_SDK_APPLICATION_ID}} --repo-password ${{secrets.SQUARE_READER_SDK_REPOSITORY_PASSWORD}}
       - name: Build iOS (debug)
-        run: xcodebuild archive
-          -project reader-sdk-react-native-quickstart/ios/RNReaderSDKSample.xcodeproj
+        run: xcodebuild
+          -workspace reader-sdk-react-native-quickstart/ios/RNReaderSDKSample.xcworkspace
+          -configuration Debug
           -scheme RNReaderSDKSample
-          -destination "generic/platform=iOS"
-          -archivePath "archives/RNReaderSDKSample"
-          SKIP_INSTALL=NO
-          BUILD_LIBRARY_FOR_DISTRIBUTION=YES
+          -destination "generic/platform=iOS Simulator,arch=x86_64"
+          -derivedDataPath build/RNReaderSDKSample -quiet
