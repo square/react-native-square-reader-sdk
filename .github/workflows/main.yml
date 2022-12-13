@@ -41,7 +41,7 @@ jobs:
   build-ios:
     runs-on: macos-latest
     steps:
-      - uses: maxim-lobanov/setup-xcode@v1.5
+      - uses: maxim-lobanov/setup-xcode@v1.5.1
         with:
           xcode-version: latest-stable
       - name: Use Node.js
