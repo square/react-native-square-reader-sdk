@@ -69,6 +69,6 @@ jobs:
       #     scheme: RNReaderSDKSample
       - name: Build iOS (debug)
         working-directory: ./reader-sdk-react-native-quickstart/ios
-        run: xcodebuild -workspace RNReaderSDKSample.xcworkspace -configuration Debug -scheme RNReaderSDKSample -destination "platform:iOS Simulator, OS:16.1, name:iPhone 14"
+        run: xcodebuild -workspace RNReaderSDKSample.xcworkspace -configuration Debug -scheme RNReaderSDKSample -destination "platform=iOS Simulator, OS=16.1, name=iPhone 14"
       # - name: Build iOS (debug)
       #   run: xcodebuild -workspace “reader-sdk-react-native-quickstart/ios/RNReaderSDKSample.xcworkspace” -scheme "RNReaderSDKSample" -configuration "Debug" -sdk "iphonesimulator" -destination "generic/platform=iOS Simulator" SYMROOT=./builds clean build
