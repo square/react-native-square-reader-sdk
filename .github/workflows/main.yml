@@ -41,22 +41,32 @@ jobs:
   build-ios:
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: maxim-lobanov/setup-xcode@v1.5.1
+        with:
+          xcode-version: latest-stable
       - name: Use Node.js
         uses: actions/setup-node@v1
         with:
           node-version: 14.x
-          SQUARE_READER_SDK_APPLICATION_ID: ${{secrets.SQUARE_READER_SDK_APPLICATION_ID}}
-          SQUARE_READER_SDK_REPOSITORY_PASSWORD: ${{secrets.SQUARE_READER_SDK_REPOSITORY_PASSWORD}}
-        env:
-          SQUARE_READER_SDK_APPLICATION_ID: ${{secrets.SQUARE_READER_SDK_APPLICATION_ID}}
-          SQUARE_READER_SDK_REPOSITORY_PASSWORD: ${{secrets.SQUARE_READER_SDK_REPOSITORY_PASSWORD}}
-      - run: |
-          echo "Application Id: ${{secrets.SQUARE_READER_SDK_APPLICATION_ID}}"
-          sudo arch -x86_64 gem install ffi
-          cd reader-sdk-react-native-quickstart
-          yarn
-          cd ios && arch -x86_64 pod install
-          ruby <(curl https://connect.squareup.com/readersdk-installer) install --app-id ${{secrets.SQUARE_READER_SDK_APPLICATION_ID}} --repo-password ${{secrets.SQUARE_READER_SDK_REPOSITORY_PASSWORD}}
+      - uses: actions/checkout@v3
+      # - name: Install ffi
+      #   working-directory: ./reader-sdk-react-native-quickstart
+      #   run: gem install ffi
+      - name: Install Dependencies
+        working-directory: ./reader-sdk-react-native-quickstart
+        run: yarn
+      - name: Install Pod Dependencies
+        working-directory: ./reader-sdk-react-native-quickstart/ios
+        run: pod install
+      - name: Install Reader SDK
+        working-directory: ./reader-sdk-react-native-quickstart/ios
+        run: ruby <(curl https://connect.squareup.com/readersdk-installer) install --app-id ${{secrets.SQUARE_READER_SDK_APPLICATION_ID}} --repo-password ${{secrets.SQUARE_READER_SDK_REPOSITORY_PASSWORD}} --version 1.6.1 > /dev/null
+      # - uses: mxcl/xcodebuild@v1
+      #   with:
+      #     working-directory: ./reader-sdk-react-native-quickstart/ios
+      #     action: build
+      #     platform: iOS
+      #     scheme: RNReaderSDKSample
       - name: Build iOS (debug)
-        run: xcodebuild -workspace “reader-sdk-react-native-quickstart/ios/RNReaderSDKSample.xcworkspace” -scheme "RNReaderSDKSample" -configuration "Debug" -sdk "iphonesimulator" -destination "generic/platform=iOS Simulator" SYMROOT=./builds clean build
+        working-directory: ./reader-sdk-react-native-quickstart/ios
+        run: xcodebuild -workspace RNReaderSDKSample.xcworkspace -configuration Debug -scheme RNReaderSDKSample -destination "platform=iOS Simulator,OS=16.1,name=iPhone 14"
