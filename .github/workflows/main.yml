@@ -11,33 +11,33 @@ jobs:
       - run: |
           yarn && yarn lint && yarn test && cd reader-sdk-react-native-quickstart && yarn
           yarn lint && cd ..
-  # build-android:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Cache Gradle Wrapper
-  #       uses: actions/cache@v3
-  #       with:
-  #         path: ~/.gradle/wrapper
-  #         key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
-  #     - name: Cache Gradle Dependencies
-  #       uses: actions/cache@v3
-  #       with:
-  #         path: ~/.gradle/caches
-  #         key: ${{ runner.os }}-gradle-caches-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
-  #         restore-keys: |
-  #           ${{ runner.os }}-gradle-caches-
-  #     - name: Checkout the current repo
-  #       uses: actions/checkout@v3
-  #     - name: Install npm dependencies
-  #       working-directory: ./reader-sdk-react-native-quickstart
-  #       run: yarn
-  #     - name: Build
-  #       working-directory: ./reader-sdk-react-native-quickstart/android
-  #       env:
-  #         SQUARE_READER_SDK_APPLICATION_ID: ${{secrets.SQUARE_READER_SDK_APPLICATION_ID}}
-  #         SQUARE_READER_SDK_REPOSITORY_PASSWORD: ${{secrets.SQUARE_READER_SDK_REPOSITORY_PASSWORD}}
-  #       run: |
-  #         ./gradlew clean build -PSQUARE_READER_SDK_APPLICATION_ID=$SQUARE_READER_SDK_APPLICATION_ID -PSQUARE_READER_SDK_REPOSITORY_PASSWORD=$SQUARE_READER_SDK_REPOSITORY_PASSWORD
+  build-android:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cache Gradle Wrapper
+        uses: actions/cache@v3
+        with:
+          path: ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
+      - name: Cache Gradle Dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-caches-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-caches-
+      - name: Checkout the current repo
+        uses: actions/checkout@v3
+      - name: Install npm dependencies
+        working-directory: ./reader-sdk-react-native-quickstart
+        run: yarn
+      - name: Build
+        working-directory: ./reader-sdk-react-native-quickstart/android
+        env:
+          SQUARE_READER_SDK_APPLICATION_ID: ${{secrets.SQUARE_READER_SDK_APPLICATION_ID}}
+          SQUARE_READER_SDK_REPOSITORY_PASSWORD: ${{secrets.SQUARE_READER_SDK_REPOSITORY_PASSWORD}}
+        run: |
+          ./gradlew clean build -PSQUARE_READER_SDK_APPLICATION_ID=$SQUARE_READER_SDK_APPLICATION_ID -PSQUARE_READER_SDK_REPOSITORY_PASSWORD=$SQUARE_READER_SDK_REPOSITORY_PASSWORD
   build-ios:
     runs-on: macos-latest
     steps:
@@ -49,9 +49,6 @@ jobs:
         with:
           node-version: 14.x
       - uses: actions/checkout@v3
-      # - name: Install ffi
-      #   working-directory: ./reader-sdk-react-native-quickstart
-      #   run: gem install ffi
       - name: Install Dependencies
         working-directory: ./reader-sdk-react-native-quickstart
         run: yarn
@@ -61,12 +58,6 @@ jobs:
       - name: Install Reader SDK
         working-directory: ./reader-sdk-react-native-quickstart/ios
         run: ruby <(curl https://connect.squareup.com/readersdk-installer) install --app-id ${{secrets.SQUARE_READER_SDK_APPLICATION_ID}} --repo-password ${{secrets.SQUARE_READER_SDK_REPOSITORY_PASSWORD}} --version 1.6.1 > /dev/null
-      # - uses: mxcl/xcodebuild@v1
-      #   with:
-      #     working-directory: ./reader-sdk-react-native-quickstart/ios
-      #     action: build
-      #     platform: iOS
-      #     scheme: RNReaderSDKSample
       - name: Build iOS (debug)
         working-directory: ./reader-sdk-react-native-quickstart/ios
         run: xcodebuild -workspace RNReaderSDKSample.xcworkspace -configuration Debug -scheme RNReaderSDKSample -destination "platform=iOS Simulator,OS=16.1,name=iPhone 14"
