@@ -60,7 +60,7 @@ jobs:
         run: pod install
       - name: Install Reader SDK
         working-directory: ./reader-sdk-react-native-quickstart/ios
-        run: ruby <(curl https://connect.squareup.com/readersdk-installer) install --app-id ${{secrets.SQUARE_READER_SDK_APPLICATION_ID}} --repo-password ${{secrets.SQUARE_READER_SDK_REPOSITORY_PASSWORD}} --version 1.6.7 > /dev/null
+        run: ruby <(curl https://connect.squareup.com/readersdk-installer) install --app-id ${{secrets.SQUARE_READER_SDK_APPLICATION_ID}} --repo-password ${{secrets.SQUARE_READER_SDK_REPOSITORY_PASSWORD}} --version 1.6.1 > /dev/null
       # - uses: mxcl/xcodebuild@v1
       #   with:
       #     working-directory: ./reader-sdk-react-native-quickstart/ios
