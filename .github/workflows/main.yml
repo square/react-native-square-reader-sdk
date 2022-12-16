@@ -9,7 +9,8 @@ jobs:
   #       with:
   #         node-version: 14.x
   #     - run: |
-  #         yarn && yarn lint && yarn test && cd reader-sdk-react-native-quickstart && yarn
+  #         yarn && yarn lint && yarn test && 
+  #         cd reader-sdk-react-native-quickstart && yarn
   #         yarn lint && cd ..
   # build-android:
   #   runs-on: ubuntu-latest
@@ -49,9 +50,6 @@ jobs:
         with:
           node-version: 14.x
       - uses: actions/checkout@v3
-      # - name: Install ffi
-      #   working-directory: ./reader-sdk-react-native-quickstart
-      #   run: gem install ffi
       - name: Install Dependencies
         working-directory: ./reader-sdk-react-native-quickstart
         run: yarn
@@ -61,14 +59,6 @@ jobs:
       - name: Install Reader SDK
         working-directory: ./reader-sdk-react-native-quickstart/ios
         run: ruby <(curl https://connect.squareup.com/readersdk-installer) install --app-id ${{secrets.SQUARE_READER_SDK_APPLICATION_ID}} --repo-password ${{secrets.SQUARE_READER_SDK_REPOSITORY_PASSWORD}} --version 1.6.1 > /dev/null
-      # - uses: mxcl/xcodebuild@v1
-      #   with:
-      #     working-directory: ./reader-sdk-react-native-quickstart/ios
-      #     action: build
-      #     platform: iOS
-      #     scheme: RNReaderSDKSample
       - name: Build iOS (debug)
         working-directory: ./reader-sdk-react-native-quickstart/ios
         run: xcodebuild -workspace RNReaderSDKSample.xcworkspace -configuration Debug -scheme RNReaderSDKSample -destination "platform=iOS Simulator,OS=16.1,name=iPhone 14"
-      # - name: Build iOS (debug)
-      #   run: xcodebuild -workspace “reader-sdk-react-native-quickstart/ios/RNReaderSDKSample.xcworkspace” -scheme "RNReaderSDKSample" -configuration "Debug" -sdk "iphonesimulator" -destination "generic/platform=iOS Simulator" SYMROOT=./builds clean build
