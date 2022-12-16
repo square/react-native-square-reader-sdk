@@ -9,7 +9,8 @@ jobs:
         with:
           node-version: 14.x
       - run: |
-          yarn && yarn lint && yarn test && cd reader-sdk-react-native-quickstart && yarn
+          yarn && yarn lint && yarn test && 
+          cd reader-sdk-react-native-quickstart && yarn
           yarn lint && cd ..
   # build-android:
   #   runs-on: ubuntu-latest
