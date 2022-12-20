@@ -8,11 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		00B137CA286F2577001D50C5 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B137C9286F2577001D50C5 /* File.swift */; };
+		11A1BF712949AB1F00BF2E45 /* SquareReaderSDK.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 11A1BF702949AB1F00BF2E45 /* SquareReaderSDK.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
-		420E56BB7F1A8C6DDAB2B6EE /* libPods-RNReaderSDKSample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84152C22E099223530520717 /* libPods-RNReaderSDKSample.a */; };
-		9E9F88352636A2850071D705 /* SquareReaderSDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E9F88332636A0FB0071D705 /* SquareReaderSDK.xcframework */; };
-		9E9F88362636A2850071D705 /* SquareReaderSDK.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9E9F88332636A0FB0071D705 /* SquareReaderSDK.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9E18296447A7257C36271D4C /* libPods-RNReaderSDKSample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 39F617749A9F0CE4FBB76650 /* libPods-RNReaderSDKSample.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -22,7 +21,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				9E9F88362636A2850071D705 /* SquareReaderSDK.xcframework in Embed Frameworks */,
+				11A1BF712949AB1F00BF2E45 /* SquareReaderSDK.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -35,17 +34,16 @@
 		00B137C9286F2577001D50C5 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* RNReaderSDKSampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNReaderSDKSampleTests.m; sourceTree = "<group>"; };
+		11A1BF702949AB1F00BF2E45 /* SquareReaderSDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = SquareReaderSDK.xcframework; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* RNReaderSDKSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RNReaderSDKSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = RNReaderSDKSample/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = RNReaderSDKSample/Info.plist; sourceTree = "<group>"; };
 		31857B1B224BF4736597FCA2 /* Pods-RNReaderSDKSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNReaderSDKSample.debug.xcconfig"; path = "Target Support Files/Pods-RNReaderSDKSample/Pods-RNReaderSDKSample.debug.xcconfig"; sourceTree = "<group>"; };
+		39F617749A9F0CE4FBB76650 /* libPods-RNReaderSDKSample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RNReaderSDKSample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D35A44E6A7CEAFCA2F203BE /* Pods-RNReaderSDKSampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNReaderSDKSampleTests.release.xcconfig"; path = "Target Support Files/Pods-RNReaderSDKSampleTests/Pods-RNReaderSDKSampleTests.release.xcconfig"; sourceTree = "<group>"; };
 		4CA99CEE02F294ED22035067 /* Pods-RNReaderSDKSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNReaderSDKSample.release.xcconfig"; path = "Target Support Files/Pods-RNReaderSDKSample/Pods-RNReaderSDKSample.release.xcconfig"; sourceTree = "<group>"; };
 		65751202B4433232F2232CA7 /* libPods-RNReaderSDKSampleTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RNReaderSDKSampleTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		84152C22E099223530520717 /* libPods-RNReaderSDKSample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RNReaderSDKSample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9842E965230286190069E521 /* SquareReaderSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SquareReaderSDK.framework; sourceTree = "<group>"; };
-		9E9F88332636A0FB0071D705 /* SquareReaderSDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = SquareReaderSDK.xcframework; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		FBEE540D774D3E0D1E70C5EC /* Pods-RNReaderSDKSampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNReaderSDKSampleTests.debug.xcconfig"; path = "Target Support Files/Pods-RNReaderSDKSampleTests/Pods-RNReaderSDKSampleTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -56,8 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9E9F88352636A2850071D705 /* SquareReaderSDK.xcframework in Frameworks */,
-				420E56BB7F1A8C6DDAB2B6EE /* libPods-RNReaderSDKSample.a in Frameworks */,
+				9E18296447A7257C36271D4C /* libPods-RNReaderSDKSample.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,11 +94,10 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9842E965230286190069E521 /* SquareReaderSDK.framework */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				84152C22E099223530520717 /* libPods-RNReaderSDKSample.a */,
 				65751202B4433232F2232CA7 /* libPods-RNReaderSDKSampleTests.a */,
+				39F617749A9F0CE4FBB76650 /* libPods-RNReaderSDKSample.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -116,7 +112,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				9E9F88332636A0FB0071D705 /* SquareReaderSDK.xcframework */,
+				11A1BF702949AB1F00BF2E45 /* SquareReaderSDK.xcframework */,
 				13B07FAE1A68108700A75B9A /* RNReaderSDKSample */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* RNReaderSDKSampleTests */,
@@ -162,8 +158,8 @@
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				980F11B223028AF00040C218 /* Embed Frameworks */,
-				B8D5D3A79AFAC0C4959AC317 /* [CP] Copy Pods Resources */,
 				113D56FE269F89D7004B6DD6 /* ShellScript */,
+				41A3709AB7CD46250E2E1AD7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -235,7 +231,7 @@
 		};
 		113D56FE269F89D7004B6DD6 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputFileListPaths = (
@@ -246,7 +242,7 @@
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nFRAMEWORKS=\"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}\"\n\"${FRAMEWORKS}/SquareReaderSDK.framework/setup\"\n";
 		};
@@ -272,7 +268,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B8D5D3A79AFAC0C4959AC317 /* [CP] Copy Pods Resources */ = {
+		41A3709AB7CD46250E2E1AD7 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -339,11 +335,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 31857B1B224BF4736597FCA2 /* Pods-RNReaderSDKSample.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -354,6 +353,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(SDKROOT)/usr/lib/swift",
+					"$(inherited)",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -361,6 +364,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = RNReaderSDKSample;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "RNReaderSDKSample-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -373,10 +379,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4CA99CEE02F294ED22035067 /* Pods-RNReaderSDKSample.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -387,6 +396,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(SDKROOT)/usr/lib/swift",
+					"$(inherited)",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -394,6 +407,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = RNReaderSDKSample;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "RNReaderSDKSample-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -404,6 +420,7 @@
 		83CBBA201A601CBA00E9B192 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -460,6 +477,7 @@
 		83CBBA211A601CBA00E9B192 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
