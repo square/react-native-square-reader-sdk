@@ -14,11 +14,6 @@
  limitations under the License.
 */
 
-import AmountMoney from "./models/AmountMoney";
-import CheckoutParams from "./models/CheckoutParams";
-import ErrorDetails from "./models/ErrorDetails";
-import TipSettings from "./models/TipSettings";
-
 function hasNonNullProperty(obj, property) {
   if (Object.prototype.hasOwnProperty.call(obj, property) && typeof obj[property] !== 'undefined' && obj[property] !== null) {
     return true;
@@ -26,12 +21,11 @@ function hasNonNullProperty(obj, property) {
   return false;
 }
 
-export default function ValidateCheckoutParameters(checkoutParams:CheckoutParams) {
-  let paramError:ErrorDetails = {
-    debugMessage : 'Invalid parameter found in checkout parameters. ',
-    message : 'Something went wrong. Please contact the developer of this application and provide them with this error code: rn_checkout_invalid_parameter'
-  };
+export default function ValidateCheckoutParameters(checkoutParams) {
+  const paramError = {};
   paramError.debugCode = 'rn_checkout_invalid_parameter';
+  paramError.message = 'Something went wrong. Please contact the developer of this application and provide them with this error code: rn_checkout_invalid_parameter';
+  paramError.debugMessage = 'Invalid parameter found in checkout parameters. ';
   if (!checkoutParams) {
     paramError.debugMessage += "'checkoutParams' is undefined or null";
     throw new Error(JSON.stringify(paramError));
@@ -63,7 +57,7 @@ export default function ValidateCheckoutParameters(checkoutParams:CheckoutParams
   }
 
   // check amountMoney
-  const amountMoney:AmountMoney = checkoutParams.amountMoney;
+  const { amountMoney } = checkoutParams;
   if (!hasNonNullProperty(amountMoney, 'amount') || typeof amountMoney.amount !== 'number') {
     paramError.debugMessage += "'amount' is not an integer";
     throw new Error(JSON.stringify(paramError));
@@ -75,7 +69,7 @@ export default function ValidateCheckoutParameters(checkoutParams:CheckoutParams
 
   if (hasNonNullProperty(checkoutParams, 'tipSettings')) {
     // check tipSettings
-    const tipSettings:TipSettings = checkoutParams.tipSettings;
+    const { tipSettings } = checkoutParams;
     if (hasNonNullProperty(tipSettings, 'showCustomTipField') && typeof tipSettings.showCustomTipField !== 'boolean') {
       paramError.debugMessage += "'showCustomTipField' is not a boolean";
       throw new Error(JSON.stringify(paramError));

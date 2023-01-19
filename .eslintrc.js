@@ -1,18 +1,14 @@
 module.exports = {
-  parser: '@typescript-eslint/parser',
-  parserOptions: {
-    project: './tsconfig.json',
-    createDefaultProgram: true,
-  },
+  parser: 'babel-eslint',
   root: true,
   extends: [
-    'airbnb-typescript',
+    'airbnb',
     'plugin:react-native/all',
   ],
   settings: {
     'import/resolver': {
       node: {
-        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        extensions: ['.js', '.jsx'],
       },
     },
   },
