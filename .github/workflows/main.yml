@@ -61,4 +61,4 @@ jobs:
         run: ruby <(curl https://connect.squareup.com/readersdk-installer) install --app-id ${{secrets.SQUARE_READER_SDK_APPLICATION_ID}} --repo-password ${{secrets.SQUARE_READER_SDK_REPOSITORY_PASSWORD}} --version 1.6.1 > /dev/null
       - name: Build iOS (debug)
         working-directory: ./reader-sdk-react-native-quickstart/ios
-        run: xcodebuild -workspace RNReaderSDKSample.xcworkspace -configuration Debug -scheme RNReaderSDKSample -destination "platform=iOS Simulator,OS=16.1,name=iPhone 14"
+        run: xcodebuild -workspace RNReaderSDKSample.xcworkspace -configuration Debug -scheme RNReaderSDKSample -destination "platform=iOS Simulator,OS=16.2,name=iPhone 14"

@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -37,10 +37,10 @@ import {
 
 import CustomButton from '../components/CustomButton';
 import SquareLogo from '../components/SquareLogo';
-import { defaultStyles } from '../styles/common';
+import {defaultStyles} from '../styles/common';
 const iconImage = require('../components/img/setting.png');
 
-export default function CheckoutScreen({ navigation }) {
+export default function CheckoutScreen({navigation}) {
   const [locationName, setLocationName] = useState('');
 
   // USEEFFCT METHOD FOR GET AND SET LOCATION DETAILS
@@ -62,7 +62,7 @@ export default function CheckoutScreen({ navigation }) {
   // ON SETTING CLICK
   const onSettings = () => {
     if (Platform.OS !== 'ios') {
-      navigation.navigate('Setting', { locationName: locationName });
+      navigation.navigate('Setting', {locationName: locationName});
     } else {
       ActionSheetIOS.showActionSheetWithOptions(
         {
@@ -153,10 +153,7 @@ export default function CheckoutScreen({ navigation }) {
   return (
     <View style={defaultStyles.pageContainer}>
       <TouchableOpacity onPress={() => onSettings()}>
-        <Image
-          style={defaultStyles.settingIconStyle}
-          source={iconImage}
-        />
+        <Image style={defaultStyles.settingIconStyle} source={iconImage} />
       </TouchableOpacity>
       <View style={defaultStyles.logoContainer}>
         <SquareLogo style={defaultStyles.logoStyle} />
