@@ -1,5 +1,9 @@
 ## Changelog
 
+### v1.4.3 Jan 20, 2023
+
+* Add Typescript support with `index.d.ts`.
+
 ### v1.4.2 Nov 02, 2022
 
 * Fix the crach issue when tipSetting is undefined
