@@ -93,7 +93,7 @@ declare module "react-native-square-reader-sdk" {
 		tipPercentages?: number[]
 	}
 
-	export type AdditionalPaymentType = "card" | "cash" | "other"
+	export type AdditionalPaymentType = "manual_card_entry" | "cash" | "other"
 
 	export interface Tender {
 		/** Details about the tender. Only set for card tenders. */
