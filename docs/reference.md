@@ -678,7 +678,7 @@ tipPercentages        | Integer[] | A list of up to 3 non-negative integers from
 Payment types accepted during the Reader SDK checkout flow in addition to
 payments via Square Readers:
 
-* `card`  - Manually typed-in card payments.
+* `manual_card_entry`  - Manually typed-in card payments.
 * `cash`  - Cash payments. Useful for testing.
 * `other` - Check, third-party gift cards, and other payment types.
 
