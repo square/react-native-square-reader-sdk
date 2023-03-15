@@ -10,7 +10,7 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
-    "@react-native-community/cli-platform-android": "^9.3.1",
+    "@react-native-community/cli-platform-android": "^10.2.0",
     "@react-navigation/native": "^6.0.8",
     "@react-navigation/native-stack": "^6.5.0",
     "@react-navigation/stack": "^6.1.1",
@@ -54,5 +54,7 @@
       "node"
     ]
   },
-  "nohoist": [ "**/*/**" ] 
+  "nohoist": [
+    "**/*/**"
+  ]
 }
