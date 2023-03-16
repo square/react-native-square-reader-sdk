@@ -14,7 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 import React, {useState} from 'react';
-import {CameraScreen} from 'react-native-camera-kit';
+import { Text } from 'react-native';
+// import {CameraScreen} from 'react-native-camera-kit';
 import {backgroundColor} from '../styles/common';
 
 export function QRAuthorizationScreen({navigation}) {
@@ -32,20 +33,21 @@ export function QRAuthorizationScreen({navigation}) {
   };
 
   return (
-    <CameraScreen
-      actions={{leftButtonText: 'Cancel'}}
-      onBottomButtonPressed={() => navigation.goBack()}
-      showFrame
-      colorForScannerFrame={backgroundColor}
-      scanBarcode
-      onReadCode={e => onSuccess(e)}
-      hideControls={false}
-      heightForScannerFrame={300}
-      cameraOptions={{
-        flashMode: 'auto',
-        focusMode: 'on',
-        zoomMode: 'off',
-      }}
-    />
+    <Text>Camera Screen</Text>
+    // <CameraScreen
+    //   actions={{leftButtonText: 'Cancel'}}
+    //   onBottomButtonPressed={() => navigation.goBack()}
+    //   showFrame
+    //   colorForScannerFrame={backgroundColor}
+    //   scanBarcode
+    //   onReadCode={e => onSuccess(e)}
+    //   hideControls={false}
+    //   heightForScannerFrame={300}
+    //   cameraOptions={{
+    //     flashMode: 'auto',
+    //     focusMode: 'on',
+    //     zoomMode: 'off',
+    //   }}
+    // />
   );
 }
