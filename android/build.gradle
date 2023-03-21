@@ -31,7 +31,7 @@ def DEFAULT_PLAY_SERVICES_BASE_VERSION = '16.0.1'
 def READER_SDK_VERSION = '[1.6.1, 2.0)'
 
 android {
-    compileSdkVersion 33
+    compileSdkVersion 32
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -40,7 +40,7 @@ android {
 
     defaultConfig {
         minSdkVersion 24
-        targetSdkVersion 33
+        targetSdkVersion 32
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
