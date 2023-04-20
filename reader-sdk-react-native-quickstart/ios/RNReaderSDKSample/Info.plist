@@ -57,6 +57,13 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>UISupportedExternalAccessoryProtocols</key>
+	<array>
+		<string>com.squareup.s020</string>
+		<string>com.squareup.s025</string>
+		<string>com.squareup.s089</string>
+		<string>com.squareup.protocol.stand</string>
+	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
