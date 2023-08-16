@@ -1,5 +1,10 @@
 ## Changelog
 
+### v1.4.4 Aug 16, 2023
+
+* Upgrade Reader SDK version support to 1.7.5 for Android
+* Support CompileSDK and targetSDK 33 on Android
+
 ### v1.4.3 Jan 20, 2023
 
 * Add Typescript support with `index.d.ts`.
