@@ -13,7 +13,7 @@ jobs:
           cd reader-sdk-react-native-quickstart && yarn
           yarn lint && cd ..
   build-android:
-   runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:
