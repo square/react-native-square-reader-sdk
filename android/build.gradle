@@ -46,6 +46,7 @@ android {
         multiDexEnabled true
     }
     lintOptions {
+        checkReleaseBuilds false
         abortOnError false
     }
     dexOptions {
