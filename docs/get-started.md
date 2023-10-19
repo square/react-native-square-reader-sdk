@@ -241,6 +241,7 @@ installing Reader SDK for iOS, see [Reader SDK iOS Setup Guide].
 
 1. Update the `func application` method in your app
    delegate to initialize Reader SDK:
+   * Swift - Update AppDelegate.swift as follows:
     ```Swift
     import Foundation
     import SquareReaderSDK
@@ -259,6 +260,24 @@ installing Reader SDK for iOS, see [Reader SDK iOS Setup Guide].
    }
 
     ```
+   * Objective-C - Update AppDelegate.mm as follows:
+    ```objective-c
+    @import SquareReaderSDK;
+    @implementation AppDelegate
+
+    - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+    {
+      //...
+      [SQRDReaderSDK initializeWithApplicationLaunchOptions:launchOptions];
+
+      return YES;
+    }
+
+    ```
+    Note: In order to import correctly, your project will need to enable modules for Objective-C and Objective-C++. To do this you must:
+    1. Add the flags `-fmodules` and `-fcxx-modules` to `Other C++ Flags` in your targets build settings.
+    2. Update the build setting property `Allow Non-modular Includes in Framework Modules` to `Yes`.
+
 
 You will also need to add code to your React Native project to request device and
 microphone permissions. See the React Native Reader SDK Quick Start Sample App
