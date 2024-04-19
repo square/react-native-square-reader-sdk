@@ -330,7 +330,7 @@ checkout, you must close the modal before calling `startCheckoutAsync`.
 ```javascript
 import {
   startCheckoutAsync,
-  CheckoutErrorCancelled,
+  CheckoutErrorCanceled,
   CheckoutErrorSdkNotAuthorized,
   UsageError,
 } from 'react-native-square-reader-sdk';
