@@ -194,8 +194,8 @@ installing Reader SDK for iOS, see [Reader SDK iOS Setup Guide].
    `YOUR_SQUARE_READER_REPOSITORY_PASSWORD` with your Reader SDK credentials. **The framework will install in the current `ios` directory**.
     ```bash
     ruby <(curl https://connect.squareup.com/readersdk-installer) install \
-    --app-id YOUR_SQUARE_READER_APP_ID                                    \
-    --repo-password YOUR_SQUARE_READER_REPOSITORY_PASSWORD
+    --app-id $YOUR_SQUARE_READER_APP_ID                                    \
+    --repo-password $YOUR_SQUARE_READER_REPOSITORY_PASSWORD
     ```
 1. Add Reader SDK to your Xcode project:
    * Open the **General** tab for your app target in Xcode.

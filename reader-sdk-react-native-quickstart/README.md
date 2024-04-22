@@ -66,8 +66,8 @@ problems building the sample app.
    [root README]for this repo:
     ```bash
     ruby <(curl https://connect.squareup.com/readersdk-installer) install \
-    --app-id YOUR_SQUARE_READER_APP_ID                                    \
-    --repo-password YOUR_SQUARE_READER_REPOSITORY_PASSWORD
+    --app-id $YOUR_SQUARE_READER_APP_ID                                    \
+    --repo-password $YOUR_SQUARE_READER_REPOSITORY_PASSWORD
     ```
 4. Run the React Native project from the `reader-sdk-react-native-quickstart`
    project folder:
