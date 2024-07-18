@@ -11,15 +11,15 @@ PODS:
     - ReactCommon/turbomodule/core (= 0.67.2)
   - fmt (6.2.1)
   - glog (0.3.5)
-  - Permission-Camera (3.6.1):
+  - Permission-Camera (3.8.4):
     - RNPermissions
-  - Permission-LocationAccuracy (3.6.1):
+  - Permission-LocationAccuracy (3.8.4):
     - RNPermissions
-  - Permission-LocationAlways (3.6.1):
+  - Permission-LocationAlways (3.8.4):
     - RNPermissions
-  - Permission-LocationWhenInUse (3.6.1):
+  - Permission-LocationWhenInUse (3.8.4):
     - RNPermissions
-  - Permission-Microphone (3.6.1):
+  - Permission-Microphone (3.8.4):
     - RNPermissions
   - RCT-Folly (2021.06.28.00-v2):
     - boost
@@ -288,15 +288,39 @@ PODS:
     - React-perflogger (= 0.67.2)
   - ReactNativeCameraKit (13.0.0):
     - React-Core
-  - RNGestureHandler (2.9.0):
+  - RNGestureHandler (2.12.1):
     - React-Core
-  - RNPermissions (3.6.1):
+  - RNPermissions (3.8.4):
     - React-Core
-  - RNReaderSDK (1.1.4):
+  - RNReaderSDK (1.7.2):
     - React
-  - RNScreens (3.17.0):
+  - RNReanimated (3.4.2):
+    - DoubleConversion
+    - FBLazyVector
+    - FBReactNativeSpec
+    - glog
+    - RCT-Folly
+    - RCTRequired
+    - RCTTypeSafety
+    - React-callinvoker
     - React-Core
+    - React-Core/DevSupport
+    - React-Core/RCTWebSocket
+    - React-CoreModules
+    - React-cxxreact
+    - React-jsi
+    - React-jsiexecutor
+    - React-jsinspector
+    - React-RCTActionSheet
+    - React-RCTAnimation
+    - React-RCTBlob
     - React-RCTImage
+    - React-RCTLinking
+    - React-RCTNetwork
+    - React-RCTSettings
+    - React-RCTText
+    - ReactCommon/turbomodule/core
+    - Yoga
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -341,7 +365,7 @@ DEPENDENCIES:
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNPermissions (from `../node_modules/react-native-permissions`)
   - RNReaderSDK (from `../node_modules/react-native-square-reader-sdk`)
-  - RNScreens (from `../node_modules/react-native-screens`)
+  - RNReanimated (from `../node_modules/react-native-reanimated`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -427,8 +451,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-permissions"
   RNReaderSDK:
     :path: "../node_modules/react-native-square-reader-sdk"
-  RNScreens:
-    :path: "../node_modules/react-native-screens"
+  RNReanimated:
+    :path: "../node_modules/react-native-reanimated"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -439,11 +463,11 @@ SPEC CHECKSUMS:
   FBReactNativeSpec: c94002c1d93da3658f4d5119c6994d19961e3d52
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   glog: 85ecdd10ee8d8ec362ef519a6a45ff9aa27b2e85
-  Permission-Camera: bf6791b17c7f614b6826019fcfdcc286d3a107f6
-  Permission-LocationAccuracy: 76df17de5c6b8bc2eee34e61ee92cdd7a864c73d
-  Permission-LocationAlways: 8d99b025c9f73c696e0cdb367e42525f2e9a26f2
-  Permission-LocationWhenInUse: 3ba99e45c852763f730eabecec2870c2382b7bd4
-  Permission-Microphone: 48212dd4d28025d9930d583e3c7a56da7268665c
+  Permission-Camera: 7ec9ee99704766ff9b90198183387a7f5d82b0c1
+  Permission-LocationAccuracy: a38ddb5c5d0b8e656f3c86e4a500f9bb88bc099d
+  Permission-LocationAlways: 8fd5518716c3045f9c4edf77b901126098d79b60
+  Permission-LocationWhenInUse: 24d97eeb25d8ff9f2232e070f792eeb1360ccaf0
+  Permission-Microphone: 3c985f25f8f89889c9e056622476deb291877194
   RCT-Folly: 803a9cfd78114b2ec0f140cfa6fa2a6bafb2d685
   RCTRequired: cd47794163052d2b8318c891a7a14fcfaccc75ab
   RCTTypeSafety: 393bb40b3e357b224cde53d3fec26813c52428b1
@@ -470,12 +494,12 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: 2450b43df7ffe8e805a0b3dcb2abd4282f1f1836
   ReactCommon: d98c6c96b567f9b3a15f9fd4cc302c1eda8e3cf2
   ReactNativeCameraKit: 9d46a5d7dd544ca64aa9c03c150d2348faf437eb
-  RNGestureHandler: 071d7a9ad81e8b83fe7663b303d132406a7d8f39
-  RNPermissions: dcdb7b99796bbeda6975a6e79ad519c41b251b1c
-  RNReaderSDK: c432129543aa152968c6221f68a63aabb03786fe
-  RNScreens: 0df01424e9e0ed7827200d6ed1087ddd06c493f9
+  RNGestureHandler: c0d04458598fcb26052494ae23dda8f8f5162b13
+  RNPermissions: f1b49dd05fa9b83993cd05a9ee115247944d8f1a
+  RNReaderSDK: 65229885427cbcb29a3ef89309f707c686a7ac9c
+  RNReanimated: 68ce187141f6e31aaa0726072b02faac962d7862
   Yoga: 9b6696970c3289e8dea34b3eda93f23e61fb8121
 
-PODFILE CHECKSUM: 0f9ca6b9b75bc8c474d8f614712bac333b30c418
+PODFILE CHECKSUM: a6b9d766a6dbd0253ac491a018ded43a74adab58
 
-COCOAPODS: 1.12.0
+COCOAPODS: 1.15.2
