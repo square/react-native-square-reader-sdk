@@ -10,10 +10,10 @@
 		00B137CA286F2577001D50C5 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B137C9286F2577001D50C5 /* File.swift */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
-		A13A81922C46C5CD006169D7 /* libRNReaderSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A13A81912C46C5CD006169D7 /* libRNReaderSDK.a */; settings = {ATTRIBUTES = (Weak, ); }; };
+		22341886E58C117AE2706A34 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 6A0E2F275C76C1BD89C09ECC /* PrivacyInfo.xcprivacy */; };
+		76E30802966AE60B2C4B1989 /* libPods-RNReaderSDKSample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A7AD976F68C4D033DDCE037 /* libPods-RNReaderSDKSample.a */; };
 		A1ABCFB32C492BA500101661 /* SquareReaderSDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = A14565572C47E48500B2205E /* SquareReaderSDK.xcframework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		A1ABCFB42C492BA500101661 /* SquareReaderSDK.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A14565572C47E48500B2205E /* SquareReaderSDK.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		A8CBA0E51585F8ECD1FEC10F /* libPods-RNReaderSDKSample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DBFA1F32E9EC513744013B4A /* libPods-RNReaderSDKSample.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -35,17 +35,19 @@
 		00B137C9286F2577001D50C5 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* RNReaderSDKSampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNReaderSDKSampleTests.m; sourceTree = "<group>"; };
+		12588502133EB63AB7FB88FF /* Pods-RNReaderSDKSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNReaderSDKSample.release.xcconfig"; path = "Target Support Files/Pods-RNReaderSDKSample/Pods-RNReaderSDKSample.release.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* RNReaderSDKSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RNReaderSDKSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = RNReaderSDKSample/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = RNReaderSDKSample/Info.plist; sourceTree = "<group>"; };
-		25A84AB273F5F1ED954B5360 /* Pods-RNReaderSDKSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNReaderSDKSample.release.xcconfig"; path = "Target Support Files/Pods-RNReaderSDKSample/Pods-RNReaderSDKSample.release.xcconfig"; sourceTree = "<group>"; };
+		6A0E2F275C76C1BD89C09ECC /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = RNReaderSDKSample/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		6FA4C49E181E2ED44B460478 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = RNReaderSDKSample/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		7A7AD976F68C4D033DDCE037 /* libPods-RNReaderSDKSample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RNReaderSDKSample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A101165A2C4E6D5300CDD340 /* SquareCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SquareCore.framework; path = "SquareReaderSDK.xcframework/ios-arm64_x86_64-simulator/SquareReaderSDK.framework/Frameworks/SquareCore.framework"; sourceTree = "<group>"; };
 		A13A81912C46C5CD006169D7 /* libRNReaderSDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNReaderSDK.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A14565572C47E48500B2205E /* SquareReaderSDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = SquareReaderSDK.xcframework; sourceTree = "<group>"; };
 		A145655C2C47E62100B2205E /* SquareReaderSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SquareReaderSDK.framework; sourceTree = "<group>"; };
-		C9F5F1B2BFE2FA868109C07F /* Pods-RNReaderSDKSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNReaderSDKSample.debug.xcconfig"; path = "Target Support Files/Pods-RNReaderSDKSample/Pods-RNReaderSDKSample.debug.xcconfig"; sourceTree = "<group>"; };
-		DBFA1F32E9EC513744013B4A /* libPods-RNReaderSDKSample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RNReaderSDKSample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EAFAA0EC29BA61C875924F3E /* Pods-RNReaderSDKSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNReaderSDKSample.debug.xcconfig"; path = "Target Support Files/Pods-RNReaderSDKSample/Pods-RNReaderSDKSample.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -54,9 +56,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A13A81922C46C5CD006169D7 /* libRNReaderSDK.a in Frameworks */,
 				A1ABCFB32C492BA500101661 /* SquareReaderSDK.xcframework in Frameworks */,
-				A8CBA0E51585F8ECD1FEC10F /* libPods-RNReaderSDKSample.a in Frameworks */,
+				76E30802966AE60B2C4B1989 /* libPods-RNReaderSDKSample.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,6 +90,7 @@
 				00B137C9286F2577001D50C5 /* File.swift */,
 				00B137C8286F2577001D50C5 /* RNReaderSDKSample-Bridging-Header.h */,
 				6FA4C49E181E2ED44B460478 /* PrivacyInfo.xcprivacy */,
+				6A0E2F275C76C1BD89C09ECC /* PrivacyInfo.xcprivacy */,
 			);
 			name = RNReaderSDKSample;
 			sourceTree = "<group>";
@@ -96,10 +98,11 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A101165A2C4E6D5300CDD340 /* SquareCore.framework */,
 				A145655B2C47E62100B2205E /* ios-arm64_x86_64-simulator */,
 				A13A81912C46C5CD006169D7 /* libRNReaderSDK.a */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				DBFA1F32E9EC513744013B4A /* libPods-RNReaderSDKSample.a */,
+				7A7AD976F68C4D033DDCE037 /* libPods-RNReaderSDKSample.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -147,8 +150,8 @@
 		B712CDFB211BD7AAD16A9658 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				C9F5F1B2BFE2FA868109C07F /* Pods-RNReaderSDKSample.debug.xcconfig */,
-				25A84AB273F5F1ED954B5360 /* Pods-RNReaderSDKSample.release.xcconfig */,
+				EAFAA0EC29BA61C875924F3E /* Pods-RNReaderSDKSample.debug.xcconfig */,
+				12588502133EB63AB7FB88FF /* Pods-RNReaderSDKSample.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -160,7 +163,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "RNReaderSDKSample" */;
 			buildPhases = (
-				352861FA03346A1D11099508 /* [CP] Check Pods Manifest.lock */,
+				3943E44C3229B633176498E5 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
@@ -168,7 +171,7 @@
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				980F11B223028AF00040C218 /* Embed Frameworks */,
 				113D56FE269F89D7004B6DD6 /* Run Script */,
-				6B268B87D792B06184091BDC /* [CP] Copy Pods Resources */,
+				1DEB95CF2278556AB1701A90 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -218,6 +221,7 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				22341886E58C117AE2706A34 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,7 +230,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
@@ -241,6 +245,7 @@
 		113D56FE269F89D7004B6DD6 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 8;
+			dependencyFile = "$(DERIVED_FILES_DIR)/$(INPUT_FILE_PATH).d";
 			files = (
 			);
 			inputFileListPaths = (
@@ -254,9 +259,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
-			shellScript = "FRAMEWORKS=\"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}\"\n\"${FRAMEWORKS}/SquareReaderSDK.framework/setup\"\n";
+			shellScript = "FRAMEWORKS=\"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}\"\n\"${cccccbhcheciukrevjejidlkvtlhbkljhdfcvkccjbee\n}/SquareReaderSDK.framework/setup\"\n";
 		};
-		352861FA03346A1D11099508 /* [CP] Check Pods Manifest.lock */ = {
+		1DEB95CF2278556AB1701A90 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RNReaderSDKSample/Pods-RNReaderSDKSample-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/RCTI18nStrings.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RCTI18nStrings.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RNReaderSDKSample/Pods-RNReaderSDKSample-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3943E44C3229B633176498E5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -276,24 +299,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6B268B87D792B06184091BDC /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RNReaderSDKSample/Pods-RNReaderSDKSample-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RNReaderSDKSample/Pods-RNReaderSDKSample-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -343,7 +348,7 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C9F5F1B2BFE2FA868109C07F /* Pods-RNReaderSDKSample.debug.xcconfig */;
+			baseConfigurationReference = EAFAA0EC29BA61C875924F3E /* Pods-RNReaderSDKSample.debug.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -354,11 +359,13 @@
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
+				EXCLUDED_ARCHS = "";
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				EXPANDED_CODE_SIGN_IDENTITY = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/SquareReaderSDK.xcframework/ios-arm64_x86_64-simulator/SquareReaderSDK.framework/Frameworks",
 				);
 				INFOPLIST_FILE = RNReaderSDKSample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
@@ -370,6 +377,7 @@
 					"$(SDKROOT)/usr/lib/swift",
 					"$(inherited)",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -390,7 +398,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 25A84AB273F5F1ED954B5360 /* Pods-RNReaderSDKSample.release.xcconfig */;
+			baseConfigurationReference = 12588502133EB63AB7FB88FF /* Pods-RNReaderSDKSample.release.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -400,11 +408,13 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
+				EXCLUDED_ARCHS = "";
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				EXPANDED_CODE_SIGN_IDENTITY = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/SquareReaderSDK.xcframework/ios-arm64_x86_64-simulator/SquareReaderSDK.framework/Frameworks",
 				);
 				INFOPLIST_FILE = RNReaderSDKSample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
@@ -493,7 +503,8 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
-					" ",
+					"-Wl",
+					"-ld_classic",
 				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
@@ -553,7 +564,8 @@
 				NEW_SETTING = "";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
-					" ",
+					"-Wl",
+					"-ld_classic",
 				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
