@@ -38,7 +38,7 @@ import {
 import CustomButton from '../components/CustomButton';
 import SquareLogo from '../components/SquareLogo';
 import {defaultStyles} from '../styles/common';
-// const iconImage = require('../components/img/setting.png');
+const iconImage = require('../components/img/setting.png');
 
 export default function CheckoutScreen({navigation}) {
   const [locationName, setLocationName] = useState('');
@@ -153,7 +153,7 @@ export default function CheckoutScreen({navigation}) {
   return (
     <View style={defaultStyles.pageContainer}>
       <TouchableOpacity onPress={() => onSettings()}>
-        {/* <Image style={defaultStyles.settingIconStyle} source={require('../assets/images/setting.png')} /> */}
+        <Image style={defaultStyles.settingIconStyle} source={iconImage} />
       </TouchableOpacity>
       <View style={defaultStyles.logoContainer}>
         <SquareLogo style={defaultStyles.logoStyle} />

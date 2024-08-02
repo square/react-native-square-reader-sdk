@@ -1,6 +1,6 @@
 {
   "name": "react-native-square-reader-sdk",
-  "version": "1.7.2",
+  "version": "1.4.3",
   "description": "A React Native plugin for Square Reader SDK",
   "homepage": "https://github.com/square/react-native-square-reader-sdk",
   "repository": {
@@ -45,10 +45,5 @@
     "modulePathIgnorePatterns": [
       "reader-sdk-react-native-quickstart"
     ]
-  },
-  "resolutions": {
-    "**/**/handlebars": "4.5.3",
-    "**/**/logkitty": "^0.7.1",
-    "**/**/minimist": "^0.2.1"
   }
 }
