@@ -19,7 +19,7 @@
     "postinstall-postinstall": "^2.1.0",
     "react": "^18.2.0",
     "react-native": "^0.74.3",
-    "react-native-camera-kit": "github:coreyphillips/react-native-camera-kit#v13-patch",
+    "react-native-camera-kit": "https://github.com/coreyphillips/react-native-camera-kit#v13-patch",
     "react-native-gesture-handler": "^2.12.1",
     "react-native-globalize": "^4.5.1",
     "react-native-permissions": "^3.6.1",
