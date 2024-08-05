@@ -17,8 +17,11 @@ buildscript {
         afterEvaluate {project ->
             if (project.hasProperty("android")) {
                 android {
-                    compileSdkVersion 33
-                    buildToolsVersion "33.0.0"
+                    compileSdkVersion 34
+                    buildToolsVersion "34.0.0"
+//                    if (namespace == null) {
+//                        namespace project.group
+//                    }
                 }
             }
         }
@@ -26,7 +29,7 @@ buildscript {
     ext {
         buildToolsVersion = "33.0.0"
         minSdkVersion = 24
-        compileSdkVersion = 33
+        compileSdkVersion = 34
         targetSdkVersion = 33
         readerSdkVersion = "[1.7.5, 2.0)"
         ndkVersion = "21.4.7075529"
@@ -40,8 +43,11 @@ buildscript {
         }
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:7.2.2")
+
+        classpath('com.android.tools.build:gradle:8.5.1')
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.21")
+        classpath("com.facebook.react:react-native-gradle-plugin")
+
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -49,16 +55,7 @@ buildscript {
 
 allprojects {
     repositories {
-        exclusiveContent {
-            filter {
-                includeGroup "com.facebook.react"
-            }
-            forRepository {
-                maven {
-                    url "$rootDir/../node_modules/react-native/android"
-                }
-            }
-        }
+
         maven {
             // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
             url("$rootDir/../node_modules/react-native/android")
@@ -70,15 +67,8 @@ allprojects {
         maven {
             url "https://sdk.squareup.com/android"
             credentials {
-            username SQUARE_READER_SDK_APPLICATION_ID
-            password SQUARE_READER_SDK_REPOSITORY_PASSWORD
-            }
-        }
-        mavenCentral {
-            // We don't want to fetch react-native from Maven Central as there are
-            // older versions over there.
-            content {
-                excludeGroup "com.facebook.react"
+                username "sq0idp-ZEe0gjVrSrPSE1YMM4T75A"
+                password "35mywk6inosfvr4zgudkmssu5tvtuiwnicjvc2vn7xwf7ujtd22q"
             }
         }
         google()
