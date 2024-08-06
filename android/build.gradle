@@ -73,6 +73,6 @@ dependencies {
     def playServicesBaseVersion = rootProject.hasProperty('googlePlayServiceVersion') ? rootProject.googlePlayServiceVersion : DEFAULT_PLAY_SERVICES_BASE_VERSION
     implementation 'com.facebook.react:react-native:+'
     implementation "com.google.android.gms:play-services-base:$playServicesBaseVersion"
-    api "com.squareup.sdk.reader:reader-sdk-$SQUARE_READER_SDK_APPLICATION_ID:$readerSdkVersion"
+    api "com.squareup.sdk.reader:reader-sdk:$readerSdkVersion"
     runtimeOnly "com.squareup.sdk.reader:reader-sdk-internals:$readerSdkVersion"
 }
