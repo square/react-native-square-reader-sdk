@@ -17,13 +17,11 @@ limitations under the License.
 import React, {FC} from 'react';
 import {Animated} from 'react-native';
 
-const iconImage = require('./img/ic_jewel.png');
-
 const SquareLogo: FC<Props> = props => {
   return (
     <Animated.Image
       style={[{width: props.width, height: props.height}, props.style]}
-      source={iconImage}
+      source={require('../assets/images/ic_jewel.png')}
     />
   );
 };

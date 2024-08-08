@@ -28,7 +28,7 @@ import java.lang.IllegalAccessException
 import java.lang.reflect.InvocationTargetException
 
 class MainApplication : Application(), ReactApplication {
-    private val mReactNativeHost: ReactNativeHost = object : ReactNativeHost(this) {
+    override val reactNativeHost: ReactNativeHost = object : ReactNativeHost(this) {
         override fun getUseDeveloperSupport(): Boolean {
             return BuildConfig.DEBUG
         }
@@ -42,10 +42,6 @@ class MainApplication : Application(), ReactApplication {
         override fun getJSMainModuleName(): String {
             return "index"
         }
-    }
-
-    override fun getReactNativeHost(): ReactNativeHost {
-        return mReactNativeHost
     }
 
     override fun onCreate() {

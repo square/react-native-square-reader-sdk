@@ -28,7 +28,7 @@ buildscript {
 apply plugin: 'com.android.library'
 
 def DEFAULT_PLAY_SERVICES_BASE_VERSION = '16.0.1'
-def READER_SDK_VERSION = '[1.7.5, 2.0)'
+def READER_SDK_VERSION = '1.7.4'
 
 android {
     compileSdkVersion 33
@@ -73,6 +73,6 @@ dependencies {
     def playServicesBaseVersion = rootProject.hasProperty('googlePlayServiceVersion') ? rootProject.googlePlayServiceVersion : DEFAULT_PLAY_SERVICES_BASE_VERSION
     implementation 'com.facebook.react:react-native:+'
     implementation "com.google.android.gms:play-services-base:$playServicesBaseVersion"
-    api "com.squareup.sdk.reader:reader-sdk-$SQUARE_READER_SDK_APPLICATION_ID:$readerSdkVersion"
+  implementation "com.squareup.sdk.reader:reader-sdk-$SQUARE_READER_SDK_APPLICATION_ID:$readerSdkVersion"
     runtimeOnly "com.squareup.sdk.reader:reader-sdk-internals:$readerSdkVersion"
 }
