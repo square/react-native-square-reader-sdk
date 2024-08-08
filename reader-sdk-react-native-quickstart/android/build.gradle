@@ -19,9 +19,7 @@ buildscript {
                 android {
                     compileSdkVersion 34
                     buildToolsVersion "34.0.0"
-//                    if (namespace == null) {
-//                        namespace project.group
-//                    }
+
                 }
             }
         }
@@ -31,7 +29,7 @@ buildscript {
         minSdkVersion = 24
         compileSdkVersion = 34
         targetSdkVersion = 33
-        readerSdkVersion = "[1.7.5, 2.0)"
+        readerSdkVersion = "1.7.4"
         ndkVersion = "21.4.7075529"
         kotlin_version ='1.8.21'
     }
@@ -67,8 +65,8 @@ allprojects {
         maven {
             url "https://sdk.squareup.com/android"
             credentials {
-                username "sq0idp-ZEe0gjVrSrPSE1YMM4T75A"
-                password "35mywk6inosfvr4zgudkmssu5tvtuiwnicjvc2vn7xwf7ujtd22q"
+                username SQUARE_READER_SDK_APPLICATION_ID
+                password SQUARE_READER_SDK_REPOSITORY_PASSWORD
             }
         }
         google()
