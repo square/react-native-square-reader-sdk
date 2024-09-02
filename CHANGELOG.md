@@ -2,7 +2,7 @@
 
 ### v1.4.5 Apr 25, 2024
 
-* Upgrade Reader SDK version support to 1.7.2 for iOS
+* Upgrade Reader SDK version support to 1.7.4 for iOS
 
 ### v1.4.4 Aug 16, 2023
 
