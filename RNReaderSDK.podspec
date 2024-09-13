@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "RNReaderSDK"
-  s.version      = "1.7.6"
+  s.version      = "1.7.4"
   s.summary      = "A React Native plugin for Square Reader SDK"
   s.description  = <<-DESC
                   A React Native plugin for Square Reader SDK
