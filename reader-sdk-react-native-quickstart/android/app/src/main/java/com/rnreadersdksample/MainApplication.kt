@@ -19,10 +19,9 @@ import com.facebook.react.ReactPackage
 import com.facebook.react.PackageList
 import com.facebook.soloader.SoLoader
 import com.rnreadersdksample.MainApplication
-
+import com.squareup.sdk.reader.ReaderSdk
 import android.content.Context
 import com.facebook.react.ReactInstanceManager
-import com.squareup.sdk.reader.ReaderSdk
 import java.lang.ClassNotFoundException
 import java.lang.NoSuchMethodException
 import java.lang.IllegalAccessException
