@@ -1,5 +1,9 @@
 ## Changelog
 
+### v1.4.6 Sep 18, 2024
+
+* Upgrade Reader SDK version support to 1.7.7 for iOS
+
 ### v1.4.5 Apr 25, 2024
 
 * Upgrade Reader SDK version support to 1.7.2 for iOS
@@ -7,7 +11,7 @@
 ### v1.4.4 Aug 16, 2023
 
 * Upgrade Reader SDK version support to 1.7.5 for Android
-* Support CompileSDK and targetSDK 33 on Android
+* Support CompileSDK and targetSDK 34 on Android
 
 ### v1.4.3 Jan 20, 2023
 

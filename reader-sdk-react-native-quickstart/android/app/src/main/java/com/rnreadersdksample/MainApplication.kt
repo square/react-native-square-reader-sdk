@@ -48,7 +48,6 @@ class MainApplication : Application(), ReactApplication {
         super.onCreate()
         SoLoader.init(this,  /* native exopackage */false)
         ReaderSdk.initialize(this)
-        initializeFlipper(this, reactNativeHost.reactInstanceManager)
     }
 
     companion object {
